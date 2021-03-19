@@ -25,3 +25,14 @@ macOS 10.11 El Capitan or later: Double click the .mobileconfig file to start th
 Strongswan搭建IPSecVPN
 Strongswan是一款开源的IPSecVPN解决方案，支持ikev1和ikev2密钥交换协议。
 
+
+## ShadowSocketR
+```
+wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh
+
+
+chmod +x shadowsocks-all.sh
+
+
+./shadowsocks-all.sh 2>&1 | tee shadowsocks-all.log
+```

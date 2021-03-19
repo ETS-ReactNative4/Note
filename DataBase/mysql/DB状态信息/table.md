@@ -1,38 +1,6 @@
-> 在use database 之后
-
-```
-mysql> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| c_spider           |
-| information_schema |
-| mysql              |
-| performance_schema |
-| spider             |
-| sys                |
-+--------------------+
-6 rows in set (0.41 sec)
-
-mysql> use spider;
-Reading table information for completion of table and column names
-You can turn off this feature to get a quicker startup with -A
-
-Database changed
-mysql> show tables;
-+------------------+
-| Tables_in_spider |
-+------------------+
-| lagou_job        |
-| qiushi           |
-+------------------+
-2 rows in set (0.24 sec)
-```
-
 > MySQL stored all the information related to tables in a database in the information_schema database. We will use the information_schema table to find tables and databases size.
 
 ## Check ALL Databases Size in MySQL
-
 ```
 mysql> SELECT table_schema "Database Name", SUM(data_length+index_length)/1024/1024
     -> "Database Size (MB)"  FROM information_schema.TABLES GROUP BY table_schema;
