@@ -42,8 +42,13 @@ File-New Project  会弹出2种模式 Go(会把工程放到Go path下) 和 Go Mo
 - Package path: myLeaf(这个是go.mod中定义的包名)
 - Output directory: 最终build输出目录
 - Working directory：编译后的二进制文件运行目录(这个涉及到配置文件的读取相对路径要正确, 如下面的文件读取例子)
-  ```go
-	// src/conf/json.go
-	//data, err := ioutil.ReadFile("E:\\leafserver\\src\\server\\conf\\server.json")
-	data, err := ioutil.ReadFile("conf/server.json")
-	```
+```go
+// src/conf/json.go
+//data, err := ioutil.ReadFile("E:\\leafserver\\src\\server\\conf\\server.json")
+data, err := ioutil.ReadFile("conf/server.json")
+```
+
+### Go tool arguments
+在Goland配置时需要把-i参数删除才能正常运行
+
+[Go tool](https://blog.csdn.net/xz_studying/article/details/106983289)

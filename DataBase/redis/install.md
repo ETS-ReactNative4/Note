@@ -76,3 +76,66 @@ Could not connect to Redis at 127.0.0.1:6379: Connection refused
 95231:M 14 Mar 20:36:44.892 # Server initialized
 95231:M 14 Mar 20:36:44.892 * Ready to accept connections
 ```
+
+### Mac 下设置Redis-server 开机自启
+先完成安装
+```
+brew install redis
+```
+
+Launch Redis on computer starts.
+```
+ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
+```
+
+Start Redis server via “launchctl”.
+```
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
+```
+
+或者Start Redis server using configuration file.
+```
+redis-server /usr/local/etc/redis.conf
+```
+
+Stop Redis on autostart on computer start.
+```
+launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
+```
+
+Location of Redis configuration file.
+```
+/usr/local/etc/redis.conf
+```
+
+## Uninstall Redis and its files.
+```
+$ brew uninstall redis
+$ rm ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
+```
+
+## 查看信息
+```
+➜  ~ brew info redis
+redis: stable 6.0.8 (bottled), HEAD
+Persistent key-value database, with built-in net interface
+https://redis.io/
+/usr/local/Cellar/redis/6.0.8 (13 files, 3.8MB) *
+  Poured from bottle on 2021-03-22 at 17:14:42
+From: https://github.com/Homebrew/homebrew-core/blob/HEAD/Formula/redis.rb
+License: BSD-3-Clause
+==> Dependencies
+Required: openssl@1.1 ✔
+==> Options
+--HEAD
+	Install HEAD version
+==> Caveats
+To restart redis after an upgrade:
+  brew services restart redis
+Or, if you don't want/need a background service you can just run:
+  redis-server /usr/local/etc/redis.conf
+==> Analytics
+install: 82,601 (30 days), 178,486 (90 days), 651,981 (365 days)
+install-on-request: 81,559 (30 days), 176,365 (90 days), 626,540 (365 days)
+build-error: 0 (30 days)
+```
