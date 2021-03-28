@@ -1,5 +1,4 @@
 ## mysql -uroot -p
-
 ```
 [root@vultr ~]# mysql -uroot -p
 Enter password:

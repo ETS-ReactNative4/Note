@@ -1,3 +1,16 @@
+## git 仓库的commit
+本地使用
+```
+git log 即可查看
+```
+
+## 从tag上拉取分支
+```
+D:\Work\us>git branch classCard v3.9.79
+D:\Work\us>git checkout classCard
+Switched to branch 'classCard'
+```
+
 ## Tag
 ### command line
 ```
@@ -11,7 +24,7 @@ D:\Work\crm-web>git tag -l
 qa-crm0624
 qa-crm0628
 qa-crm06290911
-qa-crm06291147
+qa-crm06291147qqq
 qa-crm06291650
 qa-crm06292043
 

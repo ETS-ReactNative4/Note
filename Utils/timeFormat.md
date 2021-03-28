@@ -38,6 +38,10 @@ new Date("2021-03-09T01:25:36.553Z")
 Tue Mar 09 2021 09:25:36 GMT+0800 (中国标准时间)
 new Date("2021-03-09T02:25:36.560Z")
 Tue Mar 09 2021 10:25:36 GMT+0800 (中国标准时间)
+
+var isodate = new Date(1615478400000).toISOString()
+console.log(isodate);
+// 2021-03-11T16:00:00.000Z
 ```
 
 ## 时间戳格式化
