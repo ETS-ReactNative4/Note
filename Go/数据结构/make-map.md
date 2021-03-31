@@ -1,3 +1,5 @@
+## make map
+```go
 package main
 
 import "fmt"
@@ -23,7 +25,7 @@ func main() {
 /**
 golang 分配内存主要有内置函数new和make，今天我们来探究一下make有哪些玩法。
 
-map只能为slice, map, channel分配内存，并返回一个初始化的值。首先来看下make有以下三种不同的用法：
+make 只能为slice, map, channel分配内存，并返回一个初始化的值。首先来看下make有以下三种不同的用法：
 1. make(map[string]string)
 
 2. make([]int, 2)
@@ -36,3 +38,4 @@ map只能为slice, map, channel分配内存，并返回一个初始化的值。�
 
 3. 第三种用法，第二参数指定的是切片的长度，第三个参数是用来指定预留的空间长度
 **/
+```
