@@ -23,10 +23,11 @@ new Date(1600099200000)
 Tue Sep 15 2020 00:00:00 GMT+0800 (中国标准时间)
 
 
-Zhong@LAPTOP-S26GFGQ7 MINGW64 /
-$ node
-Welcome to Node.js v12.18.3.
-Type ".help" for more information.
+// Node.js 环境中的 Date()
+// Zhong@LAPTOP-S26GFGQ7 MINGW64 /
+// $ node
+// Welcome to Node.js v12.18.3.
+// Type ".help" for more information.
 > new Date()
 2020-10-14T07:21:19.342Z
 
@@ -175,3 +176,10 @@ moment().subtract(1, 'days').format('YYYY-MM-DD HH:mm:ss')
 moment().subtract(2, 'days').format('YYYY-MM-DD HH:mm:ss')
 "2018-04-21 10:32:59"
 ```
+
+## JavaScript 函数
+### [Date.setDate(day)](https://m.runoob.com/jsref/jsref-setdate.html)
+day: 表示一个月中的一天的一个数值（1 ~ 31）: 0 为上一个月的最后一天; -1 为上一个月最后一天之前的一天
+
+### [JavaScript Date 对象](https://m.runoob.com/jsref/jsref-obj-date.html)
+
