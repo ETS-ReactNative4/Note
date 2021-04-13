@@ -18,3 +18,10 @@ ln -s /usr/mengqc/mub1 /usr/liu/abc
 ```
 执行该命令后，/usr/mengqc/mub1代表的路径将存放在名为/usr/liu/abc的文件中。
 
+### 给目录建立符号链接
+如在 /data/Blog/public 建立 /data/Vue/dist 的链接 且在cd 到 /data/Blog/public/vue 与 /data/Vue/dist 相同
+```
+[root@vultr public]# pwd
+/data/Blog/public
+[root@vultr public]# ln -s /data/Vue/dist vue
+```
