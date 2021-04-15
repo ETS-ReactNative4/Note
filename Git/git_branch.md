@@ -33,6 +33,27 @@ git checkout -b 分支名
 ```
 
 ### 拉去远程分支
+最简单的方式：
+```
+➜  analyze-service git:(test-app-manage) git branch -r
+
+origin/HEAD -> origin/master
+origin/feature_analyze
+origin/feature_app_manage
+origin/feature_material_import
+origin/feature_operation
+origin/feature_redirect
+origin/feature_storage
+origin/master
+origin/test-analyze
+origin/test-app-manage
+
+
+➜  analyze-service git:(feature_app_manage) git checkout test-app-manage
+Branch 'test-app-manage' set up to track remote branch 'test-app-manage' from 'origin'.
+```
+
+下面的方法可以给本地的分支重命名，划分文件夹
 ```
 要检出的本地分支名称feature/deleteContract  远程分支名称origin/feature/deleteContract
 该方法会检出分支后自动切换到检出的分支

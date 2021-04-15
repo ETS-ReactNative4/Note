@@ -17,30 +17,30 @@
 
 ## 安装mysql
 ### Mac
-[Mac 安装 MySQL](https://blog.csdn.net/catstarxcode/article/details/78940385)
-
-连接异常
-```
-➜  ~ mysql -u root -p
-dyld: Library not loaded: /usr/local/opt/openssl/lib/libssl.1.0.0.dylib
-  Referenced from: /usr/local/bin/mysql
-  Reason: image not found
-[1]    91927 abort      mysql -u root -p
-➜  ~ openssl version
-LibreSSL 2.6.5
-```
-[解决办法](https://blog.csdn.net/qq_42584411/article/details/103713815)
-```
-brew install https://github.com/tebelorg/Tump/releases/download/v1.0.0/openssl.rb
-```
-
-### 命令行安装
+#### 首选brew命令行安装
 在命令行输入
 
 brew install mysql  
 brew 包管理工具会自行安装 MySQL
 
 brew services start mysql
+[Mac 安装 MySQL](https://blog.csdn.net/catstarxcode/article/details/78940385)
+
+#### 官网下载安装
+Mac配置mysql提示zsh: command not found: mysql
+```
+解决方案：
+
+1、在终端进入目录：/usr/local/bin
+
+cd /usr/local/bin/
+
+2、在终端设置mysql命令路径
+
+sudo ln -fs /usr/local/mysql/bin/mysql mysql
+
+3、输入mysql -u root -p
+```
 
 ### Ubuntu 
 sudo apt-get update

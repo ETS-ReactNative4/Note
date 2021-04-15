@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="layui-form-item">
+        <label for="good_title" class="layui-form-label">
+            <span class="x-red">*</span>商品名称
+        </label>
+        <div class="layui-input-inline" style="width:380px;">
+            <input type="text" name="title" required lay-verify="title" class="layui-input" placeholder="请输入商品名称（建议14个字以内）" onchange="change()">
+        </div>
+    </div>
+    
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label"><span class="x-red">*</span>商品描述</label>
+        <div class="layui-input-inline" style="width:380px;">
+            <textarea name="desc" placeholder="请输入内容" required="" lay-verify="desc" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <script>
+        const inputEle = document.getElementsByName('title')[0]
+        const target = document.getElementsByName('desc')[0]
+        inputEle.addEventListener('keyup', function(e) {
+            target.value = inputEle.value
+        })
+        function change() {
+            const inputEle = document.getElementsByName('title')[0]
+            const target = document.getElementsByName('desc')[0]
+            target.value = inputEle.value
+        }
+    </script>
+</body>
+</html>

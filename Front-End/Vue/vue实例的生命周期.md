@@ -49,3 +49,16 @@ mounted () {
 ```
 这里都拿不到
 
+## $nextTick
+场景：父组件打开子组件的时候要将子组件的状态重置，父组件中直接调用子组件的方法 this.$refs.courseChoose.open(); 会报错
+"TypeError: Cannot read property 'open' of undefined"
+
+所以要放在 this.$nextTick 中调用
+```vue
+onOpenChoose() {
+  this.chooseVisible = true;
+  this.$nextTick(()=>{
+    this.$refs.courseChoose.open();
+  });
+},
+```
