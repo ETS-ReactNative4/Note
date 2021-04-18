@@ -4,4 +4,7 @@
 ## 安装sdk
 file-setting-appearence
 
+[开发环境](https://codelabs.developers.google.com/codelabs/first-flutter-app-pt1#1)
 ## 工具栏右侧-手机图标-就可以安装手机或平板模拟器
+### 添加虚拟设备
+Tools - AVD Manager - Create Virtual Device
