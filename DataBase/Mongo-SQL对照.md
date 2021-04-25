@@ -30,8 +30,32 @@ while (myCursor.hasNext()) {
 ```
 
 
-## 对照
-![MongoDB和关系型数据库术语对比图](https://pic1.zhimg.com/80/v2-4cb3078a802ff118ae39b901e101e754_720w.jpg)
+## 术语概念对照
+|  MongoDB   | 关系型数据库  |
+|  ----      |  ----       |
+| Datebase   | Datebase    |
+| Collection | Table       |
+| Document   | Record/Row  |
+| Field      | Column      |
+| Embedded Documents | Table Join       |
+
+## 操作语句对照
+### 查询操作
+```sql
+# mongodb
+db.customers.find({}, {id:1,name:1}).skip(2).limit(4)
+
+# mysql
+select id,name from customers limit 4 offset 2;
+```
+后续加入order by
+
+### 插入操作
+
+### 更新操作
+
+### 删除操作
+
 
 [SQL to MongoDB Mapping Chart](https://docs.mongodb.com/manual/reference/sql-comparison/)
 ```
@@ -56,9 +80,6 @@ db.people.find( { status: "A" } ).explain()
 ### $in
 ```sql
 用法：select * from where field in (value1,value2,value3,…)
-
-
-
 ```
 
 ### $inc
