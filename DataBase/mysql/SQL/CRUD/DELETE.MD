@@ -1,10 +1,13 @@
 ## 语法
 ```sql
-DELETE FROM table_name;
+DELETE FROM table_name; # 删除表中所有数据
 
 或
 
 DELETE * FROM table_name;
+
+mysql> delete from student where id = 4;
+Query OK, 1 row affected (0.01 sec)
 ```
 
 ## 具体操作

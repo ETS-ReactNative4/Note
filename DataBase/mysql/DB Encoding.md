@@ -14,3 +14,17 @@ collation即比对方法
 collation即比对方法
 
 用于指定数据集如何排序，以及字符串的比对规则。
+
+## 插入表情报错
+```
+create table student(
+    s_id varchar(10),
+    s_name varchar(20),
+    s_age date,
+    s_sex varchar(10)
+);
+这种简单的创建会导致插入中文时报错：
+mysql> insert into student (s_id, s_name, s_age, s_sex)
+    -> values  ('01' , '赵雷' , '1990-01-01' , '男');
+ERROR 1366 (HY000): Incorrect string value: '\xE8\xB5\xB5\xE9\x9B\xB7' for column 's_name' at row 1
+```

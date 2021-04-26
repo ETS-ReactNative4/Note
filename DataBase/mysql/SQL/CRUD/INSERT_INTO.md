@@ -8,23 +8,12 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 ```
 
-## insert 单行数据插入
+## insert 单行数据插入(插入所有字段不用指定列,注意列的顺序)
 INSERT INTO `user` VALUES (1, 'Jack', 18, 'man');
 
-## insert 多行
+## insert 多行(指定插入列)
 1. 创建表
 ```sql
-create table student(
-    s_id varchar(10),
-    s_name varchar(20),
-    s_age date,
-    s_sex varchar(10)
-);
-这种简单的创建会导致插入中文时报错：
-mysql> insert into student (s_id, s_name, s_age, s_sex)
-    -> values  ('01' , '赵雷' , '1990-01-01' , '男');
-ERROR 1366 (HY000): Incorrect string value: '\xE8\xB5\xB5\xE9\x9B\xB7' for column 's_name' at row 1
-
 create table student(
     s_id varchar(10),
     s_name varchar(20),
@@ -47,7 +36,6 @@ values  ('01' , '赵雷' , '1990-01-01' , '男'),
 1. There is no primary key here. Update will only use exact matching of the old values of the columns here. Thus, it may update more than one record.
 
 没有主键，更新时可能会更新多条记录
-
 ```
 
 ## node.js
