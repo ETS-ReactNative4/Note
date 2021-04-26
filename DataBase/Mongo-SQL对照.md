@@ -39,16 +39,287 @@ while (myCursor.hasNext()) {
 | Field      | Column      |
 | Embedded Documents | Table Join       |
 
-## 操作语句对照
-### 查询操作
+
+## [操作语句对照](https://www.w3schools.com/sql/default.asp)
+### 常用命令
 ```sql
+1. 🔗连接
 # mongodb
-db.customers.find({}, {id:1,name:1}).skip(2).limit(4)
+mongo --port 27088
 
 # mysql
-select id,name from customers limit 4 offset 2;
+mysql -u root -p
+
+2. 数据库版本
+# mongodb-连接后自动输出
+[root@vultr ~]# mongo --port 27088
+MongoDB shell version v4.0.13
+MongoDB server version: 4.0.13
+
+# mysql
+mysql> status;
+--------------
+mysql  Ver 8.0.20 for Linux on x86_64 (MySQL Community Server - GPL)
+
+Connection id:		331
+Current database:
+Current user:		root@localhost
+
+Threads: 2  Questions: 7  Slow queries: 0  Opens: 115  Flush tables: 3  Open tables: 40  Queries per second avg: 0.000
+
+3. 查看库
+# mongodb
+show dbs
+> show dbs
+AggreDB    0.000GB
+NextJoyDB  0.000GB
+RECOVERY   0.000GB
+ZooDB      0.000GB
+admin      0.000GB
+config     0.000GB
+koa-test   0.002GB
+local      0.000GB
+
+# mysql
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| join_test          |
+| mysql              |
+| next_joy           |
+| performance_schema |
+| sys                |
++--------------------+
+6 rows in set (0.18 sec)
+
+4. 创建库
+# mongodb
+> use compare
+switched to db compare
+
+# mysql
+mysql> use compare
+ERROR 1049 (42000): Unknown database 'compare'
+
+## [需要先创建-待完善](./mysql/DDL/CREATE_DB.md)
+mysql> create database compare;
+Query OK, 1 row affected (0.20 sec)
+
+5. 创建表
+# mongodb - 插入数据的时候就自动创建collection
+> db
+compare
+
+> db.customers.insertMany([
+   {name:"Alfreds Futterkiste",address:"Obere Str. 57",city:"Berlin",country:"Germany"},
+   {name:"Antonio",address:"Mataderos 2312",city:"London",country:"UK"},
+   {name:"Eastern",address:"Mataderos 23889",city:"Sevilla",country:"Spain"}
+])
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("608625bd6892a719be946daf"),
+		ObjectId("608625bd6892a719be946db0"),
+		ObjectId("608625bd6892a719be946db1")
+	]
+}
+
+> show tables;
+customers
+
+
+# mysql
+mysql> use compare;
+Database changed
+
+## 需要先创建表
+create table if not exists `customers` (
+   `id` INT UNSIGNED AUTO_INCREMENT,
+   `name` VARCHAR(100) NOT NULL,
+   `address` VARCHAR(100) NOT NULL,
+   `city` VARCHAR(40) NOT NULL,
+   `country` VARCHAR(40) NOT NULL,
+   PRIMARY KEY ( `id` )
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+Query OK, 0 rows affected, 1 warning (0.36 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_compare |
++-------------------+
+| customers         |
++-------------------+
+1 row in set (0.20 sec)
+
+mysql> desc customers;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int unsigned | NO   | PRI | NULL    | auto_increment |
+| name    | varchar(100) | NO   |     | NULL    |                |
+| address | varchar(100) | NO   |     | NULL    |                |
+| city    | varchar(40)  | NO   |     | NULL    |                |
+| country | varchar(40)  | NO   |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+5 rows in set (0.28 sec)
+
+## [插入数据](./mysql/SQL/CRUD/INSERT_INTO.md)
+insert into customers (name, address, city, country)
+values  ("Alfreds Futterkiste","Obere Str. 57","Berlin","Germany"),
+        ("Antonio","Mataderos 2312","London","UK"),
+        ("Eastern","Mataderos 23889","Sevilla","Spain");
+Query OK, 3 rows affected (0.28 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+6. 查询数据
+# mongodb
+> db.customers.find()
+{ "_id" : ObjectId("608625bd6892a719be946daf"), "name" : "Alfreds Futterkiste", "address" : "Obere Str. 57", "city" : "Berlin", "country" : "Germany" }
+{ "_id" : ObjectId("608625bd6892a719be946db0"), "name" : "Antonio", "address" : "Mataderos 2312", "city" : "London", "country" : "UK" }
+{ "_id" : ObjectId("608625bd6892a719be946db1"), "name" : "Eastern", "address" : "Mataderos 23889", "city" : "Sevilla", "country" : "Spain" }
+
+# mysql
+mysql> select * from customers;
++----+---------------------+-----------------+---------+---------+
+| id | name                | address         | city    | country |
++----+---------------------+-----------------+---------+---------+
+|  1 | Alfreds Futterkiste | Obere Str. 57   | Berlin  | Germany |
+|  2 | Antonio             | Mataderos 2312  | London  | UK      |
+|  3 | Eastern             | Mataderos 23889 | Sevilla | Spain   |
++----+---------------------+-----------------+---------+---------+
+3 rows in set (0.15 sec)
+
+## 控制返回字段
+# mongodb
+> db.customers.find({},{_id:0, name:1})
+{ "name" : "Alfreds Futterkiste" }
+{ "name" : "Antonio" }
+{ "name" : "Eastern" }
+
+# mysql
+mysql> select name from customers;
++---------------------+
+| name                |
++---------------------+
+| Alfreds Futterkiste |
+| Antonio             |
+| Eastern             |
++---------------------+
+3 rows in set (0.17 sec)
+
+## 设置 skip limit
+# mongodb
+> db.customers.find().skip(1).limit(1)
+{ "_id" : ObjectId("608625bd6892a719be946db0"), "name" : "Antonio", "address" : "Mataderos 2312", "city" : "London", "country" : "UK" }
+
+# mysql
+mysql> select * from customers limit 1 offset 1;
++----+---------+----------------+--------+---------+
+| id | name    | address        | city   | country |
++----+---------+----------------+--------+---------+
+|  2 | Antonio | Mataderos 2312 | London | UK      |
++----+---------+----------------+--------+---------+
+1 row in set (0.18 sec)
+
+## 设置distinct - 需要先插入相同country的数据
+> db.customers.insert({name: "Jack",address:"Opps",city: "Beijing",country:"UK"})
+WriteResult({ "nInserted" : 1 })
+
+mysql> insert into customers (name,address,city,country) values ("Jack","Opps","Beijing","UK");
+Query OK, 1 row affected (0.20 sec)
+
+# mongodb
+> db.customers.distinct("country")
+[ "Germany", "UK", "Spain" ]
+
+# mysql
+mysql> select distinct country from customers;
++---------+
+| country |
++---------+
+| Germany |
+| UK      |
+| Spain   |
++---------+
+3 rows in set (0.24 sec)
+
+
+7. 查询一下总数量 count
+# mongodb
+> db.customers.count()
+4
+
+# mysql
+mysql> select count(*) as count from customers;
++-------+
+| count |
++-------+
+|     4 |
++-------+
+1 row in set (0.25 sec)
+
+mysql> select count(distinct country) as distinctCountryCount from customers;
++----------------------+
+| distinctCountryCount |
++----------------------+
+|                    3 |
++----------------------+
+1 row in set (0.09 sec)
+
+# 或者使用子查询
+mysql> select count(*) count from (select distinct country from customers);
+ERROR 1248 (42000): Every derived table must have its own alias
+
+mysql> select count(*) as count from (select distinct country from customers) as T;
++-------+
+| count |
++-------+
+|     3 |
++-------+
+1 row in set (0.22 sec)
+
+
+8. group by 分组
+# mongodb
+> db.customers.aggregate([
+   {
+      $group:{_id:"$country",userCount:{$sum:1}}
+   }
+])
+{ "_id" : "Spain", "userCount" : 1 }
+{ "_id" : "UK", "userCount" : 2 }
+{ "_id" : "Germany", "userCount" : 1 }
+
+# mysql
+mysql> select country from customers group by country;
++---------+
+| country |
++---------+
+| Germany |
+| UK      |
+| Spain   |
++---------+
+3 rows in set (0.20 sec)
+
+mysql> select country,count(id) as userCount from customers group by country;
++---------+-----------+
+| country | userCount |
++---------+-----------+
+| Germany |         1 |
+| UK      |         2 |
+| Spain   |         1 |
++---------+-----------+
+3 rows in set (0.16 sec)
+
+
+9. order by - sort 排序
+
 ```
-后续加入order by
+
+
+### 查询操作
 
 ### 插入操作
 
@@ -58,24 +329,6 @@ select id,name from customers limit 4 offset 2;
 
 
 [SQL to MongoDB Mapping Chart](https://docs.mongodb.com/manual/reference/sql-comparison/)
-```
-1. DISTINCT
-SELECT DISTINCT(status)
-FROM people
-
-上面的sql和mongdb的
-db.people.aggregate( [ { $group : { _id : "$status" } } ] ) 或者
-
-db.people.distinct( "status" )
-
-2. EXPLAIN
-EXPLAIN SELECT *
-FROM people
-WHERE status = "A"
-
-等价于
-db.people.find( { status: "A" } ).explain()
-```
 
 ### $in
 ```sql
@@ -93,12 +346,6 @@ UPDATE member_profile
 ### $sort
 1	Sort ascending.
 -1	Sort descending.
-
-### distinct
-> SELECT DISTINCT 语句用于返回唯一不同的值。
-
-1. MySQL：SELECT DISTINCT country FROM Websites;
-2. MongoDB: db.Websites.distinct( "country" )
    
 ### mysql mongodb 删除一个table/collection 中的所有row/document
 mysql vs mongodb
@@ -108,16 +355,8 @@ DELETE FROM table1 WHERE 1;  /**可以在DELETE语句中加上永真的WHERE，�
 db.table1.deleteMany({})
 ```
 
-### count
-mysql VS mongodb
-```sql
-SELECT COUNT(*) FORM TABEL2;
-
-db.TABEL2.count({})
-```
-
 ### 模糊查询
-1. [mysql](./mysql/SQL/LIKE.md)：like操作符 
+1. [mysql](./mysql/SQL/1.2.LIKE.md)：like操作符 
    ```sql
    SELECT * FROM Websites WHERE name LIKE 'G%';
    ```
@@ -125,6 +364,7 @@ db.TABEL2.count({})
    ```sql
    collection.find({name: { $regex: `${name}`, $options: 'i' }})
    ```
+
 
 > 装逼精粹
 ## 什么是MongoDB

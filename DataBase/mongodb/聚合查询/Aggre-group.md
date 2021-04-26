@@ -35,7 +35,13 @@ SELECT COUNT(*) AS count FROM sales
 ```sql
 db.order.aggregate(
   [
-      {$group:{_id:'$studentId',totalPaidFee:{$sum:'$totalPaidFee'},totalReceivedFee:{$sum:'$totalReceivedFee'}}}
+      {
+        $group: {
+          _id:'$studentId',
+          totalPaidFee:{$sum:'$totalPaidFee'},
+          totalReceivedFee:{$sum:'$totalReceivedFee'}
+        }
+      }
   ]
 )
 ```
