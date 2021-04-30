@@ -10,13 +10,27 @@ The Access-Control-Allow-Headers response header is used in response to a prefli
 
 This header is required if the request has an Access-Control-Request-Headers header.
 
-## Referer
+## [Referer](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Referer)
 The Referer request header contains the address of the previous web page from which a link to the currently requested page was followed. The Referer header allows servers to identify where people are visiting them from and may use that data for analytics, logging, or optimized caching, for example.
 
 The HTTP referer (a misspelling of referrer[1]) is an optional HTTP header field that identifies the address of the webpage (i.e. the URI or IRI) which is linked to the resource being requested. By checking the referrer, the new webpage can see where the request originated.
 
-## Referrer-Policy
-The Referrer-Policy HTTP header controls how much referrer information (sent via the Referer header) should be included with requests.
+Referer 请求头包含了当前请求页面的来源页面的地址，即表示当前页面是通过此来源页面里的链接进入的。服务端一般使用 Referer 请求头识别访问来源，可能会以此进行统计分析、日志记录以及缓存优化等。
+
+Referer 请求头可能暴露用户的浏览历史，涉及到用户的隐私问题。
+
+### 在以下两种情况下，Referer 不会被发送：
+- 来源页面采用的协议为表示本地文件的 "file" 或者 "data" URI；
+- 当前请求页面采用的是非安全协议，而来源页面采用的是安全协议（HTTPS）。
+
+### [什么事防盗链](https://www.jianshu.com/p/0a1338db6cab)
+
+### 如何防盗链
+HTTP协议和标准的浏览器对于解决这个问题提供便利，浏览器在加载非本站的资源时，会增加一个头域，头域名字固定为：
+
+这个referer标签正是为了告诉请求响应者（被拉取资源的服务端），本次请求的引用页是谁，资源提供端可以分析这个引用者是否“友好”，是否允许其“引用”，对于不允许访问的引用者，可以不提供图片，这样访问者在页面上就只能看到一个图片无法加载的浏览器默认占位的警告图片，甚至服务端可以返回一个默认的提醒勿盗链的提示图片。
+
+一般的站点或者静态资源托管站点都提供防盗链的设置，也就是让服务端识别指定的Referer，在服务端接收到请求时，通过匹配referer头域与配置，对于指定放行，对于其他referer视为盗链。
 
 ## Keep-Alive
 The Keep-Alive general header allows the sender to hint about how the connection may be used to set a timeout and a maximum amount of requests.
