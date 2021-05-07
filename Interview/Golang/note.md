@@ -20,6 +20,21 @@ https://studygolang.com/articles/17796
 - 尽量了解互斥锁，读写锁，死锁等一些数据竞争的概念，debug的时候可能会有用。
 - 尽量了解golang的内存模型，知道多小才是小对象，为什么小对象多了会造成gc压力。
 
+1. 使用Go语言编程实现堆栈和队列这两个数据结构，该如何实现。可以只说实现思路。
+2. Go中，如何复制切片内容？如何复制map内容？如何复制接口内容？编程时会如何操作实现。
+3. 02 指针的作用
+5. 04 Go 有异常类型吗？
+6.  05 什么是协程（Goroutine）
+7.  06 如何高效地拼接字符串
+10. 09 Go 支持默认参数或可选参数吗？
+11. 10 defer 的执行顺序
+12. 11 如何交换 2 个变量的值？
+13. 12 Go 语言 tag 的用处？
+14. 13 如何判断 2 个字符串切片（slice) 是相等的？
+15. 14 字符串打印时，%v 和 %+v 的区别
+16. 15 Go 语言中如何表示枚举值(enums)？
+
+
 ## 基础知识
 ### = 和 := 的区别？
 - = 是赋值语句 =要和 var 关键字一起使用；var可以在函数中使用，也可以在函数外使用，:=只能在函数中使用，所以只能定义局部变量。
@@ -62,6 +77,10 @@ a 和 b 的类型（int 和 bool）将由编译器自动推断
 
 这是使用变量的首选形式，但是它只能被用在函数体内，而不可以用于全局变量的声明与赋值。使用操作符 := 可以高效地创建一个新的变量，称之为初始化声明。
 
+### 名称
+1. 什么是 rune 类型: 查看[数据类型](../../Go/数据类型/类型汇总.md) rune // alias for int32
+2. 
+
 ## 结构体相关(struct)
 ### 结构体的定义和赋值
 ```go
@@ -97,6 +116,12 @@ func main() {
 ```
 
 ### 空struct{}在什么情况下使用？
+[How to improve your GO code with empty structs](https://medium.com/@l.peppoloni/how-to-improve-your-go-code-with-empty-structs-3bd0c66bc531)
+
+The size of a struct is the sum of the size of the types of its fields, since there are no fields: no size!
+
+- Free Maps
+- Semaphores and tokens
 
 ### 结构体是否能够比较？该如何比较两个结构体？
 如果结构体内的所有成员变量都是可以比较的，那么结构体就可以进行比较。否则不可比较。
@@ -139,6 +164,39 @@ func CantNotComparable() {
 ```
 优雅的转换结构体必然要用到反射，因而影响性能。对于类似的问题，go的设计哲学是推荐用生成器。比如这个proto插件：
 https://link.zhihu.com/?target=https%3A//github.com/bold-commerce/protoc-gen-struct-transformer
+
+### 如果有不能比较的filed，可以使用reflect.deepEqual
+Using reflect.deepEqual also works, especially when you have map inside the struct
+```go
+package main
+
+import "fmt"
+import "time"
+import "reflect"
+
+type Session struct {
+    playerId string
+    beehive string
+    timestamp time.Time
+}
+
+func (s Session) IsEmpty() bool {
+  return reflect.DeepEqual(s,Session{})
+}
+
+func main() {
+  x := Session{}
+  if x.IsEmpty() {
+    fmt.Print("is empty")
+  } 
+}
+// With Go 1.13 it is possible to use the new isZero() method:
+if reflect.ValueOf(session).IsZero() {
+     // do stuff...
+}
+// I didn't test this regarding performance, but I guess that this should be faster, than comparing via reflect.DeepEqual().
+```
+
 
 ### 如何比较两个接口？
 要比较两个interface变量是否相等，首先需要理解interface的内部代表了什么。
@@ -219,23 +277,6 @@ Interface varible a 和 b 相等是因为：
 
 [实例来源](https://golangbyexample.com//)
 
-1. 使用Go语言编程实现堆栈和队列这两个数据结构，该如何实现。可以只说实现思路。
-2. Go中，如何复制切片内容？如何复制map内容？如何复制接口内容？编程时会如何操作实现。
-3. 02 指针的作用
-4. 03 Go 允许多个返回值吗？
-5. 04 Go 有异常类型吗？
-6.  05 什么是协程（Goroutine）
-7.  06 如何高效地拼接字符串
-8.  07 什么是 rune 类型
-9.  08 如何判断 map 中是否包含某个 key ？
-10. 09 Go 支持默认参数或可选参数吗？
-11. 10 defer 的执行顺序
-12. 11 如何交换 2 个变量的值？
-13. 12 Go 语言 tag 的用处？
-14. 13 如何判断 2 个字符串切片（slice) 是相等的？
-15. 14 字符串打印时，%v 和 %+v 的区别
-16. 15 Go 语言中如何表示枚举值(enums)？
-17. 16 空 struct{} 的用途
 
 ## 实现原理
 - 01 init() 函数是什么时候执行的？
