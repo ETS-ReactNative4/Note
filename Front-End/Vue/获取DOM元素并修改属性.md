@@ -27,3 +27,15 @@ mounted () {
     window.addEventListener('scroll', this.handleScroll, true)
 }
 ```
+
+## 比起强制修改DOM属性更好的方式是修改属性对象
+```js
+<div class="left" :style="styleObj"></div>
+
+onChange() {
+  this.isCollapse = !this.isCollapse;
+  const src = require('../assets/logo_mini.png');
+  this.styleObj = this.isCollapse ? {width: '64px', backgroundImage: `url(${src})`}:{};
+  this.styleObj1 = this.isCollapse ? {width: '64px', backgroundColor: '#393c4a'}:{width: '200px',backgroundColor: '#393c4a'};
+},
+```
