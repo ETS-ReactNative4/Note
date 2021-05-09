@@ -11,7 +11,6 @@ https://studygolang.com/articles/17796
 有这功夫不如看看channel，slice，map，这些数据结构怎么实现的，免得以后死锁，slice扩容这种问题踩坑。
 
 - uint不能直接相减，结果是负数会变成一个很大的uint，这点对动态语言出身的会可能坑。
-- channel一定记得close。goroutine记得return或者中断，不然容易造成goroutine占用大量CPU。
 - 从slice创建slice的时候，注意原slice的操作可能导致底层数组变化。如果你要创建一个很长的slice，尽量创建成一个slice里存引用，这样可以分批释放，避免gc在低配机器上stop the world面试的时候尽量了解协程，线程，进程的区别。
 
 - 面试的时候尽量了解协程，线程，进程的区别。明白channel是通过注册相关goroutine id实现消息通知的。
@@ -22,16 +21,12 @@ https://studygolang.com/articles/17796
 
 1. 使用Go语言编程实现堆栈和队列这两个数据结构，该如何实现。可以只说实现思路。
 2. Go中，如何复制切片内容？如何复制map内容？如何复制接口内容？编程时会如何操作实现。
-5. 04 Go 有异常类型吗？
-6.  05 什么是协程（Goroutine）
-7.  06 如何高效地拼接字符串
-10. 09 Go 支持默认参数或可选参数吗？
-11. 10 defer 的执行顺序
-12. 11 如何交换 2 个变量的值？
-13. 12 Go 语言 tag 的用处？
-14. 13 如何判断 2 个字符串切片（slice) 是相等的？
-15. 14 字符串打印时，%v 和 %+v 的区别
-16. 15 Go 语言中如何表示枚举值(enums)？
+3.  06 如何高效地拼接字符串
+4.  09 Go 支持默认参数或可选参数吗？
+5.  11 如何交换 2 个变量的值？
+6.  13 如何判断 2 个字符串切片（slice) 是相等的？
+7.  14 字符串打印时，%v 和 %+v 的区别
+8.  15 Go 语言中如何表示枚举值(enums)？
 
 
 ## 基础知识
@@ -78,7 +73,7 @@ a 和 b 的类型（int 和 bool）将由编译器自动推断
 
 ### 名称
 1. 什么是 rune 类型: 查看[数据类型](../../Go/数据类型/类型汇总.md) rune // alias for int32
-2. 
+2. Go 语言 tag 的用处？查看[结构体](../../Go/数据结构/1.1.Structs.md)
 
 ## 指针相关
 ### 指针的作用
@@ -281,6 +276,21 @@ Interface varible a 和 b 相等是因为：
 [实例来源](https://golangbyexample.com//)
 
 
+## goroutine 和 channel 相关
+### 什么是协程（Goroutine）
+
+### 什么是协程泄露(Goroutine Leak)？
+channel一定记得close。goroutine记得return或者中断，不然容易造成goroutine占用大量CPU。
+
+### 无缓冲的 channel 和有缓冲的 channel 的区别？
+
+
+## Go 异常处理(panic,defer,recover)
+查看[异常处理机制](../../Go/异常处理机制.md)
+
+### defer 的执行顺序
+查看[异常处理机制](../../Go/异常处理机制.md)
+
 ## 实现原理
 - 01 init() 函数是什么时候执行的？
 - 02 Go 语言的局部变量分配在栈上还是堆上？
@@ -290,8 +300,6 @@ Interface varible a 和 b 相等是因为：
 - 06 函数返回局部变量的指针是否安全？07 非接口非接口的任意类型 T() 都能够调用 *T 的方法吗？反过来呢？
 
 ## 并发编程
-- 01 无缓冲的 channel 和有缓冲的 channel 的区别？
-- 02 什么是协程泄露(Goroutine Leak)？
 - 03 Go 可以限制运行时操作系统线程的数量吗？ 
 
 ## Go高级编程
