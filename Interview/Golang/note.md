@@ -280,10 +280,10 @@ Interface varible a 和 b 相等是因为：
 ### 什么是协程（Goroutine）
 
 ### 什么是协程泄露(Goroutine Leak)？
-channel一定记得close。goroutine记得return或者中断，不然容易造成goroutine占用大量CPU。
+channel一定记得close。goroutine记得return或者中断，不然容易造成goroutine占用大量CPU。(这个说法有待研究)
 
 ### 无缓冲的 channel 和有缓冲的 channel 的区别？
-
+向buffered channel 发送数据，只有当channel满了才会阻塞，空了也会阻塞。
 
 ## Go 异常处理(panic,defer,recover)
 查看[异常处理机制](../../Go/异常处理机制.md)
