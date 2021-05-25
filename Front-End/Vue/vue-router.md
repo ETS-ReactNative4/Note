@@ -64,3 +64,43 @@ const User = {
   template: '<div>User {{ $route.params.id }}</div>'
 }
 ```
+
+## 页面间传递参数
+vue-router query和params传参(接收参数)，$router、$route的区别
+
+### query方式传参和接收参数
+```
+传参: 
+this.$router.push({
+        path:'/xxx'
+        query:{
+          id:id
+        }
+      })
+  
+接收参数:
+this.$route.query.id
+```
+
+### params方式传参和接收参数
+```
+this.$router.push({
+        name:'xxx'
+        params:{
+          id:id
+        }
+      })
+  
+接收参数:
+this.$route.params.id
+
+// params 和 query 同时传
+this.$router.push({name: 'GoodsInfo', params:{id: row.id}, query: row})
+```
+注意:params传参，push里面只能是 name:'xxxx',不能是path:'/xxx',因为params只能用name来引入路由，如果这里写成了path，接收参数页面会是undefined！！！
+
+注意:传参是this.$router,接收参数是this.$route,这里千万要看清了！！！
+
+### this.$router 和this.$route有何区别？
+![oo](https://images2018.cnblogs.com/blog/1201856/201808/1201856-20180803103148098-1855335209.png)
+
