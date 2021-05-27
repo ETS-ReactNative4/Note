@@ -1,9 +1,3 @@
 https://regexper.com/
 
 http://www.runoob.com/regexp/regexp-syntax.html  菜鸟
-
-
-## 校验非负浮点数
-/^\d+(\.\d+)?$/
-
-https://www.cnblogs.com/bert227/p/10260424.html
