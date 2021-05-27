@@ -12,3 +12,5 @@ main { otherFunc: [Function: otherFunc] }
 main{otherFunc} [Function: otherFunc]
 typeof main{otherFunc} function
 */
+
+

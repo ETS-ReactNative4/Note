@@ -15,6 +15,9 @@ tail -100f /var/log/nginx/access.log
 ```
 
 ## /var/log/nginx/error.log
+```
+tail -100f /var/log/nginx/error.log
+```
 
 ### 获取静态文件报错403
 equest: "GET /1577623616714.png HTTP/1.1", host: "207.148.16.xxx"
