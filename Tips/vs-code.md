@@ -1,4 +1,18 @@
 ## VS Code
+### REST Client
+新建一个.http的文件
+```
+POST http://localhost:3004/user/register HTTP/1.1
+content-type: application/json
+
+{
+    "name": "sample",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
+
+###
+GET http://localhost:3004/ HTTP/1
+```
 
 ### 缺陷
 1. 查找文件引用不方便 find reference
