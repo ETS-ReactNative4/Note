@@ -6,41 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .modal {
-            width: '100px';
-            height: '100px';
-            background-color: aqua;
-        }
-        .hide {
-            display: none;
-        }
         .scale_in {
-            transform: scale(2);
+            /* transform: scale(1.1); */
+            width: 200%!important;
+        }
+        #ShowImage_Form img {
+            width: 100%;
+        }
+        .modal-body {
+            width: 500px;
+            height: 500px;
+            background-color: aqua;
+            padding: 10px;
+            max-height: 600px;
+            overflow: scroll;
         }
     </style>
 </head>
 <body>
-<div id="ShowImage_Form" class="modal in" >   
-    <div id="ShowImage_Form" class="modal in" style="display: block; padding-left: 0px;">         
-        <div class="modal-header">
-            <button data-dismiss="modal" class="close" type="button"></button>
-        </div>
-        <div class="modal-body" ondblclick="myClose()">
-            <div id="img_show"><img onclick="scale()" src="https://leads.foundingaz.cn/img/040/1.jpg" class="carousel-inner img-responsive img-rounded"></div>
-        </div>
+<div id="ShowImage_Form" class="modal">         
+    <div class="modal-body" ondblclick="myClose()">
+        <img id="modal_image" onclick="scale()" src="https://leads.foundingaz.cn/img/040/2.jpg" 
+        class="carousel-inner img-responsive img-rounded">
     </div>
 </div>
-</div>
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="http://hammerjs.github.io/dist/hammer.min.js"></script>
 <script>
 function scale() {
-    $("#img_show").toggleClass('scale_in')
-
+    $("#ShowImage_Form img").toggleClass('scale_in')
 }
 function myClose(){
     $("#ShowImage_Form").addClass("hide")
     $(".modal-backdrop").css({"display": "none"})
 }
+
+
+// http://hammerjs.github.io/getting-started/
+var myElement = document.getElementById('modal_image');
+
+// create a simple instance
+// by default, it only adds horizontal recognizers
+var mc = new Hammer(myElement);
+
+// listen to events...
+mc.on("tap pinch", function(ev) {
+    myElement.textContent = ev.type +" gesture detected.";
+});
 </script>
 
 </body>
