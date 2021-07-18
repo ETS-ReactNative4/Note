@@ -6,3 +6,10 @@ unix命令
 ## 目录重命名
 mkdir /etc/data
 mv data dataY   把data 重命名为 dataY
+
+## 创建嵌套的目录
+```
+➜  ~ mkdir -p /data/db
+mkdir: /data/db: Permission denied
+➜  ~ mkdir -p ./data/db
+```

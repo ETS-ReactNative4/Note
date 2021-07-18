@@ -11,9 +11,16 @@ https://codelabs.developers.google.com/codelabs/from-java-to-dart/#1
 * 标识符以字母或“_”开头，后面可随意组合
 * 语句末尾要加分号
 
-## Create a simple Dart class
+## 打印输出
+```dart
+String name = '野猿新一';
+print('我的名字叫${name}')
 
+print('loadata${result}');
 ```
+
+## Create a simple Dart class
+```dart
 class Bicycle {
   int cadence;
   int _speed = 0;
