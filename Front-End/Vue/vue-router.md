@@ -1,3 +1,20 @@
+## 页面间跳转钩子
+在DeliveryInfo.vue 中有用到
+```
+beforeRouteEnter (to, from, next) {
+  if (from.name === 'DeliveryList') {
+    next(vm => vm.setData())
+  } else {
+    next()
+  }
+},
+methods: {
+  setData() {
+    this.activeName = '1';
+  },
+}
+```
+
 ## https://router.vuejs.org/zh/guide/#html
 ```
 // 1. 定义 (路由) 组件。

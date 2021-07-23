@@ -87,3 +87,5 @@ There is a great article on Go scheduler by the name of [Go’s work-stealing sc
 There is a great talk by Rob Pike on concurrency of GoLang with the title "Concurrency Is Not Parallelism".
 
 Since we understood what goroutines are and how they work under the hood, let’s dive into the next lesson where we will learn about how to create goroutines and use them in our Go program. goroutines are a great medium to divide the workload among many workers to make the job easy and fast. That’s why Go is a perfect programming language to make micro-system architecture for your next application.
+
+goroutines是一个重要的媒介可以划分负载，使得任务的处理更加简单快速。这也是Go可以完美的应用于微服务架构的原因。
