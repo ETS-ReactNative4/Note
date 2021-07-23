@@ -11,6 +11,39 @@ https://codelabs.developers.google.com/codelabs/from-java-to-dart/#1
 * 标识符以字母或“_”开头，后面可随意组合
 * 语句末尾要加分号
 
+## Create contructor for final field
+flutter- 空安全: Try adding either an explicit non-‘null‘ default value or the ‘required‘ modifier.
+
+一旦sdk升级到2.12以上之后，那么就会执行空安全检查，项目开始出现大面积报错。
+
+- 解决方法一，添加关键字 required。缺点：调用时，每个参数必传
+
+- 使用？
+  ```dart
+  class BorderIcon extends StatelessWidget {
+    final Widget child;
+    final EdgeInsets? padding;
+    final double? width, height;
+
+    const BorderIcon({Key? key, this.padding, this.width, this.height, required this.child}) : super(key: key);
+
+
+    @override
+    Widget build(BuildContext context) {
+      return Container(
+          width: width,
+          height: height,
+          decoration: BoxDecoration(
+              color: COLOR_WHITE,
+              borderRadius: BorderRadius.all(Radius.circular(15.0)),
+              border: Border.all(color: COLOR_GREY.withAlpha(40), width: 2)),
+          padding: EdgeInsets.all(8.0),
+          child: Center(child: child)
+      );
+    }
+  }
+  ```
+
 ## 打印输出
 ```dart
 String name = '野猿新一';

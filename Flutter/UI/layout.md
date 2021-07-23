@@ -9,3 +9,13 @@ Container is a widget class that allows you to customize its child widget. Use a
 
 ## Stack
 Use Stack to arrange widgets on top of a base widget—often an image. The widgets can completely or partially overlap the base widget.
+
+
+## Container 的 padding 和 margin
+```dart
+padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
+
+margin: const EdgeInsets.symmetric(vertical: 20),
+
+margin: const EdgeInsets.only(left: 20),
+```
