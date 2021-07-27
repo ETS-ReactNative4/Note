@@ -69,19 +69,58 @@ z轴方向的
 ### Container
 The Container widget lets you create a rectangular visual element. A container can be decorated with a BoxDecoration, such as a background, a border, or a shadow. 
 
-```
-Center(
-  child: Container(
-    margin: const EdgeInsets.all(10.0),
-    color: Colors.amber[600],
-    width: 48.0,
-    height: 48.0,
-  ),
-)
+```dart
+class InformationTile extends StatelessWidget{
+
+  final String content;
+  final String name;
+
+  const InformationTile({Key? key, required this.content, required this.name}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData themeData = Theme.of(context);
+    final Size size = MediaQuery.of(context).size;
+    final double tileSize = size.width*0.20;
+
+    return Container(
+      margin: const EdgeInsets.only(left: 25),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          BorderIcon(
+              width: tileSize,
+              height: tileSize,
+              child: Text(content, style: themeData.textTheme.headline3,)
+          ),
+          addVerticalSpace(15),
+          Text(name,style: themeData.textTheme.headline6,)
+        ],
+      ),
+    );
+  }
+
+}
 ```
 
 ### Divider
 
 
 
-### 
+### SingleChildScrollView (横向、纵向滚动组件)
+在writter ui-1分支上有用到
+```dart
+SingleChildScrollView(
+  scrollDirection: Axis.horizontal,
+  physics: BouncingScrollPhysics(),
+  child: Row(
+    children: [
+      InformationTile(content: "${itemData["area"]}", name: "Square Foot",),
+      InformationTile(content: "${itemData["bedrooms"]}", name: "Bedrooms",),
+      InformationTile(content: "${itemData["bathrooms"]}", name: "Bathrooms",),
+      InformationTile(content: "${itemData["garage"]}", name: "Garage",),
+    ],
+  ),
+  padding: const EdgeInsets.only(right: 30),
+)
+```
