@@ -61,6 +61,20 @@ bin目录主要存放可执行文件; pkg目录存放编译好的库文件, 主�
 
 如果你用了gomod，那么你的项目就不在局限在那个gopath文件夹内了，你可以在任何位置创建项目并且运行。
 
+#### 给go.mod中添加依赖
+```go
+go get github.com/360EntSecGroup-Skylar/excelize/v2
+
+// 执行之后自动添加到go.mod中
+module xlsx
+
+go 1.16
+
+require (
+	github.com/360EntSecGroup-Skylar/excelize/v2 v2.4.0 // indirect
+)
+```
+
 ### Goland 中配置 Go mod
 1. Windows: 需要在Goland-file-setting-Go-Go Modules- enable打勾; Mac: Goland-preference-Go-Go Modules- enable
 2. Edit Configuration - 添加一个 go build - Run kid: package/Go tool Argument 清空

@@ -17,3 +17,7 @@ function trim(str) {
 
 // 替换字符串中的特殊符号
 string.replace(/\r\n/g,"")  
+
+
+'<p><span class="ql-size-large">sdafsdf</span></p>'.replace(/class=\"ql-size-large\"/, 'class="ql-size-large big"')
+"<p><span class=\"ql-size-large big\">sdafsdf</span></p>"
