@@ -107,3 +107,25 @@ The commands are:
 
 Use "go help mod <command>" for more information about a command.
 ```
+
+### 发布 go package 到 github
+1. 首先在GitHub创建一个仓库xlsx，clone到本地
+2. go mod init iicoom/xlsx
+3. 添加文件后 git add .    git commit -m "blabla..."
+4. git tag v0.1.0
+5. git push -tag
+6. go get github.com/iicooom/xlsx 报错
+```
+➜  go-server git:(gin) go get github.com/iicoom/xlsx
+go get: github.com/iicoom/xlsx@none updating to
+        github.com/iicoom/xlsx@v1.1.0: parsing go.mod:
+        module declares its path as: xlsx
+                but was required as: github.com/iicoom/xlsx
+
+需要在get 的时候加上版本
+```
+7. go-server git:(gin) go get github.com/iicoom/xlsx@v0.1.0
+```
+go: downloading github.com/iicoom/xlsx v0.1.0
+go get: added github.com/iicoom/xlsx v0.1.0
+```
