@@ -34,3 +34,7 @@ log.Println("ENV", env)
 cp := fmt.Sprintf("./config/%s.json", env)
 c, err := ioutil.ReadFile(cp)
 ```
+
+## strings
+- strings.Join(specs, ",")
+- strings.TrimSpace(form.Name)

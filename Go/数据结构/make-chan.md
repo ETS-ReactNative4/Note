@@ -50,3 +50,24 @@ After Sleep
 2021-03-31T11:55:47.468452+08:00 receive: 0
 */
 ```
+
+## chan 的声明和关闭
+```go
+package queue
+
+import (
+        "os"
+        "os/signal"
+        "syscall"
+        "log"
+)
+func SetSignalHandler() {
+        sign := make(chan os.Signal, 1)
+        signal.Notify(sign, syscall.SIGTERM, syscall.SIGINT, syscall.SIGQUIT)
+        go func() {
+                defer close(si)
+        }   
+        s := <-sign
+        log.Printf("接收到退出信号:%v\n", s)
+}
+```
