@@ -58,10 +58,23 @@
 			/*文字居中 同样对图片居中起作用*/
 			text-align: center;
 		}
-		
+
+		.position {
+			background-color: aqua;
+			width: 500px;
+			height: 100px;
+			position: fixed;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: auto;
+		}
+		.position .child {
+			width: 20%;
+		}
 	</style>
 </head>
-<body>
+<body style="padding-bottom:150px;">
 	<div class="box">
 		1.当前div.box在body中居中
 		.box { height: 100px; width: 57%; margin: auto; }
@@ -83,6 +96,13 @@
 	<div class="img_layout">
 		<h4>img在父容器中自适应水平居中对齐</h4>
 		<img src="http://pic3.nipic.com/20090702/918855_174429094_2.jpg" width="30%">
+	</div>
+
+	<div class="position">
+		position:fixed 生成绝对定位的元素，相对于浏览器窗口进行定位。
+		<div class="child">
+			position:fixed 生成绝对定位的元素，同样相对于浏览器窗口进行定位。
+		</div>
 	</div>
 </body>
 </html>
