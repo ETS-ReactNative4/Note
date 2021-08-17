@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+        ul li {
+            width: 150px;
+        }
+        .active {
+            background-color: burlywood;
+        }
+        .content>div {
+            display: none;
+        }
+        .visible {
+            display: block!important;
+        }
+        .wrapper {
+            display: flex;
+        }
+        body {
+            height: 3000px;
+        }
+        .fix {
+            width: 50px;
+            height: 50px;
+            background-color: chocolate;
+            position: fixed;
+            right: 10px;
+            bottom: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <ul class="nav"> 
+            <li class="active" data-num="0">111111111111</li>
+            <li data-num="1">222222222222</li>
+            <li data-num="2">333333333333</li>
+            <li data-num="3">444444444444</li>
+        </ul>
+        <div class="content">
+            <div class="visible" data-num="0">
+                <p>111111111111</p>
+                <p>111111111111</p>
+                <p>111111111111</p>
+                <p>111111111111</p>
+            </div>
+            <div data-num="1">
+                <p>222222222222</p>
+                <p>222222222222</p>
+                <p>222222222222</p>
+                <p>222222222222</p>
+            </div>
+            <div data-num="2">
+                <p>333333333333</p>
+                <p>333333333333</p>
+                <p>333333333333</p>
+                <p>333333333333</p>
+            </div>
+            <div data-num="3">
+                <p>444444444444</p>
+                <p>444444444444</p>
+                <p>444444444444</p>
+                <p>444444444444</p>
+            </div>
+        </div>
+    </div>
+    <div class="fix">返回顶部</div>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+    $('ul li').on('click', function(e) {
+        // console.log(e.currentTarget.dataset.num)
+        refresh(e.currentTarget.dataset.num)
+    })
+    function refresh(cur) {
+        $('ul>li').each(function() {
+            // console.log($(this).context.dataset.num)
+            if ($(this).context.dataset.num === cur) {
+                $(this).addClass('active')
+            } else {
+                $(this).removeClass('active')
+            }
+        })
+        $('.content>div').each(function() {
+            // console.log($(this).context.dataset.num)
+            if ($(this).context.dataset.num === cur) {
+                $(this).addClass('visible')
+            } else {
+                $(this).removeClass('visible')
+            }
+        })
+    }
+    function auto_play() {
+        let current_num = 0;
+        setInterval(() => {
+            current_num++
+            if (current_num>3) {
+                current_num = 0
+            }
+            refresh(current_num.toString())
+        }, 1000);
+
+    }
+    // auto_play()
+
+    let screen_height = 0
+    window.onload = () => {
+        console.log(document.body.clientWidth, document.body.clientHeight, window.screen.height)
+        screen_height = window.screen.height
+    }
+    window.onscroll = () => {
+        // console.log(document.documentElement.scrollTop, screen_height)
+        if (document.documentElement.scrollTop > screen_height) {
+            $('.fix').css('display', 'block')
+        } else {
+            $('.fix').css('display', 'none')
+        }
+    }
+    $('.fix').click(() => {
+        document.documentElement.scrollTop = 0
+    })
+</script>
+</body>
+</html>
+<!-- 首先说明： 由于scrollTop属于js属性，因此无法通过css的transition和animation制作scrollTop变化时的过渡动画（本人亲自尝试过，确实如其他博友所说的无效） -->
+
+<!-- https://www.swiper.com.cn/demo/index.html -->
