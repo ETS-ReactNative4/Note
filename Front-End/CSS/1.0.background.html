@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background</title>
+    <link rel="stylesheet" href="./shared.css">
+    <style>
+        .wrapper .color {
+            height: 20px;
+            background-color: red;
+        }
+        .wrapper .image {
+            height: 200px;
+            background-image: url('https://www.webhek.com/wordpress/wp-content/uploads/2014/03/syntax-1.png');
+        }
+        .wrapper .size {
+            background-color: rosybrown;
+            height: 200px;
+            background-image: url('https://www.webhek.com/wordpress/wp-content/uploads/2014/03/syntax-1.png');
+        }
+        .cover {
+            background-size: cover;
+        }
+        .contain {
+            background-size: contain; /*默认就是这种而且repeat*/
+            background-repeat: no-repeat
+        }
+        .length {
+            background-size: 100px 50px;
+            background-repeat: no-repeat
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+      <p>body { background: #00FF00 url(bgimage.gif) no-repeat fixed top;}</p>  
+      <p>background 简写属性在一个声明中设置所有的背景属性。可以设置如下属性：</p>
+      <ul>
+          <li>background-color</li>
+          <li>background-position</li>
+          <li>background-size</li>
+          <li>background-repeat</li>
+          <li>background-origin</li>
+          <li>background-clip</li>
+          <li>background-attachment</li>
+          <li>background-image</li>
+      </ul>
+    </div>
+    <div class="wrapper">
+        <p>background-color</p>
+        <div class="color"></div>
+        <p>background-image</p>
+        <div class="image"></div>
+        <p>background-size-cover</p>
+        <div class="size cover"></div>
+        <p>background-size-contain</p>
+        <div class="size contain"></div>
+        <p>background-size-length/percentage</p>
+        <div class="size length"></div>
+    </div>
+</body>
+</html>

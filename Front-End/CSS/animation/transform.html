@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>css3-transform</title>
     <style>
+        .wrapper {
+            border: 1px solid sienna;
+            margin-bottom: 10px;
+        }
         .rotate {
             margin:30px;
             width:200px;
@@ -65,10 +69,49 @@
         #realCoin {
             letter-spacing: 2px
         }
+
+        .target {
+            width: 100px;
+            height: 50px;
+            margin-bottom: 10px;
+            background-color: lightsteelblue;
+            transform: rotate(-90deg);
+            position: relative;
+        }
+        .start {
+            transform-origin: 100% 50%;
+        }
+        .point {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: red;
+            position: absolute;
+        }
+        .center {
+            top: 50%;
+            left: 50%;
+        }
+        .right_center {
+            top: 50%;
+            left: 98%;
+        }
+        .padding_top {
+            padding-top: 35px;
+        }
+        .scale {
+            border: 1px solid red;
+            transform: scale(1.5);
+            display: inline-block;
+        }
+        .origin {
+            transform-origin: 0% 0%;
+        }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
 </head>
 <body>
+<div class="wrapper">
     <div class="rotate"><div class="child">看俺老孙的金箍棒</div></div>
     <p>Transform属性应用于元素的2D或3D转换。这个属性允许你将元素旋转，缩放，移动，倾斜等。</p>
     <p>transform: none|transform-functions;</p>
@@ -84,8 +127,29 @@
         <li>rotate3d(x,y,z,angle) 定义 3D 旋转。</li>
         <li>skew(x-angle,y-angle) 定义沿着 X 和 Y 轴的 2D 倾斜转换。</li>
         <li>perspective(n) 为 3D 转换元素定义透视视图。</li>
-
     </ul>
+</div>
+<div class="wrapper">
+    <p>transform-Origin属性允许您更改转换元素的位置。2D转换元素可以改变元素的X和Y轴。 3D转换元素，还可以更改元素的Z轴。</p>
+    <p>默认值：transform-origin: 50% 50% 0;</p>
+    <div class="target">
+        <div class="point center"></div>
+    </div>
+
+    <div class="target start">
+        <div class="point right_center"></div>
+    </div>
+
+</div>
+
+<div class="wrapper">
+    <div class="padding_top"></div>
+    <p>transform: scale(0.5)</p>
+    <!-- <span class="scale">oppos</span> -->
+    <p>99sdfioafs</p>
+    <p class="scale">----=======</p>
+</div>
+<div class="wrapper">
     <div id="container">
         <span id="realCoin" class="">5689</span>
         <!-- <ul class="coin">
@@ -102,6 +166,7 @@
         </ul> -->
     </div>
     <button onclick="animation()">insert</button>
+</div> 
 <script>
     function animation() {
         $("#realCoin").addClass("hidden")

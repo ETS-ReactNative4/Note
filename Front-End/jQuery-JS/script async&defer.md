@@ -28,3 +28,18 @@ Both async and defer are boolean attributes. Their usage is similar:
 
 <script defer src="script.js"></script>
 ```
+
+## 手动创建script并添加text
+[HTML DOM Script 对象](https://www.w3school.com.cn/jsref/dom_obj_script.asps)
+```js
+(function() {
+    // Google <!-- Global site tag (gtag.js) - Google Analytics -->
+    var google = document.createElement("script");
+    google.async = true;
+    google.src = "https://www.googletagmanager.com/gtag/js?id=G-WNQL5F8";
+    var g = document.getElementsByTagName("script")[0];
+    g.parentNode.appendChild(google);
+    
+    google.text = 'window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag(\'js\', new Date());gtag(\'config\', \'G-WNQL5F8\');'
+})();
+```
