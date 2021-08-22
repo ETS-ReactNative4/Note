@@ -13,3 +13,10 @@ mv data dataY   把data 重命名为 dataY
 mkdir: /data/db: Permission denied
 ➜  ~ mkdir -p ./data/db
 ```
+
+## 一次性创建多个目录
+```
+➜  Blog git:(master) ✗ mkdir components assets static
+mkdir: components: File exists
+mkdir: static: File exists
+```
