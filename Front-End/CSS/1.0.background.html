@@ -31,6 +31,44 @@
             background-size: 100px 50px;
             background-repeat: no-repeat
         }
+
+        /* css :nth-child() */
+        .wrapper p:last-child {
+            background-color: red;
+        }
+        .wrapper p:first-child {
+            background-color: black;
+        }
+        .wrapper p:nth-child(2) {
+            background-color: blue; /** 这样可以选中 第一个段落。 **/
+        }
+        .wrapper p:nth-child(6) {
+            background-color: purple;
+        }
+        .wrapper .sibling:first-child {
+            background-color: brown;
+        }
+        .wrapper .sibling:last-child {
+            background-color: khaki;
+        }
+        .wrapper .sibling:last-of-type {
+            background-color: olivedrab;
+            border: 1px solid tan;
+        }
+        .wrapper .sibling:nth-child(3) {
+            border: 1px solid indigo;
+        }
+
+        .wrapper span {
+            display: block;
+        }
+        
+        .wrapper span:last-of-type {
+            border: 1px solid tan;
+        }
+        .wrapper span:last-child {
+            border: 1px solid red;
+        }
     </style>
 </head>
 <body>
@@ -59,6 +97,28 @@
         <div class="size contain"></div>
         <p>background-size-length/percentage</p>
         <div class="size length"></div>
+    </div>
+    <p>nth:child</p>
+    <div class="wrapper">
+        <h1>这是标题</h1> <!--如果没有h1那么p:first-child 是可以选中第一个p的 -->
+        <p>第一个段落。</p>
+        <p>第二个段落。</p>
+        <p>第三个段落。</p>
+        <a href="">中间加入a标签，测试是否可以选中p:last-child</a>
+        <p>第四个段落。</p>
+        <p>第五个段落。</p>
+    </div>
+    <div class="wrapper">
+        <div class="sibling">sibling1</div>
+        <div class="sibling">sibling2</div>
+        <div class="sibling">sibling3</div>
+        <div class="sibling13">other</div> <!-- 这里有ohter .wrapper .sibling:last-child 无法被选中 使用last-of-type可以 -->
+    </div>
+    <div class="wrapper test">
+        <span>132</span>
+        <span>123</span>
+        <span>123</span>
+        <div>干扰元素</div>
     </div>
 </body>
 </html>
