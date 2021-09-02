@@ -45,6 +45,8 @@ $("button").click(function(){
 $("p").css("background-color","yellow");
 
 $("p").css("display","none");
+
+$(this).css("background-image","url(on.jpg)");
 ```
 
 ## jQuery ajax()

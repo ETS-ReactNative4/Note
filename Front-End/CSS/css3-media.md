@@ -11,5 +11,11 @@ body {
         background-color:lightblue;
     }
 }
+
+@media only screen and (max-width: 500px) {
+    .gridmenu {
+        width:100%;
+    }
+}
 ```
 重置浏览器查看大小。当浏览器窗口的宽度小于 300 像素时，背景颜色会变成淡蓝，否则是淡绿色。
