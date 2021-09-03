@@ -65,11 +65,14 @@ D:\Work\crm-web>git tag -d v1.8
 Deleted tag 'v1.8' (was acf5aaa)
 
 5. 检出标签
-$ git checkout 2.0.0
+$ git checkout v2.0.0
 Note: checking out '2.0.0'.
 
 You are in 'detached HEAD' state. You can look around, make experimental
+
+6. 可以从tag上检出分支 git checkout -b new_branch
 ```
+
 
 ### gitlab 图形界面
 Repository-new tag-[tagname和createFrom]名称和从哪个分支打
