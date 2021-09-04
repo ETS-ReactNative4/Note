@@ -7,45 +7,81 @@
     <title>position</title>
     <style>
         body {
-            background-color: darkseagreen;
             height: 800px;
+            border: 1px solid darkseagreen;
         }
         .parent {
             width: 80%;
             height: 500px;
-            background-color: deepskyblue;
+            border: 1px solid deepskyblue;
+            position: relative;
         }
         .child1 {
-            width: 50px;
-            height: 50px;
+            width: 200px;
+            height: 200px;
             background-color: firebrick;
             position: relative;
             top: 50px;
             left: 50px;
         }
         .child2 {
-            width: 50px;
-            height: 50px;
+            width: 200px;
+            height: 200px;
             background-color: rgb(34, 178, 41);
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 0;
+            right: 0;
         }
         .child3 {
-            width: 50px;
-            height: 50px;
+            width: 200px;
+            height: 200px;
             background-color: rgb(178, 176, 34);
             position: fixed;
             left: 50%;
             bottom: 0;
         }
+        .child4 {
+            background-color: black;
+            color: #fff;
+            position: absolute;
+            text-align: center;
+            /* width: 50%; */
+            width: 100%;
+            margin: 0 auto;
+        } 
+        .child4 .center {
+            border: 1px solid #fff;
+            margin: 5px;
+            width: 50%;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
+    body height=80px
     <div class="parent">
-        <div class="child1">child1</div>
-        <div class="child2">child2</div>
-        <div class="child3">child3</div>
+        div.parent width: 80% height: 500px
+        <div class="child1">child1
+            position: relative;
+            top: 50px;
+            left: 50px;
+        </div>
+        <div class="child2">child2
+            position: absolute;
+            top: 0;
+            right: 0;
+        </div>
+        <div class="child3">child3
+            position: fixed;
+            left: 50%;
+            bottom: 0;
+        </div>
+        <div class="child4">
+            position: absolute;
+            使用了绝对定位的块元素宽高会塌陷，所以想要它内部文字居中，需要把它设置为父级宽度的100%
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti unde praesentium</p>
+            <div class="center">center</div>
+        </div>
     </div>
     <!-- position属性指定一个元素（静态的，相对的，绝对或固定）的定位方法的类型。
     static 默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animation</title>
+    <link rel="stylesheet" href="./shared.css">
+    <style>
+        .wrapper div {
+            width: 200px;
+            height: 50px;
+            background-color: cadetblue;
+            margin-bottom: 5px;
+        }
+        .wrapper .child1:hover {
+            width: 100%;
+            transition: width 1s ease;
+        }
+        .wrapper .child2:hover {
+            width: 100%;
+            transition: width 1s ease-in;
+        }
+        .wrapper .child3:hover {
+            width: 100%;
+            transition: width 1s ease-out;
+        }
+        .wrapper .child4:hover {
+            width: 100%;
+            transition: width 1s ease-in-out;
+        }
+    </style>
+    
+</head>
+<body>
+    transition-property/transition-timing-function
+    <div class="wrapper">
+        <div class="child1">ease</div>
+        <div class="child2">ease-in</div>
+        <div class="child3">ease-out</div>
+        <div class="child4">ease-in-out</div>
+    </div>
+</body>
+</html>
