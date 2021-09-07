@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery test</title>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script> 
+    查明原因后发现我采用的是 CDN 的 JQuery 引用，所引用的 JQuery 是 slim 版本的，当中移除了一些东西，包括 Ajax 部分。
+    -->
+    <script src="./jquery.min.js"></script>
+</head>
+<body>
+    <div class="result"></div>
+    <script>
+        console.log($('.result').text())
+        $('.result').load( "public/header.html", function( data ) {
+            $( ".result" ).html( data );
+            console.log( "Load was performed." );
+        });
+    </script>
+</body>
+</html>
