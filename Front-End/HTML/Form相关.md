@@ -1,18 +1,26 @@
-## 传统form提交数据
+## form 元素
+### input
 ```html
-<form class="form-inline" action="/rankList">
-    <div class="form-group mx-sm-3 mb-2">
-      <input type="text" class="form-control" name="serverId" placeholder="serverID">
-      <input type="text" class="form-control" name="mapId" placeholder="mapID">
-      <input type="text" class="form-control" name="userId" placeholder="userID">
-      <button type="submit" class="btn btn-primary mb-2"><%= localizationData.Search %></button>
-    </div>
+<form>
+  <input type="file" name="pic" id="pic" accept="image/gif, image/jpeg" />
 </form>
 ```
-提交的url
-https://mxj-s.doraemonkart.com:3000/rankList?serverId=1001&mapId=2230003&userId=1001%40d4f7dbb801a5fff74011a416a147d23c
+如果不限制图像的格式，可以写为：accept="image/*"。
 
-后端服务可以从req.query获取相关参数
+## input 禁止复制
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>禁止粘贴</title>
+</head>
+<body>
+    <input type="" name="nocopy" oncut="return false">
+    <input type="" name="nocopy" onpaste="return false" autocomplete=”off”>
+    <textarea onpaste="return false"></textarea>
+</body>
+</html>
+```
 
 
 ## 阻止表单默认提交
@@ -117,21 +125,6 @@ input type="submit" 才可以利用HTML5的表单required 验证支持
 		return {godMode, iosFunctionSwitch}
 	}
 </script> 
-</body>
-</html>
-```
-
-## input 禁止复制
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <title>禁止粘贴</title>
-</head>
-<body>
-    <input type="" name="nocopy" oncut="return false">
-    <input type="" name="nocopy" onpaste="return false" autocomplete=”off”>
-    <textarea onpaste="return false"></textarea>
 </body>
 </html>
 ```

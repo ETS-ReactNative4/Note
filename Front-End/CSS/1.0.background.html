@@ -69,6 +69,13 @@
         .wrapper span:last-child {
             border: 1px solid red;
         }
+
+        .hei ~ li {
+            background-color: aqua;
+        }
+        .hei + li {
+            border: 1px solid black;
+        }
     </style>
 </head>
 <body>
@@ -119,6 +126,17 @@
         <span>123</span>
         <span>123</span>
         <div>干扰元素</div>
+    </div>
+    <div class="wrapper">
+        <h1>兄弟选择器 ‘~’选择器 ‘+’选择器</h1>
+        <span>可以发现虽然这两个选择器都表示兄弟选择器，但是‘+’选择器则表示某元素后相邻的兄弟元素，也就是紧挨着的，是单个的。而‘~’选择器则表示某元素后所有同级的指定元素，强调所有的。</span>
+        <ul>
+            <li>ul > li 1</li>
+            <li class="hei">ul > li 2</li>
+            <li>ul > li 3</li>
+            <li>ul > li 4</li>
+            <li>ul > li 5</li>
+        </ul>
     </div>
 </body>
 </html>
