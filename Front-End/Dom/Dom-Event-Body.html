@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/shared.css">
+</head>
+<body oncontextmenu="return false">
+    <div class="wrapper">
+        <h3>可以阻止普通用户的右键行为</h3>
+        oncontextmenu="contextmenuHandler()"
+
+        <h3>onbeforeprint="myFunction()" 打印页面</h3>
+    </div>
+
+    <div class="wrapper">
+        <h3>在body上添加 onblur="bodyblurHandler()" 可以获取到窗口失去焦点事件</h3>
+        <h3>在window添加blur事件感觉更好一些</h3>
+    </div>
+<script>
+    window.addEventListener('contextmenu', function() {
+        console.log('---')
+        return false
+    })
+    document.addEventListener('contextmenu', function() {
+        console.log('+++')
+        return false
+    })
+
+    window.addEventListener('blur', function() {
+        console.log('window blur action....')
+    })
+    window.addEventListener('focus', function() {
+        console.log('window focus action....')
+    })
+
+    window.onload = function() {
+        console.log('window onload action...')
+    };
+ 
+</script>
+</body>
+</html>

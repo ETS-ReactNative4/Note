@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/shared.css">
+</head>
+<body oncontextmenu="return false" onblur="bodyblurHandler()">
+
+    <div class="wrapper">
+        <input type="text" oncopy="copyHandler()" value="Try to copy this text">
+        <input type="text" oncopy="return false" value="Try to copy this text,can't copy">
+        <h3>输入框复制行为</h3>
+    </div>
+
+    <div class="wrapper">
+        <input type="text" 
+            onfocus="focusHandler()" 
+            onfocusin="focusinHandler()"
+            onfocusout="focusoutHandler()"
+            onblur="blurHandler()"
+        >
+    </div>
+<script>
+   function copyHandler() {
+       console.log('copy action....')
+   }
+
+   function focusHandler() {
+       console.log('focus action...')
+   }
+
+   function focusinHandler() {
+       console.log('focusin action....')
+   }
+   function focusoutHandler() {
+       console.log('focusout action...')
+   }
+   function blurHandler() {
+       console.log('blur action...')
+   }
+   function bodyblurHandler() {
+       console.log('body blur action...')
+   }
+</script>
+</body>
+</html>
