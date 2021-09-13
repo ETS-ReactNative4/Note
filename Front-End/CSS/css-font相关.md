@@ -28,4 +28,32 @@
 .fontSize {
     font-size: 8px;
 }
+
+/* 而且块级元素才能缩放 */
+.section .banner p span {
+    background-color: #FF6A00;
+    color: #fff;
+    border-radius: 2px;
+    display: inline-block;
+    transform: scale(0.9);
+    padding: 0 3px;
+}
+```
+
+## [font-weight](https://www.w3school.com.cn/cssref/pr_font-weight.asp)
+normal	默认值。定义标准的字符。
+bold	定义粗体字符。
+bolder	定义更粗的字符。
+lighter	定义更细的字符。
+100
+200
+300
+400
+500
+600
+700
+800
+900
+```css
+
 ```

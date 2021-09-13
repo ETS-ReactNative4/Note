@@ -1,8 +1,9 @@
 ## 配置 add configration
 1. 点击+ ，go build
 2. run kind - package
-3. go tool arguments -i 删掉
-4. 保存
+3. package-path / 填写项目名称
+4. go tool arguments -i 删掉
+5. 保存
 
 ## 快捷键
 ### 格式化结构体struct

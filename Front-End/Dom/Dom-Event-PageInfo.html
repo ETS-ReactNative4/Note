@@ -12,8 +12,9 @@
             margin-bottom: 10px;
         }
     </style>
+    <script src="../jQuery-JS/jquery.min.js"></script>
 </head>
-<body>
+<body style="height: 800px;">
 <div style="height: 20px; background-color: bisque;" onclick="divHandler()">
     div 一些其他标签都有onclick事件，点击触发divHandler()
 </div>
@@ -33,6 +34,8 @@
     <p>什么？DOM元素有不同的事件绑定方式？下面的input竟然用的addEventListener</p>
     <input type="text" id="dom1">
 </div>
+
+<button onclick="scrollWindow()">点击滚动</button>
 
 <script>
 function divHandler(e) {
@@ -63,6 +66,32 @@ window.onscroll = () => {
     console.log(document.documentElement.scrollTop)
 }
 
+// 箭头函数的形式不会执行
+window.onload = () => {
+    console.log('arrow onload...')
+    this.scrollWindow()
+}
+
+window.onload = function() {
+    console.log('function onload...')
+    // 如果不延时不会执行, 可见onload DOM还没有完全加载 考虑使用jQuery的 .ready()
+    // setTimeout(() => {
+    // this.scrollWindow()
+    // }, 1000);
+}
+
+$(document).ready(function() {
+    scrollWindow()
+})
+
+// 控制页面滚动到指定位置
+function scrollWindow() {
+  window.scrollTo(0,500)
+//   window.scrollTo(0, document.documentElement.scrollTop - 120)
+}
+
+// 控制某个div的滚动
+$('.navBar').scrollLeft(250)
 </script>
 </body>
 </html>
