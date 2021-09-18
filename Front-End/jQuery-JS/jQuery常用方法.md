@@ -15,8 +15,19 @@
 $(this).hasClass('left_arrow')
 ```
 
+## .css()
+### 背景图片
+```js
+$(this).css("background-image","url(on.jpg)")
+```
+
 ## 选择器
 ### siblings()
+
+### jQuery :nth-child()
+```js
+$("p:nth-child(3)")
+```
 
 ## 获取标签属性
 ```js
