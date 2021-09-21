@@ -375,4 +375,20 @@ mysql>
 ## [MySQL 通讯协议](https://jin-yang.github.io/post/mysql-protocol.html)
 
 
+## 常见问题
+### sequlize 连接MySQL8.0
+即使配置了root@%的权限，仍然无法连接，报错如下：
+code: 'ER_ACCESS_DENIED_ERROR',
+    errno: 1045,
+    sqlState: '28000',
+    sqlMessage: "Access denied for user 'root'@'localhost' (using password: YES)"
 
+而且Navicat15是可以正常连接的，查看用户权限，发现用了plugin - mysql_native_password
+
+猜想是sequelize不支持这种密码协议，修改密码协议：
+```sql
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+
+FLUSH PRIVILEGES;
+```
+FLUSH PRIVILEGES; 可以在不重启数据库使修改生效
