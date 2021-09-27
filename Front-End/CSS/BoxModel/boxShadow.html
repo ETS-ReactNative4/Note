@@ -7,26 +7,56 @@
     <title>BoxShadow</title>
     <link rel="stylesheet" href="../shared.css">
     <style>
-        .shadow {
+        .base {
             margin: 50px;
-            width: 100px;
-            height: 50px;
+            width: 300px;
+            height: 200px;
+        }
+        .shadow {
             border: 1px solid lightsteelblue;
             box-shadow: 0 6px 15px 10px rgba(241, 219, 215, 0.8);
+        }
+        .shadow01 {
+            box-shadow: 0 0 3px 2px rgba(0,0,0,0.08);
+        }
+        .shadow02 {
+            box-shadow: 0 0 6px 2px rgba(0,0,0,0.08);
+        }
+        .shadow021 {
+            box-shadow: 0 6px 6px 2px rgba(0,0,0,0.08), inset 0 -3em 3em rgba(0,0,0,0.3);
+        }
+        .shadow03 {
+            box-shadow: 0 0 60px 2px rgba(0,0,0,0.08);
+        }
+        .shadow04 {
+            box-shadow: 0 0 3px 60px rgba(0,0,0,0.08);
         }
     </style>
 </head>
 <body>
+    <p><a href="https://getcssscan.com/css-box-shadow-examples">https://getcssscan.com/css-box-shadow-examples</a></p>
+    https://css-tricks.com/almanac/properties/b/box-shadow/
+
     <a href="https://www.webhek.com/post/css-box-shadow-property.html" target="_blank">https://www.webhek.com/post/css-box-shadow-property.html</a><br>
     <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-shadow" target="_blank">https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-shadow</a>
     <p>使用Box-shadow属性表现阴影效果是现代浏览器中是一个非常有用的技巧，通过它我们可以做出很多非常酷的东西。让我们来一步一步的了解box-shadow属性的基本用法，然后进一步了解::before和::after伪元素的用法。</p>
+    <p>CSS box-shadow 属性用于在元素的框架上添加阴影效果。你可以在同一个元素上设置多个阴影效果，并用逗号将他们分隔开。该属性可设置的值包括阴影的X轴偏移量、Y轴偏移量、模糊半径、扩散半径和颜色</p>
     <div class="wrapper">
         <img src="https://www.webhek.com/wordpress/wp-content/uploads/2014/03/syntax-3.png" alt="">
         <p>box-shadow: 0px 0px 5px 10px #000</p>
         <p>box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);</p>
-        <p>/* 插页(阴影向内) | x偏移量 | y偏移量 | 阴影颜色 */ box-shadow: inset 5em 1em gold;</p>
-        <p>/* 任意数量的阴影，以逗号分隔 */box-shadow: 3px 3px red, -1em 0 0.4em olive;</p>
-        <p>CSS box-shadow 属性用于在元素的框架上添加阴影效果。你可以在同一个元素上设置多个阴影效果，并用逗号将他们分隔开。该属性可设置的值包括阴影的X轴偏移量、Y轴偏移量、模糊半径、扩散半径和颜色</p>
+        <p style="border: 2px solid red">
+            /* x偏移量 | y偏移量 | 阴影模糊半径 | 阴影扩散半径 | 阴影颜色 */ <br>
+            box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+        </p>
+        <p>
+            /* 插页(阴影向内) | x偏移量 | y偏移量 | 阴影颜色 */ 
+            box-shadow: inset 5em 1em gold;
+        </p>
+        <p>
+            /* 任意数量的阴影，以逗号分隔 */
+            box-shadow: 3px 3px red, -1em 0 0.4em olive;
+        </p>
         
         <p>向元素添加单个 box-shadow 效果时使用以下规则：当给出两个、三个或四个 <length>值时。</p>
         <ur>
@@ -34,7 +64,14 @@
             <li>如果给出了第三个值, 那么第三个值将会被当作<blur-radius>解释。</li>
             <li>如果给出了第四个值, 那么第四个值将会被当作<spread-radius>来解释。</li>
         </ur>
-        <div class="shadow">
+        
+        <div style="display: flex;">
+            <div class="base shadow"></div>
+            <div class="base shadow01"></div>
+            <div class="base shadow02"></div>
+            <div class="base shadow03"></div>
+            <div class="base shadow04"></div>
+            <div class="base shadow021"></div>
 
         </div>
     </div>
