@@ -4,11 +4,32 @@
 	<title>html video tag</title>
 </head>
 <body>
-<video muted src="https://www.lonelyreader.com/static/index/banner.mp4" autoplay loop data-object-fit="cover"></video>
-
-<video src="https://www.lonelyreader.com/static/index/banner.mp4" 
-controls="controls" width="50%" poster="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2066971058,2049064479&fm=85&app=57&f=JPEG?w=121&h=75&s=22839C45101245D24890343A0300D050">
-您的浏览器不支持 video 标签。
+<div>
+H5的音视频在手机浏览器是无法实现息屏播放的，在微信中打开可以借助微信播放。
+</div>
+<video 
+	src="https://www.runoob.com/try/demo_source/movie.mp4" 
+	controls="controls" 
+	autoplay
+	loop
+	playsinline
+	width="400px" 
+	height="100%"
+	poster="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2066971058,2049064479&fm=85&app=57&f=JPEG?w=121&h=75&s=22839C45101245D24890343A0300D050">
+	您的浏览器不支持 video 标签。
 </video>
+<!--
+其他属性
+muted
+-->
+
+<audio 
+	src="https://www.runoob.com/try/demo_source/horse.ogg"
+	controls
+	autoplay
+>
+  您的浏览器不支持 audio 元素。
+</audio>
+<!-- loop -->
 </body>
 </html>
