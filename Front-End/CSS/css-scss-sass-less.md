@@ -38,6 +38,3 @@ body
 ### @mixin 相当于定义了函数 可以传入变量实现复用
 
 ## [less](https://less.bootcss.com/)
-
-## 打包工具
-- [Parcel](https://v2.parceljs.cn/)

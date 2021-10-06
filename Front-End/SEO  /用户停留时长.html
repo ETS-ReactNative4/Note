@@ -44,7 +44,8 @@
         <ul>
             <li>可以使用 window.addEventListener('focus')</li>
             <li>window.addEventListener('blur'）</li>
-            <li>在页面加载后，开始统计活跃时长，开始时间未页面加载完成时间，活跃结束时间为blur时刻</li>
+            <li>在页面加载后，开始统计活跃时长，用户切换tab会触发blur事件，当再次回到原来的tab并且点击页面区域
+                才会触发focus事件，活跃结束时间为blur时刻</li>
             <li>记录时需要记录客户端的标识，页面的title，以及活跃的时间段</li>
         </ul>
 
@@ -52,8 +53,9 @@
         <ul>
             <li>页面离开时上报: 对于页面刷新或者关闭窗口触发的操作可能会造成数据丢失</li>
             <li>下次打开页面时上报: 会丢失历史访问记录中的最后一个页面数据</li>
-            <li></li>
-            <li>目前采用的方案2，对于单页内部跳转是即时上报，对于单页/多页应用触发 window.onbeforeunload 事件的时候会把当前页面数据暂存在 localStorage 中，当用户下次进入页面的时候会把暂存数据上报。有个细节问题，如果用户下次打开页面是在第二天，对于统计当天的活跃时长会有一定的误差，所以在数据上报的同时会把该条数据的页面进入时间/离开时间带上。</li>
+            <li>目前采用的方案2，对于单页内部跳转是即时上报，对于单页/多页应用触发 window.onbeforeunload 事件的时候会把当前页面数据暂存在 localStorage 中，
+                当用户下次进入页面的时候会把暂存数据上报。有个细节问题，如果用户下次打开页面是在第二天，对于统计当天的活跃时长会有一定的误差，
+                所以在数据上报的同时会把该条数据的页面进入时间/离开时间带上。</li>
         </ul>
 
         <p>对于页面停留时长的定义可能在不同场景会有差异，比如内部业务系统或者OA系统，产品可能更关心用户在页面的活跃时长；而对于资讯类型的产品，页面可见时长会更有价值。单一的数据对业务分析是有限的，所以在具体的代码实过程中我们会把停留时长分三个指标，这样能更好的帮助产品/运营分析。
@@ -81,8 +83,9 @@
         };
 
         window.addEventListener("beforeunload", function() {
+            console.log('window beforeunload action...')
             $.ajax({
-                url: "https://adult-/api/login",
+                url: "http://localhost:3004/api/login",
                 data: {
                     zipcode: 97201
                 },
@@ -98,7 +101,7 @@
             console.log('window focus action....')
         })
         window.addEventListener("blur", function() {
-            console.log('window onload action...')
+            console.log('window blur action...')
         })
    
         window.addEventListener("oncontextmenu", function() {
@@ -127,10 +130,12 @@
         let stayTime = 0
 
         window.onpageshow = () => {
+            console.log('window onpageshow action...')
             stayTime = new Date().getTime()
         }
 
         window.onpagehide = () => {
+            console.log('window onpagehide action...')
             stayTime = new Date().getTime() - stayTime
             localStorage.setItem('data', JSON.stringify({ path: window.location.href, stayTime }))
             console.log(stayTime)

@@ -8,7 +8,8 @@
 - [Heading](#heading-2)
   * [Sub-heading](#sub-heading-2)
     + [Sub-sub-heading](#sub-sub-heading-2)
-- [aaa](#aaa)
+- [图片](#图片)
+- [表格](#Table)
 
 # Heading levels
 
@@ -52,33 +53,32 @@ This is an h2 heading
 
 This is an h3 heading
 
-# aaa
-![picture](http://dmimg.5054399.com/allimg/pkm/pk/22.jpg)
+## 图片
+![picture](https://www.vultr.com/media/banners/banner_468x60.png)
 
-1. Item one
-   1. Sub item one
-   2. Sub item two
-   3. Sub item three
-2. Item two
+### 图片链接
+[![picture](https://www.vultr.com/media/banners/banner_468x60.png)](https://www.vultr.com/?ref=8372845-6G)
 
-Paragraph:
-- Item 1
-- Item 2
-- Item 3
-   - Sub item 1
-   - Sub item 2
-- Item 4
 
-Table
+## [Table](https://www.runoob.com/markdown/md-table.html)
 
-| Default aligned | Left aligned | Center aligned  | Right aligned  |
-|-----------------|:-------------|:---------------:|---------------:|
-| First body part | Second cell  | Third cell      | fourth cell    |
-| Second line     | foo          | **strong**      | baz            |
-| Third line      | quux         | baz             | bar            |
-|-----------------+--------------+-----------------+----------------|
-| Second body     |              |                 |                |
-| 2nd line        |              |                 |                |
-|-----------------+--------------+-----------------+----------------|
-| Third body      |              |                 | Foo            |
+Markdown 制作表格使用 | 来分隔不同的单元格，使用 - 来分隔表头和其他行。
 
+语法格式如下：
+
+|  表头   | 表头  |
+|  ----  | ----  |
+| 单元格  | 单元格 |
+| 单元格  | 单元格 |
+
+
+我们可以设置表格的对齐方式：
+
+-: 设置内容和标题栏居右对齐。
+:- 设置内容和标题栏居左对齐。
+:-: 设置内容和标题栏居中对齐。
+
+| 左对齐 | 右对齐 | 居中对齐 |
+| :-----| ----: | :----: |
+| 单元格 | 单元格 | 单元格 |
+| 单元格 | 单元格 | 单元格 |

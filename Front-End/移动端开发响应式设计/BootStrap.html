@@ -6,14 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Responsive Web design</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 </head>
-<body>
+<body style="height: 3000px;">
+    <blockquote>bootstrap当今世界最受欢迎的构建响应式页面的框架，以移动端样式优先考虑。样式文件中会重置掉浏览器默认的样式设置，如padding，margin。
+        来统一不同浏览器之间的渲染差异。
+    </blockquote>
+    <h1>这是标题 1</h1>
+    <h2>这是标题 2</h2>
+    <h3>这是标题 3</h3>
+    <h4>这是标题 4</h4>
+    <h5>这是标题 5</h5>
+    <h6>这是标题 6</h6>
+    <details>
+        <summary>HTML 5</summary>
+        This document teaches you everything you have to learn about HTML 5.
+    </details>
+    <a href="https://getbootstrap.com/docs/5.1/getting-started/rfs/">What is RFS</a>
+
+    <ul>
+        <li>Nowadays RFS is capable of rescaling most CSS properties with unit values like margin, padding, border-radius, or even box-shadow.</li>
+        <li>The mechanism automatically calculates the appropriate values based on the dimensions of the browser viewport. </li>
+    </ul>
+    <blockquote>
+        Keep your projects lean, responsive, and maintainable so you can deliver the best experience and focus on more important jobs.
+    </blockquote>
+    <blockquote>
+        Breakpoints are customizable widths that determine how your responsive layout behaves across device or viewport sizes in Bootstrap.
+    </blockquote>
+    <div>宽高自适应的图片</div>
     <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg2.niutuku.com%2Fdesk%2F1207%2F0944%2Fntk111703.jpg&refer=http%3A%2F%2Fimg2.niutuku.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1634913772&t=426279c4327755f89e9a8aa05ddf6b23" class="img-fluid" alt="...">
 
-    <div class="container" style="height: 3000px;">
+    <div class="container" style="background-color: blanchedalmond;">
+        <div>.container, which sets a max-width at each responsive breakpoint</div>
         <div class="row">
             <div class="col">
             Column
@@ -25,15 +51,18 @@
             Column
             </div>
         </div>
-        <button onclick="handler()">press</button>
     </div>
-
-    <script>
-        function handler() {
-            $('body').scrollTop(200)
-            // window.scrollTo(0, 500)
-            document.body.scrollTop=500;
-        }
-    </script>
+    <div class="container-fluid" style="background-color: burlywood;">
+        .container-fluid, which is width: 100% at all breakpoints
+        <div style="height: 100px;">
+            行内元素的布局
+            <span class="align-baseline">baseline</span>
+            <span class="align-top">top</span>
+            <span class="align-middle">middle</span>
+            <span class="align-bottom">bottom</span>
+            <span class="align-text-top">text-top</span>
+            <span class="align-text-bottom">text-bottom</span>
+        </div>
+    </div>
 </body>
 </html>

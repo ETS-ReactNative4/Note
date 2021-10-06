@@ -1,6 +1,8 @@
 ## px
 px像素（Pixel）。相对长度单位。像素px是相对于显示器屏幕分辨率而言的。
 
+Using PX can be problematic for responsive sites, but they are useful for maintaining consistent sizing for some elements. If you have elements that should not be resized, then using PX is a good choice.
+
 ## em
 所有未经调整的浏览器都符合: 1em=16px。
 

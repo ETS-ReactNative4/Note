@@ -31,6 +31,9 @@ time: 延迟响应时间，这个值的单位是毫秒
 ➜ curl http://localhost:8000/test
 {"code":"success","meta":{"total":1,"count":1},"payload":[{"msg":"testing","id":"31f23305-f5d0-4b4f-a16f-6f4c8ec93cf1","createDate":"2020-08-28T21:53:07.157Z"}]}
 
+添加query
+➜ curl http://localhost:8000/test?page=1&limit=10
+
 使用linux的重定向功能保存
 ➜  ~ curl https://www.baidu.com/ >> baidu1.html
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
