@@ -1,5 +1,22 @@
 .wrapper {
-    border: 1px solid darkcyan;
+    border: 2px solid rgba(13,202,240,.8);
     padding: 5px;
     margin-bottom: 10px;
+}
+
+.v-gap01 {
+    margin-top: 10px;
+}
+
+/* 博客样式 */
+.blog_container {
+    position: relative;
+}
+.blog_container strong {
+    position: absolute;
+    background-color: #fff;
+    color: rgba(13,202,240,.8);
+    padding: 0 2px;
+    right: 15px;
+    top: -10px;
 }

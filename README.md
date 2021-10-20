@@ -1,6 +1,8 @@
 > 不积跬步无以至千里.
 
 ### Words
+* MBA 工商管理硕士，全称为工商管理专业型硕士研究生（英文名：Master of Business Administration，简称MBA）。
+* EMBA 高级管理人员工商管理硕士（EMBA EMBA英文全称为EXECUTIVE MASTER OF BUSINESS ADMINISTRATION），旨在培养具有高度政治素养、责任心和职业道德的中、高层管理者，有别于MBA，以及其他各类针对企业高级管理者的在职研修班等EDP培训。
 * '\r'是回车，前者使光标到行首，（carriage return）'\n'是换行，后者使光标下移一格，（line feed） 
   \r 在 tty 里可以用来回到行首，屏幕类型的终端设备在回到行首后继续输出就能覆盖原行内容，通常用来做进度条一类的 GUI。但是 \n 就是单纯向下移动一行，不用 \r 你就只能在行半中间继续写。当然了，现代的终端通常已经不需要 \r\n 了。
 * REPL：Read-Eval-Print Loop，“读取-求值-输出” 循环。是一个简单的交互式的编程环境。

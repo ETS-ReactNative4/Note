@@ -2,53 +2,74 @@
 <html>
 <head>
 	<title>layout</title>
-	<style type="text/css">
+	<link rel="stylesheet" href="../shared.css">
+<style type="text/css">
 
-	.wrap {
-		  	text-align: center;
-      		line-height: 100px; /*任意高度都可以*/
-			border: 2px solid blueviolet;
-	}
+.parent01 {
+	height: 100px;
+	text-align: center;
+	line-height: 100px;
+}
+.parent02 {
+	height: 100px;
+	display: flex;
+	align-items: center;
+}
+.child01 {
+	background-color: rgb(48, 245, 245);
+	width: 80%;
+	height: 50%;
+	margin: 0 auto;
+}
 
-	.parent {
-			height: 250px;
-			display: table-cell;
-			text-align: center;
-			vertical-align: middle;
-			border: 2px solid blue;
-	}
-	.child {
-			background-color: rgb(48, 245, 245);
-			width: 80%;
-			margin: 0 auto;
-	}
 
-	.parent1 {
-			height: 300px;
-			border: 2px solid #222;
-			background-color: darkgoldenrod;
-			text-align: center;
-			display: flex;
-			align-items: center;
-	}
-	.child1 {
-			width: 250px;
-			height: 150px;
-			background-color: darkmagenta;
-			margin: 0 auto;
-	}
+.parent {
+	height: 250px;
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	border: 2px solid blue;
+}
+.child {
+		background-color: rgb(48, 245, 245);
+		width: 80%;
+		margin: 0 auto;
+}
+
+.parent1 {
+		height: 300px;
+		border: 2px solid #222;
+		background-color: darkgoldenrod;
+		text-align: center;
+		display: flex;
+		align-items: center;
+}
+.child1 {
+		width: 250px;
+		height: 150px;
+		background-color: darkmagenta;
+		margin: 0 auto;
+}
 	</style>
 </head>
 <body>
-	
-<div class="wrap">
-	<b>div中的单行文本</b> 水平垂直居中
-	.wrap {
-		text-align: center;
-    	line-height: 100px; /*任意高度都可以*/
-	}	
+<div class="blog_container">
+	<strong>div容器</strong>
+	<div class="wrapper parent01">
+		<span>对齐方式：水平垂直居中</span> 
+	</div>
+</div>	
+
+<div class="v-gap01"></div>
+
+<div class="blog_container">
+	<strong>div容器</strong>
+	<div class="wrapper parent02">
+		<div class="child01">块元素：垂直居中对齐</div>
+	</div>
 </div>
 
+<div class="v-gap01"></div>
 
 <div class="parent">
 	parent
