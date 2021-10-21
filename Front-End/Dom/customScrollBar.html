@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/path/to/jquery.mCustomScrollbar.css" />
+    <style>
+        .content {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <p style="text-align: center;">呸呸呸</p>
+    <div class="content"></div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/path/to/jquery.mCustomScrollbar.concat.min.js"></script>
+</body>
+<script>
+    (function($){
+        $(window).on("load",function(){
+            $(".content").mCustomScrollbar();
+        });
+    })(jQuery);
+</script>
+</html>
