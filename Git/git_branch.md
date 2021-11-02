@@ -107,8 +107,12 @@ git branch -D feature/exchange
   origin/hotfix/hotfix-1.0.2
   origin/master
   origin/release/release-1.0
+
 ➜  Note git:(feature/cli_fuck) ✗ git branch -r -d origin/feature/cli_fuck
 Deleted remote-tracking branch origin/feature/cli_fuck (was f51e08c).
+
+// 上边的方法是无法删除远程分支的，下面的方法可以
+Note git:(feature/cli_fuck) ✗ git push origin -d feature/cli_fuck
 ```
 
 ### 查看当前分支状态并且提交更改【git commit -am "video"】
