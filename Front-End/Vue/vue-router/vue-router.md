@@ -1,3 +1,6 @@
+- to.meta.keepAlive
+- 
+
 ## 页面间跳转钩子
 在DeliveryInfo.vue 中有用到
 ```
