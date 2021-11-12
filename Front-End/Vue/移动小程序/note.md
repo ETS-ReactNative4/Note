@@ -10,3 +10,11 @@ https://uniapp.dcloud.io/quickstart?id=%e5%8f%91%e5%b8%83%e4%b8%ba%e5%b0%8f%e7%a
 集成了公众号网页调试和小程序调试两种开发模式
 
 在微信小程序开发者工具中，导入生成的微信小程序项目，测试项目代码运行正常后，点击“上传”按钮，之后按照 “提交审核” => “发布” 小程序标准流程，逐步操作即可
+
+
+## tabBar
+[绚丽效果](https://www.zcool.com.cn/work/ZNTA1MjgyMTY=.html)
+
+https://www.zcool.com.cn/
+
+https://gif-tool.whatthehell.cn/tool/features
