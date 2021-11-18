@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    最近做个弹幕，用的是第三方的插件，在浏览器页面切换到后台，返回后发现数据有堆叠卡死的情况，如何解决这个问题？网上参考了些demo，大致可以实现
+    1.document.hidden（ Boolean值， 表示当前页面可见还是不可见）
+    2.document.visibilityState（ 返回当前页面的可见状态。 分为 "hidden" 跟 "visible"）
+
+<script>
+    document.addEventListener("visibilitychange", function () {
+
+        if (document.visibilityState == "visible") {
+            document.title='页面可见';
+            //do something
+            //继续播放弹幕
+        }
+        if (document.visibilityState == "hidden") {
+
+            document.title='页面不可见';
+        //do something else
+        //暂停播放弹幕
+        }
+})
+</script>
+</body>
+</html>
