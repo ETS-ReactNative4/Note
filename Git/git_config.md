@@ -2,6 +2,14 @@
 ls -a
 rm -rf .git
 
+## 提交报错
+git 提交报错 error: RPC failed; curl 92 HTTP/2 stream 0 was not closed cleanly: PROTOCOL_ERROR (err 1)
+
+[解决方法](https://blog.csdn.net/wjk_along/article/details/104423443)
+```
+git config --global http.version HTTP/1.1
+```
+
 ## 查看git用户配置
 1. git config --list
 ```

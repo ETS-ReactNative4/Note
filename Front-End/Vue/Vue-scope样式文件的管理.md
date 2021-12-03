@@ -1,3 +1,38 @@
+## [基本的.vue组件结构](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-single-file-components?file=/Hello.vue)
+```
+<template>
+  <p>{{ greeting }} World!</p>
+</template>
+
+<script>
+module.exports = {
+  data: function() {
+    return {
+      greeting: "Hello"
+    };
+  }
+};
+</script>
+
+<style scoped>
+p {
+  font-size: 2em;
+  text-align: center;
+}
+</style>
+```
+
+[来自](https://cn.vuejs.org/v2/guide/single-file-components.html)
+
+## [组件作用域的CSS](https://vue-loader-v14.vuejs.org/zh-cn/features/scoped-css.html)
+
+## 组件内引入bootstrap影响了Element样式
+### 起因
+vue-quill-editor 为行内样式，在其他端使用需要加载样式文件，不够友好。故使用summernote，但是依赖bootstrap
+
+summernote 局部引入bootstrap.css不齐作用，需要在组件中import '../../assets/bootstrap.css' // 这里引入影响全局样式, 只能引用一个修改后的bootstrap.css,只保留summernote依赖的样式
+
+
 ## Element UI 组件样式的覆盖
 ### “scoped”在工程中是如何工作的？
 我们可以用自己的工程运行起来看一下。看看生成的页面是什么样的。
