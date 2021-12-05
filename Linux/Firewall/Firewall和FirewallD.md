@@ -1,6 +1,8 @@
 ## How to Stop and Disable Firewalld on CentOS 7
 https://linuxize.com/post/how-to-stop-and-disable-firewalld-on-centos-7/
 
+[参考资料](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-using-firewalld-on-centos-7)
+
 > Starting with CentOS 7, FirewallD replaces iptables as the default firewall management tool.
 
 ### 查看状态
@@ -18,7 +20,6 @@ To permanently disable the firewall on your CentOS 7 system, follow the steps be
 sudo systemctl stop firewalld
 
 sudo systemctl disable firewalld
-
 ```
 
 Mask the FirewallD service which will prevent the firewall from being started by other services:
@@ -26,6 +27,79 @@ Mask the FirewallD service which will prevent the firewall from being started by
 sudo systemctl mask --now firewalld
 ```
 
+### 开启防火墙
+```
+[root@vultr ~]# sudo systemctl enable firewalld
+[root@vultr ~]# systemctl start firewalld
+
+[root@vultr ~]# firewall-cmd --state
+running
+```
+
+### 查看所有控制项
+```
+[root@vultr ~]# firewall-cmd --list-all
+public (active)
+  target: default
+  icmp-block-inversion: no
+  interfaces: eth0
+  sources:
+  services: dhcpv6-client ssh
+  ports: 8090/tcp 8090/udp
+  protocols:
+  masquerade: no
+  forward-ports:
+  source-ports:
+  icmp-blocks:
+  rich rules:
+```
+
+### 开启services
+For instance, if we are running a web server serving conventional HTTP traffic, we can allow this traffic for interfaces in our “public” zone for this session by typing:
+
+want to modify the permanent firewall rules so that your service will still be available after a reboot. We can make our “public” zone change permanent by typing:
+```
+firewall-cmd --zone=public --permanent --add-service=http
+
+output
+success
+```
+
+Your “public” zone will now allow HTTP web traffic on port 80. If your web server is configured to use SSL/TLS, you’ll also want to add the https service. We can add that to the current session and the permanent rule-set by typing:
+```
+firewall-cmd --zone=public --permanent --add-service=https
+```
+
+### Opening a Port for your Zones(打开一个服务端口)
+For instance, if our application runs on port 5000 and uses TCP, we could add this to the “public” zone for this session using the --add-port= parameter. Protocols can be either tcp or udp:
+```
+注意：这个需要加--permanent 在reload后才会生效 
+firewall-cmd --zone=public --permanent --add-port=5000/tcp
+
+output
+success
+
+需要先执行 firewall-cmd --reload, 才能看到新添加的端口
+
+firewall-cmd --zone=public --list-ports
+output
+5000/tcp
+```
+我几乎用过的都是tcp协议的端口 80/tcp 8080/tcp 8077/tcp 8077/udp 3306/tcp 27880/tcp 5008/tcp 
+
+### 关闭端口
+```
+firewall-cmd --zone=public --remove-port=80/tcp --permanent  # 删除
+```
+
+### reload
+Reload your firewall to get access to your new service:
+```
+firewall-cmd --reload
+```
+
+
+下边是过时的Iptables 不需要再看
 ## How to Install Iptables on CentOS 7
 https://linuxize.com/post/how-to-install-iptables-on-centos-7/
 
@@ -47,7 +121,6 @@ sudo systemctl mask --now firewalld
 
 
 ## iptables rules
-
 ```
 [root@vultr ~]# iptables -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
 

@@ -123,16 +123,18 @@ sudo systemctl mysql start
 Centos7通过yum安装最新MySQL
 https://www.cnblogs.com/xiaopotian/p/8196464.html
 
-1. 下载MySQL源安装包
+1. 下载MySQL源安装包5.7版本
 ```
-[root@vultr ~]# wget http://dev.mysql.com/get/mysql80-community-release-el7-2.noarch.rpm
+[root@vultr ~]# wget -i -c http://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm
 ```
 2. 安装MySql源
 ```
 [root@vultr ~]# ls
-mysql80-community-release-el7-2.noarch.rpm  projects  shadowsocks.log  shadowsocks.sh
-[root@vultr ~]# rpm -Uvh mysql80-community-release-el7-2.noarch.rpm
+mysql57-community-release-el7-10.noarch.rpm
+
+[root@vultr ~]# rpm -Uvh mysql57-community-release-el7-10.noarch.rpm
 ```
+
 3. 查看一下安装效果
 yum repolist enabled | grep mysql.*
 
@@ -177,9 +179,11 @@ systemctl restart mysqld.service
 2019-04-06T08:55:53.291838Z 5 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: 6oew%(3)Iz8q
 ```
 9. 登录
+```
 mysql -uroot -p
+```
 
-10. 修改密码
+10.  修改密码
 ```
 mysql> show databases;
 ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement.
@@ -214,6 +218,8 @@ mysql>GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '1234445' WITH GRA
 指点ip:%代表所有Ip,此处也可以输入Ip来指定Ip
 输入后使修改生效还需要下面的语句
 mysql>FLUSH PRIVILEGES;
+
+上边的操作执行完成，从远程连接数据库可能仍然会出现被拒绝的情况，因为服务器开启了防火墙，只要暴露数据库连接接口就可以了，参考Linux Firewal。
 
 #########################################################################################################
 【上面的授权提示语法和当前版本不符，8.x版本采取以下授权方式】
