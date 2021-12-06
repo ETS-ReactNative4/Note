@@ -2,6 +2,27 @@
 
 https://web.dev/progressive-web-apps/
 
+[专业前端技术规范](https://web.dev/learn/)
+
+## 创建一个PWA的步骤
+### Make it installable
+
+### Service workers
+Service workers are a fundamental part of a PWA. They enable fast loading (regardless of the network), offline access, push notifications, and other capabilities.
+
+## 参考博客
+https://www.cnblogs.com/taylorshi/p/14922550.html
+
+### 建立应用程序清单(Web App Manifest)
+
+## [Vue 项目添加pwa](https://juejin.cn/post/6844904033522548743)
+### 安装vue/pwa
+```
+vue add @vue/pwa
+```
+
+### vue.config.js 文件中配置pwa
+
 
 > 有一个困扰 web 用户多年的难题——丢失网络连接。虽然 Service Worker 的语法比 AppCache 更加复杂，但是你可以使用 JavaScript 更加精细地控制 AppCache 的静默行为。
 
