@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>焦点动画</title>
+    <link rel="stylesheet" href="./animation.css">
+    <style>
+        .wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+        .avatar_shadow {
+            width: 80px;
+            height: 80px;
+            opacity: .2;
+            background: #2469f3;
+            border-radius: 50%;
+            animation: avatar_shadow_twinkle 1s ease-in-out infinite alternate;
+        }
+        @keyframes avatar_shadow_twinkle {
+            0% {
+                -webkit-transform: scale(.7);
+                transform: scale(.7);
+            }
+            100% {
+                -webkit-transform: scale(1.08);
+                transform: scale(1.08);
+            }
+        } 
+        @keyframes avatar_twinkle {
+            0% {
+                transform: scale(.9);
+            }
+            100% {
+                transform: scale(1.08);
+            }
+        } 
+
+        .consult_avatar {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-image: url(https://wwwimg.polyv.net/assets/dist/images/v2020/g-img/sidebar/consulting.svg);
+            background-size: cover;
+        }
+        .border_a1 {
+            border: 1px solid red;
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            animation: scale01 1s ease-in-out infinite;
+        }
+    
+
+        .edge_a1 {
+			animation: _13ual7k 2.5s ease-in-out infinite;
+		}
+		.outside_a1 {
+			animation: _1mbhho 2.5s ease-out 1s infinite;
+		}
+
+        .avatar_a1 {
+            animation: avatar_twinkle 1s ease-in-out infinite alternate-reverse;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="avatar_shadow"></div>
+        <div class="consult_avatar"></div>  
+    </div>
+    <div class="wrapper">
+        <div class="border_a1"></div>
+        <img class="avatar_a1" src="https://wwwimg.polyv.net/assets/dist/images/v2020/g-img/sidebar/consulting.svg" alt="">
+    </div>
+
+    <div class="_1o3r8bx">
+        <div class="edge edge_a1"></div>
+        <div class="core_outside outside_a1"></div>
+        <div class="core"></div>
+    </div>
+</body>
+</html>

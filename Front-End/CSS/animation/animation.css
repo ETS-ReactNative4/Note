@@ -1,0 +1,125 @@
+/* 
+语法：
+animation: name duration timing-function delay iteration-count direction;
+
+animation-name	规定需要绑定到选择器的 keyframe 名称。。
+animation-duration	规定完成动画所花费的时间，以秒或毫秒计。
+animation-timing-function	规定动画的速度曲线。
+animation-delay	规定在动画开始之前的延迟。
+animation-iteration-count	规定动画应该播放的次数。
+animation-direction	规定是否应该轮流反向播放动画。 
+
+
+浏览器兼容写法
+@-webkit-keyframes _13ual7k {
+	0% {
+		transform: scale(0.33);
+		opacity: 1;
+	}
+
+	100% {
+		transform: scale(1);
+		opacity: 0;
+	}
+}
+
+@-moz-keyframes _13ual7k {
+	0% {
+		transform: scale(0.33);
+		opacity: 1;
+	}
+
+	100% {
+		transform: scale(1);
+		opacity: 0;
+	}
+}
+
+@-o-keyframes _13ual7k {
+	0% {
+		transform: scale(0.33);
+		opacity: 1;
+	}
+
+	100% {
+		transform: scale(1);
+		opacity: 0;
+	}
+} */
+
+/* 定义基础容器 */
+._1o3r8bx {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    top: 250px;
+    left: 40%;
+}
+.edge {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 0, 0, 0.7);
+}
+.core_outside {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    background: rgba(255, 0, 0, 0.7);
+}
+.core {
+    width: 102%;
+    height: 102%;
+    border-radius: 50%;
+    background: rgba(255, 0, 0, 0.7);
+}
+/* 控制不同的缩放比例可以呈现出不同的效果 */
+@keyframes _rqfzup {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+}
+
+@keyframes _13ual7k {
+    0% {
+        transform: scale(1);
+        opacity: .5;
+    }
+
+    100% {
+        transform: scale(3.5);
+        opacity: 0;
+    }
+}
+
+@keyframes _1mbhho {
+    0% {
+        transform: scale(1);
+        opacity: .5;
+    }
+
+    100% {
+        transform: scale(3.5);
+        opacity: 0;
+    }
+}
+
+@keyframes scale01 {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.2);
+        opacity: .1;
+    }
+}
