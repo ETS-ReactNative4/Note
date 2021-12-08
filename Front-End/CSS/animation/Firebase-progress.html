@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .c5e-pie-progress-container {
+            align-items: center;
+            display: flex;
+            flex-flow: column;
+            font-family: "Roboto",sans-serif;
+            font-size: 16px;
+            justify-content: center;
+            line-height: 24px;
+            margin-top: 50px;
+            min-height: 318px;
+            min-width: 150px;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+            transition: opacity .15s ease;
+        }
+        .c5e-pie-progress-circle-container {
+            left: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background-color: #fff;
+            box-shadow: 0 0 42px rgb(0 0 0 / 8%), 0 1px 0 rgb(0 0 0 / 12%), 0 0 4px rgb(0 0 0 / 6%);
+            height: 112px;
+            overflow: hidden;
+            width: 112px;
+        }
+        [data-state=loaded][_ngcontent-xyb-c277] .c5e-pie-progress-pie-container[_ngcontent-xyb-c277] {
+            animation: spinPie 3s cubic-bezier(0.4, 0, 0, 1);
+            animation-fill-mode: forwards;
+        }
+        .c5e-pie-progress-pie-outer[_ngcontent-xyb-c277] {
+            left: 50%;
+            position: absolute;
+            top: 50%;
+            height: 96px;
+            overflow: hidden;
+            transform-origin: left center;
+            width: 96px;
+        }
+        .c5e-pie-progress-pie-inner[_ngcontent-xyb-c277] {
+            background-color: #fff;
+            height: 192px;
+            left: 0;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            transform: rotate(-60deg);
+            transform-origin: left 25%;
+            width: 192px;
+        }
+        .c5e-pie-progress-pie-outer.c5e-pie-progress-pie1[_ngcontent-xyb-c277] {
+            transform: translate(0, -50%) rotate(0deg);
+        }
+        .c5e-pie-progress-pie-outer.c5e-pie-progress-pie2[_ngcontent-xyb-c277] {
+            transform: translate(0, -50%) rotate(120deg);
+        }
+        .c5e-pie-progress-pie-outer.c5e-pie-progress-pie3[_ngcontent-xyb-c277] {
+            transform: translate(0, -50%) rotate(240deg);
+        }
+    
+
+        @keyframes spinPie {
+            0% {
+                transform: translate(-50%, -50%) rotate(0);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(990deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="c5e-pie-progress-container">
+        <div class="c5e-pie-progress-circle-container">
+            <div class="c5e-pie-progress-pie-container">
+                <div class="c5e-pie-progress-pie-container">
+                    <div _ngcontent-xyb-c277="" class="c5e-pie-progress-pie-outer c5e-pie-progress-pie1">
+                        <div _ngcontent-xyb-c277="" class="c5e-pie-progress-pie-inner"></div>
+                    </div>
+                    <div _ngcontent-xyb-c277="" class="c5e-pie-progress-pie-outer c5e-pie-progress-pie2">
+                        <div _ngcontent-xyb-c277="" class="c5e-pie-progress-pie-inner"></div>
+                    </div>
+                    <div _ngcontent-xyb-c277="" class="c5e-pie-progress-pie-outer c5e-pie-progress-pie3">
+                        <div _ngcontent-xyb-c277="" class="c5e-pie-progress-pie-inner"></div>
+                    </div>
+                    <svg _ngcontent-xyb-c277="" width="200" height="200" xmlns="http://www.w3.org/2000/svg" class="c5e-pie-progress-load-progress"><circle _ngcontent-xyb-c277="" cx="100" cy="100" r="50" stroke-width="100"></circle></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

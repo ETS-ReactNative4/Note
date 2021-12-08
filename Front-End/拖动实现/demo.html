@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .target, #drag {
+            width: 50px;
+            height: 50px;
+            background-color: aqua;
+            margin-bottom: 5px;
+        }
+        #drag {
+            position: absolute;
+            top: 100px;
+        }
+        #target {
+            position: absolute;
+            top: 0;
+        }
+        #parent {
+            background-color: beige;
+            width: 500px;
+            height: 400px;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div id="parent" style="width: 500px;">
+        <div class="target" id="target"></div>
+    </div>
+
+    <div id="drag" draggable="true"></div>
+    <script>
+        const parent = document.getElementById('parent')
+        function range(target, e) {
+            console.log(`window.innerWidth: ${window.innerWidth} window.innerHeight: ${window.innerHeight} e.screenX: ${e.screenX}`)
+            // console.log(`parent.offsetLeft: ${parent.offsetLeft} parent.offsetRight: ${parent.offsetLeft + 500}`)
+            if (e.screenX < 10) {
+                target.style.left = 0
+            } else if (e.screenX > window.innerWidth-10) {
+                target.style.left = window.innerWidth-50+'px'
+            } else {
+                target.style.left = e.screenX-25+'px'
+            }
+        }
+        console.log(parent.style.width)
+        // 1. 这种方式可能需要同时处理mousedown mousemove事件来改变元素位置(适用于pc的鼠标和触控板 手机端无效)
+        document.querySelector('#target').addEventListener('mousedown', handleMouseDown)
+
+        // document.querySelector('#target').addEventListener('mousemove', handleMouseMove)
+
+        function handleMouseDown() {
+            console.log('target mouse down...')
+            const target = document.getElementById('target')
+            // document.querySelector('#target').onmousemove(e => {
+            //     console.log('handleMouseDown onmousemove')
+            // })
+            target.addEventListener('mousemove', handleMouseMove)
+        }
+        function handleMouseMove(e) {
+            console.log('handleMouseDown onmousemove', e)
+            range(target, e)
+        }
+        function handleMouseUp() {
+            document.querySelector('#target').removeEventListener('mousemove', handleMouseMove)
+        }
+        // 在 #target 上加事件并不合适因为不一定能移除事件
+        // document.querySelector('#target').addEventListener('mouseup', handleMouseUp)
+        document.addEventListener('mouseup', handleMouseUp)
+
+        // 处理移动端
+        document.querySelector('#target').addEventListener('touchstart', handleTouchStart)
+        document.querySelector('#target').addEventListener('touchmove', handleTouchMove)
+        document.querySelector('#target').addEventListener('touchend', handleTouchEnd)
+
+        function handleTouchStart(e) {
+            // alert('handleTouchStart...', e)
+        }
+        function handleTouchMove(e) {
+            console.log('handleTouchMove...', e)
+            target.style.left = e.targetTouches[0].screenX-25+'px'
+        }
+        function handleTouchEnd() {
+            // alert('handleTouchEnd...')
+        }
+
+        // todo 处理拖动容器和边界
+
+
+        // 2. 这种方式是用来处理拖放的，处理跟随鼠标也不合适
+        document.querySelector('#drag').addEventListener('dragstart', handleDrag)
+        document.querySelector('#drag').addEventListener('drag', handleDragging)
+        document.querySelector('#drag').addEventListener('dragend', handleDragend)
+        const drag = document.getElementById('drag')
+        function handleDrag() {
+            console.log('target draged...', drag.offsetTop, drag.offsetLeft)
+        }
+        function handleDragging(e) {
+            console.log('target dragging...', e)
+            drag.style.left = e.screenX
+        }
+        function handleDragend() {
+            console.log('target dragend...')
+        }
+    </script>
+</body>
+</html>
+<!-- https://www.cnblogs.com/cloudgamer/archive/2008/11/17/Drag.html -->
