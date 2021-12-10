@@ -39,3 +39,6 @@ WebRTC 有很多不同的用例，包括使用摄像头或麦克风的基本 Web
 
 ## SDK
 https://www.zego.im/
+
+## OBS
+[什么是OBS（OBS直播推流操作步骤，看完就懂）](https://www.yubaibai.com.cn/article/5611658.html)

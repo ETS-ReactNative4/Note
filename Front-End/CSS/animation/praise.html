@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .praise-pubble-container {
+            width: 400px;
+            height: 280px;
+            position: absolute;
+            z-index: 15;
+            background-color: aqua;
+            display: none;
+        }
+        .vhall-saas-praise__bubble {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            left: 145px;
+            bottom: 0;
+            background-repeat: no-repeat;
+            background-position: bottom;
+            transform-origin: bottom;
+        }
+        .vhall-saas-praise__bubble01 {
+            background-image: url(https://cnstatic01.e.vhall.com/saas-v3-watchs/static/img/666.93f81254.png);
+            -webkit-animation: bubble_1-data-v-1a1981d0 .7s linear 1 forwards,bubble_y_1-data-v-1a1981d0 .7s ease-out 1 forwards;
+            animation: bubble_1-data-v-1a1981d0 .7s linear 1 forwards,bubble_y_1-data-v-1a1981d0 .7s ease-out 1 forwards;
+        }
+        .vhall-saas-praise__bubble02 {
+            background-image: url(https://cnstatic01.e.vhall.com/saas-v3-watchs/static/img/heart.e73286ca.png);
+            -webkit-animation: bubble_2-data-v-1a1981d0 .7s linear 1 forwards,bubble_y_2-data-v-1a1981d0 .7s ease-out 1 forwards;
+            animation: bubble_2-data-v-1a1981d0 .7s linear 1 forwards,bubble_y_2-data-v-1a1981d0 .7s ease-out 1 forwards;
+        }
+        .vhall-saas-praise__bubble03 {
+            background-image: url(https://cnstatic01.e.vhall.com/saas-v3-watchs/static/img/heart.e73286ca.png);
+            -webkit-animation: bubble_3-data-v-1a1981d0 .7s linear 1 forwards,bubble_y_3-data-v-1a1981d0 .7s ease-out 1 forwards;
+            animation: bubble_3-data-v-1a1981d0 .7s linear 1 forwards,bubble_y_3-data-v-1a1981d0 .7s ease-out 1 forwards;
+        }
+
+        @keyframes bubble_1-data-v-1a1981d0 {
+            0% {
+                margin-bottom: 0;
+            }
+            100% {
+                margin-bottom: 50px;
+            }
+        }
+        @keyframes bubble_2-data-v-1a1981d0 {
+            0% {
+                margin-bottom: 0;
+            }
+            100% {
+                margin-bottom: 10px;
+            }
+        }
+        @keyframes bubble_3-data-v-1a1981d0 {
+            0% {
+                margin-bottom: 0;
+            }
+
+            100% {
+                margin-bottom: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="praise-pubble-container" id="container">
+        <div data-v-1a1981d0="" class="vhall-saas-praise__bubble vhall-saas-praise__bubble01"></div>
+        <div data-v-1a1981d0="" class="vhall-saas-praise__bubble vhall-saas-praise__bubble02"></div>
+        <div data-v-1a1981d0="" class="vhall-saas-praise__bubble vhall-saas-praise__bubble03"></div>
+        <div data-v-1a1981d0="" class="vhall-saas-praise__bubble vhall-saas-praise__bubble04"></div>
+        <div data-v-1a1981d0="" class="vhall-saas-praise__bubble vhall-saas-praise__bubble05"></div>
+        <div data-v-1a1981d0="" class="vhall-saas-praise__bubble vhall-saas-praise__bubble06"></div>
+        <div data-v-1a1981d0="" class="vhall-saas-praise__bubble vhall-saas-praise__bubble07"></div>
+        <div data-v-1a1981d0="" class="vhall-saas-praise__bubble vhall-saas-praise__bubble08"></div>
+    </div>
+    <button id="praiseBtn" onclick="handle()" style="margin-top: 400px;">点赞</button>
+    <script>
+
+        function handle() {
+            document.getElementById('container').style.display = 'block'
+            setTimeout(() => {
+                document.getElementById('container').style.display = 'none'
+            }, 500);
+        }
+    
+    </script>
+</body>
+</html>
