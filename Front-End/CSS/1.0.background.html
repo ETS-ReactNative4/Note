@@ -83,6 +83,34 @@
         .hei + li {
             border: 1px solid black;
         }
+
+        .sliderText {
+            position: relative;
+            font-size: 14px;
+            width: 200px;
+            padding-left: 20px;
+            background: 
+                -webkit-gradient( 
+                    linear,left top,right top,
+                    color-stop(0,#4d4d4d),
+                    color-stop(.4,#4d4d4d),
+                    color-stop(.5,#fff),
+                    color-stop(.6,#4d4d4d),
+                    color-stop(1,#4d4d4d)
+                );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-animation: unlock 3s infinite;
+            -webkit-text-size-adjust: none;
+        }
+        @keyframes unlock {
+            0% {
+                background-position: -100px 0;
+            }
+            100% {
+                background-position: 100px 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -146,6 +174,11 @@
             <li>ul > li 4</li>
             <li>ul > li 5</li>
         </ul>
+    </div>
+    <div class="wrapper">
+        <h1>background-clip</h1>
+        <span>可以发现虽然这两个选择器都表示兄弟选择器，但是‘+’选择器则表示某元素后相邻的兄弟元素，也就是紧挨着的，是单个的。而‘~’选择器则表示某元素后所有同级的指定元素，强调所有的。</span>
+        <span class="sliderText" data-text="向右滑动填充拼图">向右滑动填充拼图</span>
     </div>
 </body>
 </html>
