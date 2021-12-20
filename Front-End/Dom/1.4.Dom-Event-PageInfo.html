@@ -12,7 +12,6 @@
             margin-bottom: 10px;
         }
     </style>
-    <script src="../jQuery-JS/jquery.min.js"></script>
 </head>
 <body style="height: 800px;">
 <div style="height: 20px; background-color: bisque;" onclick="divHandler()">
@@ -48,8 +47,8 @@ function keyUpHandler() {
     document.getElementById("bind-source").innerText = val
 }
 
-const obj = document.getElementById("dom1")
-obj.addEventListener("input", function(e){
+
+document.getElementById("dom1").addEventListener("input", function(e){
     console.log(e.target.value)
 })
 
@@ -66,32 +65,14 @@ window.onscroll = () => {
     console.log(document.documentElement.scrollTop)
 }
 
-// 箭头函数的形式不会执行
-window.onload = () => {
-    console.log('arrow onload...')
-    this.scrollWindow()
-}
+// 获取某个div(有滚动条)的滚动高度
+// document.querySelector('#scrollBar').addEventListener('scroll', function (e) {
+//     console.log('=====', e.target.scrollHeight, e.target.scrollTop)
+// })
 
-window.onload = function() {
-    console.log('function onload...')
-    // 如果不延时不会执行, 可见onload DOM还没有完全加载 考虑使用jQuery的 .ready()
-    // setTimeout(() => {
-    // this.scrollWindow()
-    // }, 1000);
-}
-
-$(document).ready(function() {
-    scrollWindow()
-})
-
-// 控制页面滚动到指定位置
-function scrollWindow() {
-  window.scrollTo(0,500)
-//   window.scrollTo(0, document.documentElement.scrollTop - 120)
-}
-
-// 控制某个div的滚动
-$('.navBar').scrollLeft(250)
+// 获取某个div的自身高度,宽度
+// this.tableHeight = document.querySelector('#scrollBar').offsetHeight
+// document.querySelector('#scrollBar').offsetWidth
 </script>
 </body>
 </html>

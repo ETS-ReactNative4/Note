@@ -5,12 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../CSS/shared.css">
 </head>
 <body>
-    <h2>## innerHTML</h2>
-    <div id="el1"></div>
-    <article id="art">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea tempore laboriosam libero, ad deleniti sunt quisquam deserunt recusandae officiis dicta fuga, a aliquam suscipit unde laudantium quae! Id, neque esse.</article>
+    <div class="wrapper">
+        <h2>innerHTML appendChild insertBefore</h2>
+        <div id="el1"></div>
+        <article id="art">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea tempore laboriosam libero, ad deleniti sunt quisquam deserunt recusandae officiis dicta fuga, a aliquam suscipit unde laudantium quae! Id, neque esse.</article>
+    </div>
+    
+    <div class="wrapper">
+        <h2>DOM 选择器</h2>
+        <p>querySelector()方法返回文档中与指定选择器或选择器组匹配的第一个 HTMLElement对象。 如果找不到匹配项，则返回null。</p>
+        <div id="heart">my sweet heart</div>
+        <div class="baby">baby</div>
+        <div class="baby">baby</div>
+        <div class="baby">baby</div>
+    </div>
 <script>
+// ==========================================================================
 // 1. 可以使用innerHTML插入字符串标签
 const el1 = document.getElementById('el1')
 el1.innerHTML = '<a href="">嵌套标签<b>oooo</b></a>'
@@ -34,6 +47,14 @@ let d = document.createElement("div");
 var textnode1 =document.createTextNode("Water Before");
 d.appendChild(textnode1)
 document.getElementById("el1").insertBefore(d, document.getElementById('art'))
+
+// ===================================================================================
+console.log("document.getElementById('heart')", document.getElementById('heart'))
+console.log("document.querySelector('#heart')", document.querySelector('#heart'))
+console.log("document.querySelector('.baby')", document.querySelector(".baby"))
+console.log("document.querySelectorAll('.baby')", document.querySelectorAll(".baby"))
+console.log("document.getElementsByClassName('baby')", document.getElementsByClassName('baby'))
+console.log("document.getElementsByTagName('p')", document.getElementsByTagName('p'))
 </script>
 </body>
 </html>
