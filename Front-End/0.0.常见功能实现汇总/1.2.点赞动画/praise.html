@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>直播点赞动画</title>
+    <style>
+.praise_wrapper {
+    text-align: center;
+    position: relative;
+    /* border: 2px solid darkblue; */
+    height: 200px;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+}
+.praies_btn {
+    position: absolute;
+    bottom: 0;
+    width: 80px;
+}
+.c-like-icon__like {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-size: contain;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAMAAAC5zwKfAAAC2VBMVEUAAABIoP9bjcs7bbAtZbNtpu5Ti9MocPAgaPAoaNgsaMRIoP9ImPg/mP94rPgocPglcPwocPBQoP90rPR4qOhQiNA4gPhQiNg4gPAwePBAkPgwcNAwcN5goPBQmPggaPgoaPAwcOAwcPA4cMA4cMg4eNAwaMgwcLgocOgoePhQoPhYmOhYnPBQmPBooPBYoPBcmOhAkPgweOBooPBQkPBYkOgwcOgwaNBAmPhYoPhAmPxAeNBEmPwoaNhImPg4kP9goPgwaLggaPBQoPhoqPBoqPAwaLAoaMAoaOhQgNBYoPhoqPA4gPBkpPBIkPBAgOBQiOBEfNAoaOBAgNhAiOgwePg4gOg4iPhAiPAwaLgwgPgwaMhQiNhAeNhAeNhQiOA4iPhQkORAiPBQkOA4eNhYkOAoaMgwaNhQmPAgcPhwqPAwYLhgoPAoaND///82jP44j/43jv4mcv0odf05kf4kb/08lv4xhf4ndP0+mf43jf4mc/0lcf07lP41i/4vgf0jbf0zh/4lcP0odv0qef06kv4nc/0jbv0wgv4wgP8pd/09l/4wg/4qeP09mP4/m/4uf/0rev06k/4tfv0sfP0yhv40if4ibP0kbv07lf44kP4kcP0mcf01iv5AnP45kP47k/4re/1Anf4pdv05kv4wiP8se/08lf4+mv4jbP0ziP4peP0ugP0tff0ia/0vgP0yhf44kP8/mv4oeP84iP80iP4ufv00iv5AoP8gaP8sff0ocP9IkP/4+P9Bnv5AmP/w+P8gcP80iP8gbPwsfPxAnv6w0P/o8P/4///Q4P88l/4ufvxAkP/A2P84jP8odPxAnP8weP+YwP+oyP9gmP/Y6P/g8P9QmP+IuP/I4P+o0P80jP4oePwxhP86lP48lP8ocPxQkP/w8P9AiP+QuP94sP9coP+QwP84kv5IiP9YkP/g6P+AqP94qP9wsP80jP/Q6P9QoP+gyP88w4ZiAAAAbnRSTlMA8AgIECAQ6PCwaPjo/BD4/PDwMAgg8Cjo8PCQuJjY+PCw6CBgaGAg2PjokMC4aLho6MBwuHDYkPDI+Fj4wPD4uCjo4HhgGFjgONhw4JDAuHAw0HC48ND44DD4cDCYcJjwkNBwiGCIuNj4QDigkDWM+MgAAAcuSURBVHgBnZcDmBzfEsXv2rH9t23bNmM8z9oWeqVZM5pYnZ7kDbKZVWzbetZnv7p3antvI9OdPcF+/H2nqm6frSIGCnp86qPTIl9/NSrq5Rcjf/vYI08GkaFr2DNPPOxJTfV4PElJSc2Zl0SxUBTFp559LnhIuPdeiqjyeFalplaWUV5z5uKLhYUJnS0tovjG5wvvlDbmM78OR1UVxVWWAZDyaguXJyR0xsTExsaK0ZPm+t9JrVP9HB0dVVWbGQ/8rRzgtTBeWnR0dNak2aYr/8TPsRR4m8Ef1LuX4gZ4FJjGeFm9DXPmm8KN/ni7Y+lS2V8Z8rDeGPTX3v7nht4183415r0bsX078wcGKQ/qzcyspbzOzhbAoT/gbVmzJveHL42G8aYDeNTfKmX/CgfmgbwG4OXm5tbbvvU5nKB3HDsAR/vH/FEc5TF/MegPcNTfFsqr33Thx7E+2jeK8rB/qZr+Yb3IY7hNyReECeNvx/s949H3Av4YD4Da+WL/ALgpOTm5vLx83Ecm/QHvNvNtABwY9PJKssfpegwaxcZBeax/ewd5MF6lP45XUlKSnT1hrM5835HnuwrfH85X1T86X+wfAwJvo/CpdtZvyv1j9bL2sffH9S8L6wUg8qi/jRvXVa/7QvOekafuXyHwuPfH9w952cCr3mr9RjWQCCh3KecP8o/PgzSeB7jBcpFn/fkrBfBj7N9mLv+Ax/KPASkO8qChdwv6QyDjWa3WfuF7Rb44OrB/evmHPLvd1tBgswGO42Uzf+tdrv7+WVz+QfwZ5p99260zu7pO7jyl8rcVeOtddSuWTBzMxz8a59+5rH91WZi6b9rYe6Y47N/6ujoA1syUn6Cfcf7Zb+y2oM6q6rW6KG5JTc13AQj8zGGcf6ctsk4Dj5vvevRXU1CwAIHQQZ/5B/XesgzqpgA89Afzpf0Dg8CrmIi/Lw8fNsg/+/84Xpcd6kV/yGP+ACi9woAvHTbIP/tZC6c9OF+sF/sHuIrz0tPszUT4zr9/izstvI5xPKtL9lexdm3psocCAfiM7/yziwcsCt0QskGD/pBXsba0dFn+fQB8wmf+2fefsSh1RfD622ftV/Hy8/PvAuDDuvknigejGW+PitctCNmCIFQLglUQ6uqWsPmiv/j4uyGoPXr55zl1SjwIuP+esKi0Zxsn+xG+XgC67yGP6+Tfftq2/xyMhh8GOnFFwUtJuZdM1ck/7zM5aLcYa4+Xtwx57snkUZ3822WhspsB7pL7R3lF7ilkmkebf5Y7AHK8oqIi9/Mk0qPNPwTaTACPVZTCe0F/6elxIeR1jzb/LEw2M8DjEusf4MBgelzcSPKqTv6ZB56UcL4UB7zLw0mUTv6ZB16XwJ9cb1tbxggSlanNP/PAaxLHi2vLAODLl7T5Zxp4RsrH/gGO8vKGkxfFTE3+mQb+E4Ccv7y8vJEkUryo3v9MA7sEfH+UlwH+WhNDyDRRs//ZzAJ3Kv0BL/FB8pj4F9X+12saeJznZVBe4m/II6Jm/xsACkafXbzaX1PTZPKkdv8zCzzq/X7RH+P13E+CRO3+Z2ESjIB/1fgr7nmAkKe0+5854B4Jv98M7F9xcXEIIeRZef/D+8gs8B/ce25tTWwqLs7JCQPgc7Re7B/up6aAXQL0j68XeD3hAAx+Q74/cL83B9zp5t4L+KPA3wUS0Oci3oPyfm8KeHzQHwApbvXq1wjVQt4fW8jNAHe5+flC/wDY8wFhmiTfb7jfmwEeZfmHPAZsbJxBvJp7DueL+71gAth1je8f8FavbmxchED/Sb14/+IBctIYeBTfC86X+msMDSCo2bZe+f6l+/hpQ+AxN+Yffc9NwAN/zhfIgILn9PL3b0nJ9b937z4gCGwx3L17dxdTt1dXr57Y+Te3/H1AwQy3wRkaSGTNtynuXxCsV/us64U6YcURqUYqkCokqVSS8qV4KcXtTkd/yKPADRuc4YTTPP7+xf1PuU+eZ/sfzatDfP4Vs/lSg18TXr/+YMP7V7HvavY/Tb6w9wzAvuk/EYW+VNy/uN+DQdX+p8w/5EG9fc5fiErfXkBeNndvqXhafxTIeGFELf8fBcX9y/WP2//U+cfqBd6HAUSjsRMYkL9nNP3T5F8O4GDAb79PdDR+HH//8vUiT5t/6C/0LaKrj8Yp7l+8t7j9T5N/lAcv+g8EpfE4QdCZB7//8fmH8+17W9cf9vFTeM94/2reizr/0N+H2D99+X8h9PfL/gqYP6xXnX84j7AA4lvf/Czoz1cn/zY4p/9CDPXV90dW9KM/4Kn2Pz7/nM6vfyJmNGtihd73ocm/GeHEpIJnflcgrcX+4TzU+ecM/VMgMa+ABRPXntf44/JvxiIchnm98vRDUv4h3fyb/toHZCgKvO+uu93egL7cmpfX05PY01PcExIWHkiGrnvunTzl+ZCRw0eMGD4y5MEpL9z/APGt/wMUmzh4tJ5LTwAAAABJRU5ErkJggg==);
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.c-like-icon__like--clicking {
+    animation: clicking .3s cubic-bezier(.5,0,.25,1);
+}
+@keyframes clicking {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    16.6% {
+        -webkit-transform: scale(.6);
+        transform: scale(.6);
+    }
+    66.6% {
+        -webkit-transform: scale(1.3) rotate(
+            -27deg);
+        transform: scale(1.3) rotate(
+            -27deg);
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+.bubble{
+    position: absolute;
+    bottom:10px;
+    display: none;
+    text-align: center;
+}
+.bl0{
+    animation: bubble_y 1.2s linear infinite forwards; 
+}
+.bl1{
+    animation: bubble_y 1.2s linear infinite forwards; 
+}
+.bl2{
+    animation: bubble_y2 1.2s linear infinite forwards; 
+}
+.bl3{
+    animation: bubble_y3 1.2s linear infinite forwards; 
+}
+.bl4{
+    animation: bubble_y4 1.2s ease-in-out infinite forwards; 
+}
+.bl5{
+    animation: bubble_y5 1.2s ease-in-out infinite forwards; 
+}
+.bl6{
+    animation: bubble_y6 1.2s ease-in infinite forwards; 
+}
+.bl7{
+    animation: bubble_y7 1.2s ease-out infinite forwards; 
+}
+.show {
+    display: block;
+}
+@keyframes bubble_y {
+    0% {
+        margin-bottom:0;
+        transform: scale(.3);
+    }
+    25% {
+        margin-left: -5px;
+    }
+    50% {
+        margin-left: 5px;
+    }
+    75%{
+        opacity:1;
+        transform: scale(1);
+        margin-left: -10px;
+    }
+    100% {
+        margin-bottom:200px;
+        opacity:0;
+        margin-left: 10px;
+    }
+}
+@keyframes bubble_y1 {
+    0% {
+        margin-bottom:0;
+        transform: scale(.3);
+        opacity: 0;
+    }
+    35% {
+        margin-left: 5px;
+    }
+    60% {
+        margin-left: -5px;
+    }
+    85%{
+        opacity:1;
+        transform: scale(1);
+        margin-left: -10px;
+    }
+    100% {
+        margin-bottom:200px;
+        opacity: 0;
+        margin-left: 10px;
+    }
+}
+@keyframes bubble_y2 {
+    0% {
+        margin-bottom:0;
+        transform: scale(.3);
+    }
+    50% {
+        margin-left: 25px;
+    }
+    100% {
+        margin-bottom:200px;
+        opacity:0;
+        margin-left: -20px;
+    }
+}
+@keyframes bubble_y3 {
+    0% {
+        margin-bottom:0;
+        transform: scale(.3);
+    }
+    50% {
+        margin-left: -25px;
+    }
+    100% {
+        margin-bottom:200px;
+        opacity:0;
+        margin-left: 20px;
+    }
+}
+@keyframes bubble_y4 {
+    0% {
+        margin-bottom:0;
+        transform: scale(.3);
+    }
+    75%{
+        opacity:1;
+        transform: scale(1.2);
+        margin-left: -20px;
+    }
+    100% {
+        margin-bottom:200px;
+        opacity:0;
+        margin-left: 30px;
+        transform: scale(1);
+    }
+}
+@keyframes bubble_y5 {
+    0% {
+        margin-bottom:0;
+        transform: scale(.3);
+    }
+    75%{
+        opacity:1;
+        transform: scale(1.2);
+        margin-left: 20px;
+    }
+    100% {
+        margin-bottom:200px;
+        opacity:0;
+        margin-left: -30px;
+        transform: scale(1);
+    }
+}
+@keyframes bubble_y6 {
+    0% {
+        margin-bottom:0;
+        transform: scale(.3);
+    }
+    35%{
+        opacity:1;
+        transform: scale(0.8);
+        margin-left: 25px;
+    }
+    100% {
+        margin-bottom:200px;
+        opacity:0;
+        margin-left: -35px;
+        transform: scale(1);
+    }
+}
+@keyframes bubble_y7 {
+    0% {
+        margin-bottom:0;
+        transform: scale(.3);
+    }
+    35%{
+        opacity:1;
+        transform: scale(0.8);
+        margin-left: -25px;
+    }
+    100% {
+        margin-bottom:200px;
+        opacity:0;
+        margin-left: -35px;
+        transform: scale(1);
+    }
+}
+</style>
+</head>
+<body>
+    <!-- <div style="text-align: center">
+        <i class="c-like-icon__like pws-like-btn-bg-pc" @click="handlePraise"></i>
+        <div>{{count}}</div>
+        <div class="praise-pubble-container">
+          <div class="vhall-saas-praise__bubble02"></div>
+        </div>
+    </div> -->
+
+    <div class="praise_wrapper">
+        <div class="bubble bl0">
+            <img src="./0.png" alt="">
+        </div>
+        <div class="bubble bl1">
+            <img src="./1.png" alt="">
+        </div>
+        <div class="bubble bl2">
+            <img src="./2.png" alt="">
+        </div>
+        <div class="bubble bl3">
+            <img src="./3.png" alt="">
+        </div>
+        <div class="bubble bl4">
+            <img src="./4.png" alt="">
+        </div>
+        <div class="bubble bl5">
+            <img src="./5.png" alt="">
+        </div>
+        <div class="bubble bl6">
+            <img src="./6.png" alt="">
+        </div>
+        <div class="bubble bl7">
+            <img src="./7.png" alt="">
+        </div>
+
+        <div class="praies_btn">
+            <i class="c-like-icon__like pws-like-btn-bg-pc" onclick="handlePraise(this)"></i>
+            <div id="count">0</div>
+        </div>
+    </div>
+    
+    <script>
+        const num = document.querySelector('#count')
+        let count = 0
+        let t = null
+        let length = document.querySelectorAll('.bubble').length
+
+        function handlePraise(e) {
+            // 点赞图标
+            e.classList.add('c-like-icon__like--clicking')
+            count += 1
+            num.innerHTML = count
+            setTimeout(() => {
+                e.classList.remove('c-like-icon__like--clicking')
+            }, 200)
+
+            animation()
+        }
+
+        function animation() {
+            // 漂浮动画
+            let r = `.bl${Math.floor(Math.random()*length)}`
+            document.querySelector(r).classList.add('show')
+            if (t) clearTimeout(t) 
+            t = setTimeout(() => {
+                document.querySelectorAll('.bubble').forEach((element, index) => {
+                    element.classList.remove('show')
+                });
+            }, 1150)
+        }
+
+        // TODO 每隔一段时间获取点赞数，触发动画，本地点赞后10秒上报点赞数
+        // setInterval(() => {
+        //     animation()
+        // }, 1000);
+    </script>
+</body>
+</html>
+
+<!-- https://blog.csdn.net/weixin_46837985/article/details/105852711 -->
