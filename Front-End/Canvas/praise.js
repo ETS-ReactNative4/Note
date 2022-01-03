@@ -169,3 +169,5 @@ const thumbsUpAni = new ThumbsUpAni();
 // setInterval(()=>{
 //     thumbsUpAni.start();
 // },300);
+
+// https://www.cnblogs.com/cangqinglang/p/12700139.html
