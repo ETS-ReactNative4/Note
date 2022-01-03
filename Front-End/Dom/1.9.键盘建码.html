@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<p>
 [键盘按键与 ASCII 字符集对照表](https://www.runoob.com/note/29592)
 ```
 键盘 Key Code 对照表
@@ -69,3 +79,11 @@ view: Window {parent: Window, postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, �
 which: 65
 __proto__: KeyboardEvent
 ```
+</p>
+<script>
+   document.onkeydown = function(event){
+        console.log(`你按下了${event.key} 键; keyCode: ${event.keyCode}`)
+    } 
+</script>
+</body>
+</html>

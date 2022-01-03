@@ -3,13 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <title>搜狗高速浏览器-带您开启迅捷之旅</title>
-    <link rel="stylesheet" href="/7.0/webkit/css/all.min.css?v1886">
     <meta name="keywords" content="搜狗浏览器,搜狗高速浏览器,翻译,QQ登录,网页微信,高速浏览器,搜狗,浏览器,chrome,ie,搜狗浏览器下载,双核浏览器,预取引擎,秒开网页,简洁,加速,跨平台,腾讯,电脑管家">
     <meta name="description" content="高速上网，就用搜狗高速浏览器！搜狗高速浏览器独创预取引擎技术，引领新的上网速度革命，给您带来秒开网页的超快体验。简洁时尚的界面，为您献上一场美妙的视觉盛宴。9级加速体系、上万套主题皮肤、数千款实用工具、跨平台功能为您打造高速，个性化，功能强劲的双核浏览器。在安全方面，搜狗携手腾讯电脑管家，时刻为您上网保驾护航。">
     <script type="text/javascript">var t1 = new Date().getTime();</script>
+    <style>
+        .wrapper {
+            border: 2px solid darkcyan;
+            text-align: left;
+            padding: 10px;
+            width: 90%;
+        }
+    </style>
 </head>
 <body>
-    
+
+<div id="test" class="wrapper">
+    <h3>canvas 元素本身是没有绘图能力的。</h3>
+    <h3>所有的绘制工作必须在 JavaScript 内部完成：Canvas 的默认大小为300像素×150像素（宽×高，像素的单位是px）。</h3>
+    <h3>但是，可以使用HTML的高度和宽度属性来自定义Canvas 的尺寸。</h3>
+    <h4><a href="https://www.runoob.com/html/html5-canvas.html">https://www.runoob.com/html/html5-canvas.html</a></h4>
+    <canvas id="myCanvas" width="500" height="400" style="border:1px solid #c3c3c3;">
+        您的浏览器不支持 HTML5 canvas 标签。
+        </canvas>
+    <h3>ctx.fillRect()</h3>
+    <p> Canvas 坐标
+        canvas 是一个二维网格。
+        
+        canvas 的左上角坐标为 (0,0)
+        
+        上面的 fillRect 方法拥有参数 (0,0,150,75)。
+        
+        意思是：在画布上绘制 150x75 的矩形，从左上角开始 (0,0)。</p>
+
+    <h3>moveTo(x,y) lineTo(x,y)</h3>
+    <p>Canvas - 路径
+        在Canvas上画线，我们将使用以下两种方法：
+
+        moveTo(x,y) 定义线条开始坐标
+        lineTo(x,y) 定义线条结束坐标
+        绘制线条我们必须使用到 "ink" 的方法，就像stroke().
+    </p>
+
+    <h3>fillText(text,x,y) strokeText(text,x,y)</h3>
+    <p>Canvas - 文本
+        使用 canvas 绘制文本，重要的属性和方法如下：
+
+        font - 定义字体
+        fillText(text,x,y) - 在 canvas 上绘制实心的文本
+        strokeText(text,x,y) - 在 canvas 上绘制空心的文本
+    </p>
+    <h3>drawImage(image,x,y)</h3>
+    <h4><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/drawImage">MDN</a></h4>
+    <p>
+        Canvas - 图像
+        把一幅图像放置到画布上, 使用以下方法:drawImage(image,x,y)
+        <h4>
+            <img id="scream" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2F2c%2Fb4%2Fd9%2F2cb4d987ade8bd642e6f8e7ff64009fa.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1643325410&t=1d5bd4260d1d5e7d2d25de5a2e246b88" alt="The Scream" width="220" height="277">
+        </h4>
+    </p>
+
+    <h3>Canvas教程</h3>
+    <h4><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial">Link</a></h4>
+    <canvas id="sun_canvas" width="500" height="400" style="border:1px solid #c3c3c3;">
+        您的浏览器不支持 HTML5 canvas 标签。
+    </canvas>
+    <canvas id="clock_canvas" width="500" height="400" style="border:1px solid #c3c3c3;">
+        您的浏览器不支持 HTML5 canvas 标签。
+    </canvas>
+
+    <h4>
+        页面上一个宽 200，高 400 的 canvas 画布，然后整个 canvas 显示在 页面 宽 100，高 200 的区域内。canvas 画布的内容被等比缩小一倍显示在页面。
+        <a href="https://github.com/antiter/praise-animation">praise-animation</a>
+    </h4>
+    <canvas id="thumsCanvas" width="200" height="400" style="width:100px;height:200px;display: block;border: 2px solid skyblue;"></canvas>
+    <button onclick="handlePraise()">👍🏻</button>
+</div>
+<script>
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+ctx.fillStyle="#FF0000";
+ctx.fillRect(0,0,150,75); 
+
+ctx.moveTo(0,0);
+ctx.lineTo(200,100);
+ctx.stroke();
+
+ctx.beginPath();
+ctx.arc(95,50,40,0,2*Math.PI);
+ctx.stroke();
+
+ctx.font="30px Arial";
+ctx.fillText("Hello World",10,50);
+
+var img=document.getElementById("scream");
+img.onload = function() {
+	ctx.drawImage(img, 0, 0, 1000, 800, 150, 75, 220, 270);
+} 
+
+function handlePraise() {
+    thumbsUpAni.start()
+}
+</script>
+<script src="./sun.js"></script>
+<script src="./clock.js"></script>
+<script src="./praise.js"></script>
+
+
 <div class="header before">
     <a class="tit" href="//ie.sogou.com/"></a>
     <a class="down play before"></a>

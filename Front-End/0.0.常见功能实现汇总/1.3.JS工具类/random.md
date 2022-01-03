@@ -1,3 +1,18 @@
+```js
+/**
+ * 获取 0-9随机数字
+ */
+function getRandom() {
+    return Math.round(Math.random()*9)
+}
+
+/**
+ * 获取min - max 之间的整数
+ */
+function getRandom(min, max) {
+    return min + Math.floor(Math.random() * (max - min + 1))
+}
+
 /**
  * 生成指定长度的随机数(字母数字组合)
  */
@@ -32,3 +47,11 @@ function randomNum(length = 6){
 
   return result;
 }
+```
+
+## moment&lodash
+```js
+function generateTradeNo () {
+    return `BM${moment().format('YYYYMMDDHHmmSS')}${_.random(10000, 99999)}`;
+}
+```

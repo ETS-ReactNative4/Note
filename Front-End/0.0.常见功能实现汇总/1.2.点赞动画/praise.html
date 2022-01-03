@@ -272,7 +272,11 @@
             <div id="count">0</div>
         </div>
     </div>
+
+    <canvas id="thumsCanvas" width="200" height="400" style="width:100px;height:200px;display: block;border: 2px solid skyblue;"></canvas>
+    <button onclick="handlePraise1()">👍🏻</button>
     
+    <script src="../../Canvas/praise.js"></script>
     <script>
         const num = document.querySelector('#count')
         let count = 0
@@ -303,10 +307,9 @@
             }, 1150)
         }
 
-        // TODO 每隔一段时间获取点赞数，触发动画，本地点赞后10秒上报点赞数
-        // setInterval(() => {
-        //     animation()
-        // }, 1000);
+        function handlePraise1() {
+            thumbsUpAni.start()
+        }
     </script>
 </body>
 </html>
