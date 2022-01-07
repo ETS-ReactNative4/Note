@@ -22,6 +22,10 @@
         <div class="baby">baby</div>
         <div class="baby">baby</div>
     </div>
+
+    <div class="wogi">oooo</div>
+    <div class="wogi">oooo</div>
+    <div class="wogi">oooo</div>
 <script>
 // ==========================================================================
 // 1. 可以使用innerHTML插入字符串标签
@@ -55,6 +59,13 @@ console.log("document.querySelector('.baby')", document.querySelector(".baby"))
 console.log("document.querySelectorAll('.baby')", document.querySelectorAll(".baby"))
 console.log("document.getElementsByClassName('baby')", document.getElementsByClassName('baby'))
 console.log("document.getElementsByTagName('p')", document.getElementsByTagName('p'))
+
+
+// 移除元素
+document.querySelectorAll('.wogi').forEach(item => {
+    document.body.removeChild(item)
+})
+
 </script>
 </body>
 </html>
