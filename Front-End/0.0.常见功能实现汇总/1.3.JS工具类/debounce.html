@@ -7,7 +7,6 @@
     <style>
         body {
             height: 5000px; 
-            background-color: aquamarine;
         }
         .top {
             position: fixed;
@@ -19,10 +18,36 @@
         }
     </style>
 </head>
+<script src="./DT.js"></script>
 <body>
     <button class="top hide" id="top" onclick="returnTop()">返回顶部</button>
     <input type="text" id="name">
+    <button id="submit">提交信息</button>
+    <button>获取信息</button>
     <script>
+        // 发送验证码场景 防抖
+        function sendCode() {
+            // console.log('sendCode-get-click-arguments:', arguments)
+            console.log('验证码已发送...for:', arguments)
+        }
+
+        let userInfo = {name: 'jack', password: '123', i: 0}
+        // document.querySelector('#submit').addEventListener('click', function() {
+        //     userInfo.i += 1
+        //     debounce(sendCode, 5000)
+        // })
+
+        const btn = document.getElementById('submit')
+        // btn.onclick = debounce(sendCode, 2000)
+        // btn.addEventListener('click', debounce(sendCode, 2000))
+        // 下面的方式不行，类似的聊天室事件也不行
+        // btn.addEventListener('click', function() {
+        //     debounce(sendCode, 2000)
+        // })
+
+        // 事件的注册与监听
+
+
         // 展示button 打印滚动条位置
         function showTop  () {
             var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
@@ -33,33 +58,14 @@
                 document.getElementById('top').classList.add('hide')
             }
         }
+
         // 点击按钮返回顶鼓
         function returnTop () {
             document.body.scrollTop = document.documentElement.scrollTop = 0
         }
 
-        // 防抖函数（无参数）
-        function debounce(fn, delay) {
-            let timer = null
-            return function (args) {
-                console.log('timer', timer)
-                // 每当高频事件触发，把前一个timer清除
-                clearTimeout(timer) 
-                timer = setTimeout(fn, delay)
-            }
-        }
-        // 防抖函数（传参）
-        function debounce1(fn, delay) {
-            let timer = null
-            return function (args) {
-                // 每当高频事件触发，把前一个timer清除
-                clearTimeout(timer) 
-                timer = setTimeout(fn.call(this, args), delay)
-            }
-        }
-
-        // window.onscroll  = showTop
-        window.onscroll  = debounce(showTop, 400)
+        // 高频事件触发
+        // window.onscroll = debounce(showTop, 400)
 
         window.onload = function () {
             //模拟ajax请求
@@ -71,7 +77,7 @@
             // inputNormal.addEventListener(' keyup', function (e) {
             //     ajax(e.target.value)
             // })
-            let debounceAjax = debounce1(ajax, 400)
+            // let debounceAjax = debounce(ajax, 400)
             inputNormal.addEventListener('keyup', function (e) {
                 debounceAjax(e.target.value)
             })
