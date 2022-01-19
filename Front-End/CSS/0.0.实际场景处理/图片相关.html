@@ -35,6 +35,17 @@
         .behave2 {
             background-size: contain;
         }
+        .bg_img {
+            width: 100%;
+        }
+        .small_img {
+            width: 30%;
+            filter: grayscale(100%);
+            transition: all .3s ease;
+        }
+        .small_img:hover {
+            filter: none;
+        }
     </style>
 </head>
 <body>
@@ -67,6 +78,14 @@
         <div class="bg"></div>
         <div class="bg behave1"></div>
         <div class="bg behave2"></div>
+    </div>
+    <div class="wrapper">
+        <h2>Banner图按原始宽高比响应式缩放</h2>
+        <img class="bg_img" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F1113%2F060120105F7%2F200601105F7-1-1200.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645078080&t=74cf23eb7d8652c05a1fff14435e9cc6" alt="">
+    </div>
+    <div class="wrapper">
+        <h2>滤镜和透明度</h2>
+        <img class="small_img" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F1113%2F060120105F7%2F200601105F7-1-1200.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645078080&t=74cf23eb7d8652c05a1fff14435e9cc6" alt="">
     </div>
 </body>
 </html>
