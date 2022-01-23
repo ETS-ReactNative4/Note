@@ -9,9 +9,9 @@
         body {
             min-height: 100vh;
             margin: 0;
-            display: flex;
+            /* display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: center; */
         }
 
         div {
@@ -44,18 +44,16 @@
     }
 
     let scale = 1;
-    const el = document.querySelector('div');
-    el.onwheel = zoom;
+    const ball = document.querySelector('div');
+    ball.onwheel = zoom;
 
 
-    el.onscroll = function(event) {
+    ball.onscroll = function(event) {
         console.log('只有元素有滚动条的时候才能触发这个事件')
         event.preventDefault()
     }
 
-    // document.onmousemove = function() {
-    //     console.log('鼠标移动事件')
-    // }
+
 
     function onMouseMove(event) {
         console.log('鼠标移动事件')
@@ -63,19 +61,39 @@
     }
     // 现在球的中心在 (pageX, pageY) 坐标上
     function moveAt(pageX, pageY) {
-        el.style.left = pageX - el.offsetWidth / 2 + 'px';
-        el.style.top = pageY - el.offsetHeight / 2 + 'px';
+        ball.style.left = pageX - ball.offsetWidth / 2 + 'px';
+        ball.style.top = pageY - ball.offsetHeight / 2 + 'px';
     }
-    el.onmousedown = function() {
+
+    ball.onmousedown = function(event) {
         console.log('鼠标按下')
-        // document.onmousemove = function() {
-        //     console.log('鼠标移动事件')
-        // }
-        window.addEventListener('mousemove', onMouseMove)
+        // onmousedown
+        let shiftX = event.clientX - ball.getBoundingClientRect().left;
+        let shiftY = event.clientY - ball.getBoundingClientRect().top;
+
+        ball.style.position = 'absolute';
+        ball.style.zIndex = 1000;
+        document.body.append(ball);
+
+        // 移动现在位于坐标 (pageX, pageY) 上的球
+        // 将初始的偏移考虑在内
+        function moveAt(pageX, pageY) {
+            ball.style.left = pageX - shiftX + 'px';
+            ball.style.top = pageY - shiftY + 'px';
+        }
+
+        function onMouseMove(event) {
+            moveAt(event.pageX, event.pageY);
+        }
+    
+        document.addEventListener('mousemove', onMouseMove)
+
+        ball.onmouseup = function() {
+            document.removeEventListener('mousemove', onMouseMove);
+            ball.onmouseup = null;
+        }
     }
-    el.onmouseup = function() {
-        window.removeEventListener('mousemove', onMouseMove)
-    }
+    
 </script>
 </body>
 </html>

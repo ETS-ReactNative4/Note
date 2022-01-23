@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片的相关样式问题</title>
+    <link rel="stylesheet" href="../shared.css">
+    <style>
+        .avatar {
+            width: 180px;
+            height: 180px;
+            border: 1px solid red;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        .avatar img {
+            width: 100%;
+            height: auto;
+        }
+
+        .bg {
+            width: 200px;
+            height: 150px;
+            border: 1px solid blueviolet;
+            margin-bottom: 10px;
+            background-image: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F1113%2F060120105F7%2F200601105F7-1-1200.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645078080&t=74cf23eb7d8652c05a1fff14435e9cc6);
+            background-repeat: no-repeat;
+        }
+        .behave1 {
+            background-size: cover;
+        }
+        .behave2 {
+            background-size: contain;
+        }
+        .bg_img {
+            width: 100%;
+        }
+        .small_img {
+            width: 30%;
+            filter: grayscale(100%);
+            transition: all .3s ease;
+        }
+        .small_img:hover {
+            filter: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <h2>img在一个方形容器中不规则图片展示问题</h2>
+        <pre>
+            .avatar {
+                width: 180px;
+                height: 180px;
+                border: 1px solid red;
+                margin-bottom: 10px;
+                display: flex;
+                align-items: center;
+                overflow: hidden;
+            }
+            .avatar img {
+                width: 100%;
+                height: auto;
+            }
+        </pre>
+        <div class="avatar">
+            <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F1113%2F060120105F7%2F200601105F7-1-1200.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645078080&t=74cf23eb7d8652c05a1fff14435e9cc6" alt="">
+        </div>
+        <div class="avatar">
+            <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F10097542704%2F641.jpg&refer=http%3A%2F%2Finews.gtimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645079255&t=287cf75b1da6d8e26c13f0a97142d81e" alt="">
+        </div>
+    </div>
+    <div class="wrapper">
+        <h2>容器设置background-image图片样式处理</h2>
+        <div class="bg"></div>
+        <div class="bg behave1"></div>
+        <div class="bg behave2"></div>
+    </div>
+    <div class="wrapper">
+        <h2>Banner图按原始宽高比响应式缩放</h2>
+        <img class="bg_img" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F1113%2F060120105F7%2F200601105F7-1-1200.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645078080&t=74cf23eb7d8652c05a1fff14435e9cc6" alt="">
+    </div>
+    <div class="wrapper">
+        <h2>滤镜和透明度</h2>
+        <img class="small_img" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F1113%2F060120105F7%2F200601105F7-1-1200.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645078080&t=74cf23eb7d8652c05a1fff14435e9cc6" alt="">
+    </div>
+</body>
+</html>

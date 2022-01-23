@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS3 filter(滤镜) 属性</title>
+    <style>
+        .grayscale {
+            -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
+            filter: grayscale(100%);
+            transition: all .3s ease;
+            opacity: .6;
+        }
+        img {
+            transition: all .3s ease;
+        }
+        img:hover {
+            filter: none;
+            opacity: 1;
+        }
+
+        .blur {
+            filter: blur(3px)
+        }
+        .brightness {
+            filter: brightness(.5);
+        }
+        .contrast {
+            filter: contrast(200%);
+        }
+        .shadow {
+            filter: drop-shadow(0 0 0.75rem crimson);
+        }
+        .hue {
+            filter: hue-rotate(90deg);
+        }
+        .saturate {
+            filter: saturate(0);
+        }
+        .invert {
+            filter: invert(50%)
+        }
+        .invert1 {
+            filter: invert(100%)
+        }
+    </style>
+</head>
+<body>
+<a href="https://www.runoob.com/cssref/css3-pr-filter.html" target="_blank" rel="noopener noreferrer">https://www.runoob.com/cssref/css3-pr-filter.html</a>
+
+<p>图片转为黑白色:</p>
+
+<img class="grayscale" src="https://www.runoob.com/try/demo_source/pineapple.jpg" alt="Pineapple" width="300" height="300">
+
+<img class="blur" src="https://www.runoob.com/try/demo_source/pineapple.jpg" alt="Pineapple" width="300" height="300">
+
+<img class="brightness" src="https://www.runoob.com/try/demo_source/pineapple.jpg" alt="Pineapple" width="300" height="300">
+
+<img class="contrast" src="https://www.runoob.com/try/demo_source/pineapple.jpg" alt="Pineapple" width="300" height="300">
+
+<img class="shadow" src="https://interactive-examples.mdn.mozilla.net/media/examples/firefox-logo.svg" alt="https://developer.mozilla.org/zh-CN/docs/Web/CSS/filter-function/drop-shadow()" width="300" height="300">
+
+<img class="hue" src="https://interactive-examples.mdn.mozilla.net/media/examples/firefox-logo.svg" alt="https://developer.mozilla.org/zh-CN/docs/Web/CSS/filter-function/drop-shadow()" width="300" height="300">
+
+<img class="saturate" src="https://interactive-examples.mdn.mozilla.net/media/examples/firefox-logo.svg" alt="https://developer.mozilla.org/zh-CN/docs/Web/CSS/filter-function/drop-shadow()" width="300" height="300">
+
+<img class="invert" src="https://interactive-examples.mdn.mozilla.net/media/examples/firefox-logo.svg" alt="https://developer.mozilla.org/zh-CN/docs/Web/CSS/filter-function/drop-shadow()" width="300" height="300">
+
+<img class="invert1" src="https://images2015.cnblogs.com/blog/1120330/201706/1120330-20170605080015059-121117072.png" alt="">
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mosaic</title>
+    <style>
+        body {
+            background-color: beige;
+        }
+        #msk{
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate3d(-50%,-50%,0);
+				background: gray;
+        }
+
+    </style>
+</head>
+<body>
+    <canvas id="msk"></canvas>
+    <script>
+        var canvas = document.querySelector("#msk")
+        if(canvas.getContext) {
+            var ctx =canvas.getContext("2d")
+            
+            var img = new Image()
+            img.src ="1.jpeg"
+            img.onload = function() {
+                //画布的宽为图片的2倍
+                canvas.width = img.width*2
+                canvas.height = img.height
+
+                ctx.drawImage(this, 0, 0, img.width, img.height)
+
+                //打码
+                var mskSize = 8 //————————————————您可以选择打码的程度，数越大越看不清
+                var imageData = ctx.getImageData(0, 0, img.width, img.height)
+                for (var x = 0; x < img.width; x += mskSize) {
+                    for (var y = 0; y < img.height; y += mskSize) {
+                        //在mskSize x mskSize大小的像素区域中随机取一个颜色样式
+                        var color = getPointColor(imageData, parseInt(x + Math.random() * mskSize), parseInt(y + Math.random() * mskSize))
+
+                        for (var a = x, n = 0; n < mskSize; a++ , n++) {
+                            for (var b = y, m = 0; m < mskSize; b++ , m++) {
+                                //把取到的颜色渲染到mskSize x mskSize大小的像素区域中
+                                setPointColor(imageData, a, b, color)
+                            }
+                        }
+                    }
+                }
+                ctx.putImageData(imageData, img.width + 1, 0) //在右侧绘制打码后的图片
+            }
+
+            //封装两个方法：取像素点、设置像素点
+            //获取某像素点的color
+            function getPointColor(imageData, x, y) {
+                var color = []
+
+                var data = imageData.data,
+                w = imageData.width,
+                h = imageData.height
+                var num = y * w + x
+
+                color[0] = data[4 * num]
+                color[1] = data[4 * num + 1]
+                color[2] = data[4 * num + 2]
+                color[3] = data[4 * num + 3]
+
+                return color
+            }
+
+            //设置某像素点的color
+            function setPointColor(imageData, x, y, color) {
+                var data = imageData.data,
+                w = imageData.width,
+                h = imageData.height
+                var num = y * w + x
+                data[4 * num] = color[0]
+                data[4 * num + 1] = color[1]
+                data[4 * num + 2] = color[2]
+                data[4 * num + 3] = color[3]
+            }
+
+        }
+
+    </script>
+</body>
+</html>
