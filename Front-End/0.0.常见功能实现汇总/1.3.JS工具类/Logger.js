@@ -4,6 +4,8 @@ function logArg() {
 
     // console.log(Array.prototype.slice.call(arguments))
     console.log([...arguments])
+
+    // 获取到要插入的页面元素
 }
 
 logArg(12,2,'adv')
@@ -17,3 +19,21 @@ function logger() {
 }
 
 logger('讲师已关闭连麦')
+
+/**
+ * 将log插入到页面
+ * @param {*} msg 
+ * @param {*} error 
+ */
+function showMsg(msg, error) {
+    const msgEle = document.querySelector('#log');
+    if (typeof msg === 'string') {
+        msgEle.innerHTML += `<p>${msg}</p>`; 
+    } 
+    if (typeof msg === 'object') {
+        msgEle.innerHTML += `<p>${JSON.stringify(msg, null, 2)}</p>`
+    }
+    if (typeof error !== 'undefined') {
+      console.error(error);
+    }
+}

@@ -19,35 +19,72 @@
     </style>
 </head>
 <script src="./DT.js"></script>
+<script src="./Logger.js"></script>
 <body>
     <button class="top hide" id="top" onclick="returnTop()">返回顶部</button>
     <input type="text" id="name">
     <button id="submit">提交信息</button>
     <button>获取信息</button>
+    <div id="log"></div>
     <script>
         // 发送验证码场景 防抖
         function sendCode() {
             // console.log('sendCode-get-click-arguments:', arguments)
+            // 通过防抖是获取不到自定义传参的
             console.log('验证码已发送...for:', arguments)
+            showMsg(arguments[0])
         }
 
         let userInfo = {name: 'jack', password: '123', i: 0}
+        // 1.下面的这种方式是无法起到防抖左右，甚至sendCode都不会背执行
         // document.querySelector('#submit').addEventListener('click', function() {
         //     userInfo.i += 1
-        //     debounce(sendCode, 5000)
+        //     showMsg(userInfo)
+        //     debounce(sendCode, 500)
         // })
 
-        const btn = document.getElementById('submit')
-        // btn.onclick = debounce(sendCode, 2000)
-        // btn.addEventListener('click', debounce(sendCode, 2000))
-        // 下面的方式不行，类似的聊天室事件也不行
-        // btn.addEventListener('click', function() {
-        //     debounce(sendCode, 2000)
-        // })
+        // 2.这种方式可以起到防抖的作用
+        // document.getElementById('submit').onclick = debounce(sendCode, 2000)
 
-        // 事件的注册与监听
+        // 3.这种写法也可以
+        document.getElementById('submit').addEventListener('click', debounce(sendCode, 2000))
+       
+        // 总结：凡是可以起到防抖效果的都是事件回调注册时防抖函数已经执行过一次，初始化了timer在内存中不被释放
+        // 针对无法写成上面方式的可以通过借助单例模式储存变量在内存中, 比如当聊天室登录事件被快速连续触发
+        /*
+        if (data.EVENT === 'LOGIN') {
+            if (data.user.userId === this.chatRoomOption.userId) {
+                this.handleOut(data)
+            }
+        }
+
+        function handleOut(data) {
+            if (T.trigger_time === null) { // 刷新页面
+                T.trigger_time = data.timeStamp
+            } else if (data.timeStamp === T.trigger_time) {
+                return
+            } else if (data.timeStamp !== T.trigger_time) { // 其他设备登录
+                let that = this
+                this.$notify({
+                    title: '警告',
+                    message: '您已在其他设备登录参与观看直播，即将退出了当前聊天室...',
+                    type: 'warning',
+                    onClose: function () {
+                        that.resetInteractions()
+                    }
+                })
+                T.trigger_time = data.timeStamp
+            }
+        }
+        */
+
+        // 事件的注册与监听(自己实现一个事件注册和触发的类)
 
 
+
+        // 高频事件触发
+        // window.onscroll = showTop
+        window.onscroll = throttle(showTop, 400)
         // 展示button 打印滚动条位置
         function showTop  () {
             var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
@@ -59,14 +96,8 @@
             }
         }
 
-        // 点击按钮返回顶鼓
-        function returnTop () {
-            document.body.scrollTop = document.documentElement.scrollTop = 0
-        }
 
-        // 高频事件触发
-        // window.onscroll = debounce(showTop, 400)
-
+        // 输入框输入远程搜索场景
         window.onload = function () {
             //模拟ajax请求
             function ajax(content) {
@@ -83,26 +114,16 @@
             })
         }
 
-        // 节流函数
-        function throttle (fn, delay) {
-            let valid = true
-            let timer = null
-            return function(args) {
-                if(!valid) return
-                valid = false
-                timer = setTimeout(() => {
-                   fn.call(this, args) 
-                   valid = true
-                   console.log('timer:', timer)
-                   clearTimeout(timer)
-                }, delay)
-            }
-        }
-
+        // 窗口缩放场景
         function sayHi(e) {
             console.log('节流：', e.target.innerWidth, e.target.innerHeight);
         }
         window.addEventListener('resize', throttle(sayHi,1500));
+
+        // 点击按钮返回顶部功能
+        function returnTop () {
+            document.body.scrollTop = document.documentElement.scrollTop = 0
+        }
     </script>
 </body>
 </html>

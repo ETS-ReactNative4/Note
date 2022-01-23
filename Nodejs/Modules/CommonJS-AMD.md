@@ -110,4 +110,9 @@ import myFunc from 'myFunc';
 myFunc();
 ```
 
+### node 执行ES6语法报错
+SyntaxError: Cannot use import statement outside a module
+
+错误警告其实已经给出了解决方案，在package.json文件中设置"type": "module"。
+
 
