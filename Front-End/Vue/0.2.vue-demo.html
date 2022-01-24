@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 	<!-- 引入组件库 -->
 	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<link rel="stylesheet" href="../CSS/shared.css">
 </head>
 <body>
 	<div id="app">
@@ -54,21 +55,27 @@
 		<div>
 			<button-group v-on:welcome="sayHi" v-on:give-advice="showAdvice"></button-group>
 			<input v-on:keyup.enter="keyme">
-			<el-input placeholder="请输入管理员姓名" v-model="searchModel.name" 
-				@change="keyme" 
-				@keyup.enter.native="keyme"
-				maxlength="10" 
-				show-word-limit>
-			</el-input>
 			<span>{{counter}}</span>
 			</br>
 			<span>{{counterFormat}}</span>
 		</div>
 	</div>
 
-	<div id="app3">
-		<!-- 自定义组件上使用v-model -->
-		<custom-input v-model="searchText"/>
+	<div id="part" class="wrapper">
+		<el-tag>页面局部引入Vue</el-tag>
+		<el-input 
+			placeholder="请输入管理员姓名" 
+			v-model="searchModel.name" 
+			@change="keyme" 
+			@keyup.enter.native="keyme"
+			maxlength="10" 
+			show-word-limit>
+		</el-input>
+		<el-button @click="visible = true">Button</el-button>
+		<el-dialog :visible.sync="visible" title="Hello world">
+			<p>Try Element</p>
+		</el-dialog>
+		<btn/>
 	</div>
 <script>
 	var app = new Vue({
@@ -177,15 +184,6 @@
 		}
 	})
 
-	Vue.component('custom-input', {
-		props: ['value'],
-		template: `
-			<input
-			v-bind:value="value"
-			v-on:input="$emit('input', $event.target.value)"
-			>
-		`
-	})
 	var app3 = new Vue({
 		el: "#app3",
 		data: {
@@ -194,6 +192,47 @@
 		watch: {
 			searchText: function(val) {
 				console.log('custom-input', val)
+			}
+		}
+	})
+
+
+	// 在页面部分区域引入vue组件
+	// 定义一个名为 button-counter 的新组件
+	const btn = Vue.component('buttonOfNiubi', {
+		data: function () {
+			return {
+				visible: false
+			}
+		},
+		methods: {
+			notify() {
+				this.$notify({
+					title: '成功',
+					message: '牛逼',
+					type: 'success'
+				});
+			}
+		},
+		template: '<div><el-button @click="$message.success(`牛逼`)">夸我牛逼</el-button><el-button @click="notify">右边夸</el-button></div>'
+	})
+
+	new Vue({ 
+		el: '#part',
+		components: {
+			btn
+		},
+		data: function () {
+			return {
+				visible: false,
+				searchModel: {
+					name: ''
+				}
+			}
+		},
+		methods: {
+			keyme(val) {
+				console.log('keyme:', val)
 			}
 		}
 	})
