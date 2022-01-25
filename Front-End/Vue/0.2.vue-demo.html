@@ -12,57 +12,70 @@
 	<link rel="stylesheet" href="../CSS/shared.css">
 </head>
 <body>
-	<div id="app">
-		{{ message }}
-		<button v-on:click="reverseMessage">reverse</button>
-		<div id="example-4">
-			<input type="radio" id="one" value="One" v-model="picked">
-			<label for="one">One</label>
-			<br>
-			<input type="radio" id="two" value="Two" v-model="picked">
-			<label for="two">Two</label>
-			<br>
-			<span>Picked: {{ picked }}</span>
+	<div class="wrapper">
+		<div id="app">
+			{{ message }}
+			<button v-on:click="reverseMessage">reverse</button>
+			<div id="example-4">
+				<input type="radio" id="one" value="One" v-model="picked">
+				<label for="one">One</label>
+				<br>
+				<input type="radio" id="two" value="Two" v-model="picked">
+				<label for="two">Two</label>
+				<br>
+				<span>Picked: {{ picked }}</span>
+			</div>
+	
+			<ul>
+				<li v-for="product in products">
+					<!-- {{ product.quantity }} {{ product.name }} -->
+					<input type="number" v-model.number="product.quantity">
+						{{ product.name }}
+					<span v-if="product.quantity === 0">
+						- OUT OF STOCK
+					</span>
+					<button @click="product.quantity += 1">
+						Add
+					</button>
+				</li>
+			</ul>
+			<h2>Total Inventory: {{ totalProducts }}</h2>
 		</div>
+	
+		<div id="app1">
+			<ol>
+				<todo-item
+					v-for="item in groceryList"
+					v-bind:todo="item"
+					v-bind:key="item.id"
+				></todo-item>
+			</ol>
+		</div>
+	
+		<div id="app2-emit-example-simple">
+			<div>
+				<button-group v-on:welcome="sayHi" v-on:give-advice="showAdvice"></button-group>
 
-		<ul>
-			<li v-for="product in products">
-				<!-- {{ product.quantity }} {{ product.name }} -->
-				<input type="number" v-model.number="product.quantity">
-					{{ product.name }}
-				<span v-if="product.quantity === 0">
-					- OUT OF STOCK
-				</span>
-				<button @click="product.quantity += 1">
-					Add
-				</button>
-			</li>
-		</ul>
-		<h2>Total Inventory: {{ totalProducts }}</h2>
-	</div>
-
-	<div id="app1">
-		<ol>
-			<todo-item
-				v-for="item in groceryList"
-				v-bind:todo="item"
-				v-bind:key="item.id"
-			></todo-item>
-		</ol>
-	</div>
-
-	<div id="app2-emit-example-simple">
-		<div>
-			<button-group v-on:welcome="sayHi" v-on:give-advice="showAdvice"></button-group>
-			<input v-on:keyup.enter="keyme">
-			<span>{{counter}}</span>
-			</br>
-			<span>{{counterFormat}}</span>
+				<div>
+					<h2>回车触发事件</h2>
+					<input v-on:keyup.enter="keyme">
+				</div>
+				<div>
+					<h2>倒计时</h2>
+					<span>{{counter}}</span>
+					</br>
+					<span>{{counterFormat}}</span>
+				</div>
+			</div>
 		</div>
 	</div>
+	
 
 	<div id="part" class="wrapper">
+		<!-- 组件相关 -->
+		<el-divider content-position="left">组件相关</el-divider>
 		<el-tag>页面局部引入Vue</el-tag>
+		<h2>输入后回车或者blur触发事件</h2>
 		<el-input 
 			placeholder="请输入管理员姓名" 
 			v-model="searchModel.name" 
@@ -75,7 +88,75 @@
 		<el-dialog :visible.sync="visible" title="Hello world">
 			<p>Try Element</p>
 		</el-dialog>
-		<btn/>
+		<btn @result="handleChild"></btn>
+		
+		<alert></alert>
+		<alert>
+			<el-link type="primary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, aut?</el-link>
+			Something bad happened.
+			<el-tag type="danger">{{ td.text }}</el-tag>
+			<!-- 下边的是拿不到的 -->
+			<!-- <el-tag type="success">{{red}}</el-tag> -->
+		</alert>
+
+		<!-- 这个全局注册的 -->
+		<todo-item :todo=td></todo-item>
+		<!-- 下面这个是不行的 赋值给变量的组件可以放到应用实例的components中注册使用-->
+		<!-- <BtnOfNiubi></BtnOfNiubi> -->
+
+		<!-- 插槽相关 -->
+		<el-divider content-position="left">插槽相关</el-divider>
+		<base-layout>
+			<template v-slot:header>
+				<h1>Here might be a page title</h1>
+			</template>
+
+			<p>A paragraph for the main content.</p>
+			<p>And another one.</p>
+
+			<template v-slot:footer>
+				<p>Here's some contact info</p>
+			</template>
+		</base-layout>
+
+		<el-divider content-position="left">作用域插槽v-slot</el-divider>
+		<current>
+			<!-- 会报错 Property or method "user" is not defined -->
+			<!-- <template>
+				{{ user.firstName }}
+			</template> -->
+			<template v-slot:ok="slotProps">
+			  {{ slotProps.user.name }}
+			</template>
+		</current>
+		<current>
+			<template v-slot:ok="{user}">
+				{{ user.gender }}
+			</template>
+		</current>
+		<alert>
+			<template v-slot="{ no_user = { sing: 'shalalala'}}">
+				{{ no_user.sing }}
+			</template>
+		</alert>
+
+		<el-table
+			:data="list"
+			style="width: 100%">
+			<el-table-column
+				prop="id"
+				label="ID"
+				width="180">
+			</el-table-column>
+			<el-table-column
+				prop="name"
+				label="姓名"
+				width="180">
+				<template v-slot:="{row}">
+					{{ row.name }}
+				</template>
+			</el-table-column>
+		</el-table>
 	</div>
 <script>
 	var app = new Vue({
@@ -108,6 +189,7 @@
 	})
 
 	// Vue 自定义组件注册
+	// 这些组件是全局注册的。也就是说它们在注册之后可以用在任何新创建的 Vue 根实例 (new Vue) 的模板中。
 	Vue.component('todo-item', {
 		props: ['todo'],
 		template: '<li>{{ todo.text }}</li>'
@@ -160,10 +242,10 @@
 		},
 		methods: {
 			sayHi: function () {
-				alert('Hi!')
+				window.alert('Hi!')
 			},
 			showAdvice: function (advice) {
-				alert(advice)
+				window.alert(advice)
 			},
 			keyme: function (e) {
 				console.log(e)
@@ -184,22 +266,10 @@
 		}
 	})
 
-	var app3 = new Vue({
-		el: "#app3",
-		data: {
-			searchText: ''
-		},
-		watch: {
-			searchText: function(val) {
-				console.log('custom-input', val)
-			}
-		}
-	})
-
 
 	// 在页面部分区域引入vue组件
-	// 定义一个名为 button-counter 的新组件
-	const btn = Vue.component('buttonOfNiubi', {
+	// 局部注册https://cn.vuejs.org/v2/guide/components-registration.html#%E5%B1%80%E9%83%A8%E6%B3%A8%E5%86%8C
+	const btn = Vue.component('BtnOfNiubi', {
 		data: function () {
 			return {
 				visible: false
@@ -212,28 +282,94 @@
 					message: '牛逼',
 					type: 'success'
 				});
+				this.$emit('result', '来自子组件的恭维，【牛逼】')
 			}
 		},
 		template: '<div><el-button @click="$message.success(`牛逼`)">夸我牛逼</el-button><el-button @click="notify">右边夸</el-button></div>'
 	})
 
+	const alert = Vue.component('alert-box', {
+		data() {
+			return {
+				red: '红色'
+			}
+		},
+		template: `
+			<div class="demo-alert-box">
+			<strong>Error!</strong>
+			<slot>提供的默认内容</slot>
+			</div>
+		`
+	})
+	
+	const BaseLayout = Vue.component('base-layout', {
+		template: `
+			<div class="container">
+				<header>
+					<slot name="header"></slot>
+				</header>
+				<main>
+					<slot></slot>
+				</main>
+				<footer>
+					<slot name="footer"></slot>
+				</footer>
+			</div>
+		`
+	})
+
+	const current = Vue.component('current', {
+		data() {
+			return {
+				user: {name: 'jack', gender: 'male'}
+			}
+		},
+		template: `
+		<div>
+			<h2>{{user.name}}</h2>
+			<span>
+				<slot name="default">默认文字</slot>
+			</span>
+			<h2>
+				<slot name="ok" v-bind:user="user">默认文字</slot>
+			</h2>
+		</div>
+		`
+	})
+
 	new Vue({ 
 		el: '#part',
 		components: {
-			btn
+			btn,
+			alert,
+			BaseLayout
 		},
 		data: function () {
 			return {
 				visible: false,
 				searchModel: {
 					name: ''
-				}
+				},
+				td: {text: "牛逼"},
+				list: [
+					{id: 1, name: 'fucker'},
+					{id: 2, name: 'fucker1'}
+				]
 			}
 		},
 		methods: {
 			keyme(val) {
 				console.log('keyme:', val)
-			}
+			},
+			handleChild(data) {
+				this.$notify({
+					title: '成功',
+					message: `${data}`,
+					type: 'warning',
+					position: 'bottom-right',
+
+				});
+			} 
 		}
 	})
 </script>

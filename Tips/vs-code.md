@@ -1,4 +1,14 @@
 ## VS Code
+### 生成Lorem文本
+在编程中，我们也可以使用Lorem ipsum来填充页面，测试显示效果。
+
+- lorem + Tab/Enter，新建一共30个词语的句子Lorem ipsum dolor 
+- loremN，其中 N 是一个数字，代表有 N 个词语(注意不是字符串长度为 N )// lorem10
+- lorem*N，其中 N 是一个数字，代表有 N 行// lorem*3
+- loremN*M，填充 M 行内容，每行 N 个词语// lorem10*4
+
+Jetbrain的软件同样可以，注意lorem小写。
+
 ### REST Client
 新建一个.http的文件
 ```
