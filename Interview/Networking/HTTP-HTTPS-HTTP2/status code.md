@@ -1,5 +1,16 @@
 https://www.checkupdown.com/status/E403.html
 
+## HTTP状态码 413
+413 Request Entiry Too large
+上传文件失败，报上面的错：请求实体太大。
+原因：nginx有个参数client_max_body_size在限制请求实体的大小，把它改大点就好了。
+
+1.打开nginx配置文件 nginx.conf, 路径一般是：/etc/nginx/nginx.conf。
+
+2.在http{}段中加入 client_max_body_size 20m。20m为允许上传的最大值，可自己决定多大。
+
+3.保存后重启nginx。
+
 ## HTTP Error 400 Bad request
 
 The Web server (running the Web site) thinks that the data stream sent by the client (e.g. your Web browser or our CheckUpDown robot) was 'malformed' i.e. did not respect the HTTP protocol completely. So the Web server was unable to understand the request and process it.

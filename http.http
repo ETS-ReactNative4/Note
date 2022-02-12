@@ -7,4 +7,38 @@ content-type: application/json
 }
 
 ###
-GET http://localhost:3004/api/blog/list?page=1&limit=10
+GET http://localhost:3004/api/songs
+
+
+###
+POST http://localhost:3004/api/user/register
+content-type: application/json
+
+{
+    "password": "123456",
+    "username": "jack",
+    "confirm": "123456"
+}
+
+###
+POST http://localhost:3004/api/user/login
+content-type: application/json
+
+{
+    "login_type": 1,
+    "password": "123456",
+    "username": "jack"
+}
+
+###
+PUT http://localhost:3004/api/blog/35
+content-type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDMzNzk5NTIsImV4cCI6MTY0NDI0Mzk1Mn0.R211alDorHAzlYWW_Marz9oictunfhbvvZWj7cYfFpY
+
+{
+    "status": 2
+}
+
+###
+DELETE http://localhost:3004/api/images/38
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDQwMzMwODQsImV4cCI6MTY0NDg5NzA4NH0.X3tV-iTuwjGVyKZra_QQC97RLAX_dGkdCpvpKeo1wW4

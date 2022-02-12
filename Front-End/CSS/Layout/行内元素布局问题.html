@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrapper {
+          width: auto;
+          background-color: red;
+          white-space: nowrap;
+        }
+        .no_space {
+          word-spacing: -6px;
+        }
+        .bg_red {
+          background-color: red;
+        }
+        img,.wrapper img {
+          width: 300px;
+        }
+        .sticky {
+          height: 50px;
+          background-color: blanchedalmond;
+          position: -webkit-sticky;
+          position: sticky;   
+          top: 0;
+        }
+      </style>
+</head>
+<body>
+    <h2 class="sticky">在div中放入固定宽度的img，触碰到右侧边缘会换行</h2>
+    <div class="bg_red">
+        <img src="https://www.iicoom.top/1641627566326.png" alt="cover">
+        <img src="https://www.iicoom.top/1641627566326.png" alt="cover">
+        <img src="https://www.iicoom.top/1641627566326.png" alt="cover">
+        <img src="https://www.iicoom.top/1641627566326.png" alt="cover">
+        <img src="https://www.iicoom.top/1641627566326.png" alt="cover">
+    </div>
+    <h2>给容器div设置white-space: nowrap; 但是会发现浏览器设置了元素之间的间距5px</h2>
+    <div class="wrapper">
+        <img src="https://www.iicoom.top/1641627566326.png" alt="cover">
+        <img src="https://www.iicoom.top/1641627566326.png" alt="cover">
+        <img src="https://www.iicoom.top/1641627566326.png" alt="cover">
+        <img src="https://www.iicoom.top/1641627566326.png" alt="cover">
+        <img src="https://www.iicoom.top/1641627566326.png" alt="cover">
+    </div>
+    <h2>word-spacing: -6px;清除间距</h2>
+    <div class="wrapper no_space">
+      <img src="https://www.iicoom.top/1641627566326.png" alt="cover">
+      <img src="https://www.iicoom.top/1641627566326.png" alt="cover">
+      <img src="https://www.iicoom.top/1641627566326.png" alt="cover">
+      <img src="https://www.iicoom.top/1641627566326.png" alt="cover">
+      <img src="https://www.iicoom.top/1641627566326.png" alt="cover">
+  </div>
+</body>
+</html>
