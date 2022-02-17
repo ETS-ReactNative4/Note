@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+    <iframe id="i1" src="./child.html" frameborder="0" width="100%" height="400"></iframe>
+    <iframe id="i2" 
+    src="https://h5meet.polyv.net/login?channelId=2822552" frameborder="0" width="100%" height="800" 
+    onload="load()"></iframe>
+    
+    <script>
+        
+        $('#i1').load(function () {
+
+            var cssLink = document.createElement("link");
+
+            cssLink.href = "style.css";
+
+            cssLink.rel = "stylesheet";
+
+            cssLink.type = "text/css";
+
+            // console.log(frames.document.head)
+            // frames.document.head.appendChild(cssLink);
+            // $('#i1')
+            //         .contents().find("body")
+            //         .html("test iframe");
+            $('#i1')
+                .contents().find("head")
+                .append($('<link rel="stylesheet" type="text/css" href="style.css">')
+            );
+            
+        });
+
+
+        $('#i2').load(function () {
+            var cssLink = document.createElement("link");
+
+            cssLink.href = "style.css";
+
+            cssLink.rel = "stylesheet";
+
+            cssLink.type = "text/css";
+
+            // $('#i2')
+            //     .contents().find("head")
+            //     .append($('<link rel="stylesheet" type="text/css" href="style.css">')
+            // );
+        })
+
+        // https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/contentDocument
+        function load() {
+            console.log('loaded')
+            // If the iframe and the iframe's parent document are Same Origin, returns a Document 
+            // (that is, the active document in the inline frame's nested browsing context), else returns null.
+            // console.log(document.getElementsByTagName("iframe")[1].contentDocument)
+    
+            // console.log(document.getElementsByTagName("iframe")[1].contentWindow.postMessage)
+            document.getElementsByTagName("iframe")[1].contentWindow.postMessage("The user is 'bob' and the password is 'secret'",
+                  "https://h5meet.polyv.net")
+
+        }
+        window.addEventListener("message", receiveMessage, false);
+        function receiveMessage(event) {
+            console.log('==============', event)
+            // 我们能信任信息来源吗？
+            if (event.origin !== "http://example.com:8080")
+                return;
+
+            // event.source 就当前弹出页的来源页面
+            // event.data 是 "hello there!"
+
+            // 假设你已经验证了所受到信息的origin (任何时候你都应该这样做), 一个很方便的方式就是把event.source
+            // 作为回信的对象，并且把event.origin作为targetOrigin
+            event.source.postMessage("hi there yourself!  the secret response " +
+                                    "is: rheeeeet!",
+                                    event.origin);
+                    }
+    </script>
+</body>
+</html>
