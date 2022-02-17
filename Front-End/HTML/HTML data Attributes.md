@@ -63,6 +63,7 @@ data-* 属性允许我们在标准内于HTML元素中存储额外的信息，而
 但标准定义了一个更简单的方法：DOMStringMap你可以使用dataset读取到数据。
 
 ## Use the data-* attribute to embed custom data:
+document.getElementsByTagName("INPUT")[0].setAttribute("type","button");
 
 ```html
 <!DOCTYPE html>

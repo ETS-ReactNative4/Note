@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .no_select {
+            user-select: none;
+        }
+        body::selection {
+            color:#FFFFFF;
+            background-color:#E84893;
+            text-shadow:none;
+        }
+    </style>
+</head>
+<body>
+    body::selection
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum eum debitis esse, fuga dicta incidunt beatae veritatis, ipsum voluptatem eius nostrum reiciendis asperiores omnis, quas vitae iure eaque nemo accusamus.
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, recusandae.</p>
+    <div class="no_select">
+        CSS 属性 user-select 控制用户能否选中文本。除了文本框内，它对被载入为 chrome 的内容没有影响。
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam at laboriosam aut. Accusamus tempore nisi laudantium pariatur. Quos, veniam dicta suscipit repellat amet delectus, deserunt sit laboriosam, ipsum quo dolores.
+    </div>
+</body>
+</html>

@@ -45,3 +45,13 @@
 ```
 
 在接下来所有的 2.x 版本中 slot 和 slot-scope attribute 仍会被支持，但已经被官方废弃且不会出现在 Vue 3 中。
+
+```js
+<el-table-column
+    align="center"
+    label="链接">
+  <template v-slot="scope">
+    <el-link type="primary" slot="reference">{{ scope.row.url }}</el-link>
+  </template>
+</el-table-column>
+```
