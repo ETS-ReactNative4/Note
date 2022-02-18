@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>child</title>
+    <style>
+        body,
+        body.theme-light {
+        background-color: #ededed;
+        padding: 1rem;
+        }
+
+        body.theme-dark {
+        background-color: #444;
+        color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        window.addEventListener("message",
+        function (event) {
+            if (event.origin === window.location.origin) {
+                console.log(event.data)
+                document.body.classList = []
+                document.body.classList.add(`theme-${event.data}`)
+            }
+        },
+        false
+        );
+    </script>
+</body>
+</html>

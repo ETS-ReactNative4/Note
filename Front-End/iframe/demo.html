@@ -4,16 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Document</title>
+    <!-- 没有任何效果 -->
+    <!-- <link rel="import" href="http://stackoverflow.com"> -->
+    <style>
+        #child {
+            color: blueviolet;
+        }
+    </style>
 </head>
 <body>
+    <div id="child">parent</div>
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 
     <iframe id="i1" src="./child.html" frameborder="0" width="100%" height="400"></iframe>
-    <iframe id="i2" 
-    src="https://h5meet.polyv.net/login?channelId=2822552" frameborder="0" width="100%" height="800" 
-    onload="load()"></iframe>
+    <!-- <iframe id="i2" src="https://h5meet.polyv.net/login?channelId=2822552" frameborder="0" width="100%" height="800" ></iframe> -->
     
+    <button data-theme="light">Light Theme</button>
+    <button data-theme="dark">Dark Theme</button>
+    <iframe id="i3" src="./cross.html" onload="load()"></iframe>
+    
+    <div id="target"></div>
+
     <script>
         
         $('#i1').load(function () {
@@ -62,26 +75,42 @@
             // console.log(document.getElementsByTagName("iframe")[1].contentDocument)
     
             // console.log(document.getElementsByTagName("iframe")[1].contentWindow.postMessage)
-            document.getElementsByTagName("iframe")[1].contentWindow.postMessage("The user is 'bob' and the password is 'secret'",
-                  "https://h5meet.polyv.net")
+            activateTheme("light");
 
         }
-        window.addEventListener("message", receiveMessage, false);
-        function receiveMessage(event) {
-            console.log('==============', event)
-            // 我们能信任信息来源吗？
-            if (event.origin !== "http://example.com:8080")
-                return;
 
-            // event.source 就当前弹出页的来源页面
-            // event.data 是 "hello there!"
+        function activateTheme(theme) {
+            var iframe = document.getElementById("i3");
+            if (iframe && iframe.contentWindow) {
+                iframe.contentWindow.postMessage(theme, "*");
+            }
+        }
 
-            // 假设你已经验证了所受到信息的origin (任何时候你都应该这样做), 一个很方便的方式就是把event.source
-            // 作为回信的对象，并且把event.origin作为targetOrigin
-            event.source.postMessage("hi there yourself!  the secret response " +
-                                    "is: rheeeeet!",
-                                    event.origin);
-                    }
+        $("button[data-theme]").on("click", function (event) {
+            activateTheme($(this).data("theme"));
+        });
+
+        // 同样会跨域
+        // $('#target').load('https://h5meet.polyv.net/login?channelId=2822552', function() {
+        //     console.log('Load was performed.')
+        // })
+        $.ajax({
+            url: 'https://h5meet.polyv.net/login?channelId=2822552',
+            xhrFields: {
+                withCredentials: true
+            }
+        })
     </script>
 </body>
 </html>
+
+<!-- 参考链接 
+Cross-document communication with iframes 
+https://benohead.com/blog/2015/12/07/cross-document-communication-with-iframes/
+
+
+JSONP
+https://www.w3schools.com/js/js_json_jsonp.asp
+Understanding Cross-Domain Javascript – JSONP and IFrames
+https://snaggled.github.io/2010/04/08/Understanding-cross-domain-javascript.html
+-->

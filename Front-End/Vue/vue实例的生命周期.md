@@ -3,9 +3,25 @@
 
 > 每个 Vue 实例在被创建时都要经过一系列的初始化过程——例如，需要设置数据监听、编译模板、将实例挂载到 DOM 并在数据变化时更新 DOM 等。同时在这个过程中也会运行一些叫做生命周期钩子的函数，这给了用户在不同阶段添加自己的代码的机会。
 
-页面每次加载都会触发created、mounted
+## 刷新页面
+依次执行当前页面vue组件的beforeCreate, created, beforeMount, mounted, beforUpdate, updated
+
+所以不要指望在页面刷新前保存页面的data到localStorage
+
+## 页面后退时, vue执行的生命周期钩子
 
 点击浏览器返回按钮，会触发当前页面的 beforeDestroy
+
+假设从b页面后退到a页面
+依次执行a页面vue组件的beforeCreate, created, beforeMount, 然后是b页面组件的beforeDestroy, destroyed, 最后是执行a页面vue组件的mounted, beforUpdate, updated
+
+## 页面前进时, vue执行的生命周期钩子
+假设从a页面到b页面
+依次执行b页面vue组件的beforeCreate, created, beforeMount, 然后是a页面组件的beforeDestroy, destroyed, 最后是执行b页面vue组件的mounted, beforUpdate, updated
+
+## 页面关闭时, vue执行的生命周期钩子
+直接点击浏览器标签关闭页面, 不执行任何生命周期钩子, 如果要在页面关闭前做点事情(例如保存数据),
+可以给页面绑定beforeunload或unload事件, 在事件中编写逻辑
 
 ## beforeCreate
 在实例初始化之后，数据观测 (data observer) 和 event/watcher 事件配置之前被调用。
