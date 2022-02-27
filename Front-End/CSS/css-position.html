@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>position</title>
+    <style>
+        body {
+            height: 1500px;
+        }
+        .parent {
+            width: 80%;
+            height: 500px;
+            border: 1px solid deepskyblue;
+            position: relative;
+        }
+        .child1 {
+            width: 200px;
+            height: 200px;
+            background-color: firebrick;
+            position: relative;
+            top: 50px;
+            left: 50px;
+        }
+        .child2 {
+            width: 200px;
+            height: 200px;
+            background-color: rgb(34, 178, 41);
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        .child3 {
+            width: 50px;
+            height: 50px;
+            background-color: rgb(178, 176, 34);
+            position: fixed;
+            right: 20px;
+            bottom: 10px;
+            overflow: hidden;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .child4 {
+            background-color: black;
+            color: #fff;
+            position: absolute;
+            text-align: center;
+            margin: 300px auto;
+            padding: 20px;
+        } 
+       
+        .modal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            position: fixed;
+            top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+            visibility: hidden;
+        }
+        .show {
+            visibility: visible;
+        }
+        .masker {
+			background-color: rgba(0,0,0, 0.5);
+			position: fixed;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			z-index: 10;
+		}
+		.child {
+			width: 50%;
+			height: 400px;
+			position: absolute;
+			z-index: 11;
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            margin: 0 auto;
+		}
+
+        .simple {
+            display: flex; justify-content: center;align-items: center;
+            visibility: hidden;
+        }
+        .show2 {
+            visibility: visible!important;
+        }
+    </style>
+</head>
+<body>
+    <div style="border: 2px solid rgb(0, 255, 149); margin-bottom: 30px;">
+        <h4>position属性指定一个元素（静态的，相对的，绝对或固定）的定位方法的类型。</h4>
+        <ul>
+            <li>static 默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）</li>
+            <li>relative 生成相对定位的元素，相对于其正常位置进行定位。因此，"left:20" 会向元素的 LEFT 位置添加 20 像素。</li>
+            <li>absolute 生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。</li>
+            <li>fixed 生成固定定位的元素，相对于浏览器窗口进行定位。元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。</li>
+            <li>sticky 粘性定位，该定位基于用户滚动的位置。它的行为就像 position:relative; 而当页面滚动超出目标区域时，它的表现就像 position:fixed;，它会固定在目标位置。</li>
+        </ul>
+    </div>
+    
+    
+    <div class="parent">
+        div.parent width: 80% height: 500px (父级容器)
+        <div class="child1">
+            child1
+            position: relative;
+            top: 50px;
+            left: 50px;（子元素 相对定位）
+        </div>
+        <div class="child2">
+            child2
+            position: absolute;
+            top: 0;
+            right: 0;（子元素 绝对定位）
+        </div>
+        <div class="child3" onclick="returnTop()">
+            child3
+            position: fixed;
+            left: 50%;
+            bottom: 0; （子元素 固定定位 常见于返回顶部按钮）
+        </div>
+
+    
+        <div class="modal">
+            <div class="masker"></div>
+            <div class="child">
+                <iframe src="https://element.eleme.cn/#/zh-CN/component/installation" frameborder="2" width="400" height="400"></iframe>
+                <button onclick="closeModal()">关闭</button>
+            </div>
+        </div>
+        
+    </div>
+
+    <div style="border: 2px solid rgb(0, 255, 149); margin: 30px 0;">
+        定位在下面场景经常用到
+        <ul>
+            <li>页面布局</li>
+            <li>返回顶部按钮，或者固定页面导航栏</li>
+            <li>页面弹出层 <button onclick="showModal()">弹出</button></li>
+        </ul>
+    </div>
+
+    <div style="border: 2px solid rgb(0, 255, 149); margin: 30px 0;">
+        定位中的z-index(这个场景是 父级的层级低于body 而你想让他的子集高于body 是不可行的)
+        <blockquote>child 无法浮到最上层，它以父级为准</blockquote>
+        <div class="masker simple" onclick="toggle()">
+            <div class="child"></div>
+        </div>
+        <button onclick="toggle()">simple modal</button>
+    </div>
+
+    <script>
+        function returnTop() {
+            window.scrollTo(0, 0)
+        } 
+
+        function showModal() {
+            document.querySelector('.modal').classList.add('show')
+        }
+        function closeModal() {
+            document.querySelector('.modal').classList.remove('show')
+        }
+        function toggle() {
+            if (document.querySelector('.simple').classList.contains('show2')) {
+                document.querySelector('.simple').classList.remove('show2')
+            } else {
+                document.querySelector('.simple').classList.add('show2')
+            }
+        }
+    </script>
+</body>
+</html>
