@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            height: 200px;
+            width: 300px;
+            overflow: scroll;
+            width: 300px;
+            background-color: aliceblue;
+        }
+
+        .content {
+            width: 100%;
+            margin-top: 100px;
+            height: 400px;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div class="content">
+          Some text.
+        </div>
+    </div>
+    <button onclick="toTop()">toTop</button>
+    <script>
+        var element = document.getElementById('box');
+
+        element.scrollTop = element.scrollHeight;
+
+        function toTop() {
+            element.scrollTop = 0
+        }
+    </script>
+</body>
+</html>

@@ -93,9 +93,30 @@
         .show2 {
             visibility: visible!important;
         }
+
+        body {
+            padding: 0;
+        }
+        .fixed_child {
+            border: 2px solid sandybrown;
+            /* position: sticky; */
+            position: fixed;
+            bottom: 100px;
+            /* width:calc(100%); */
+            /* width:100%; */
+            width:inherit;
+        }
+        .sticky_child {
+            background-color: rgba(255, 0, 0, .5);
+            position: sticky;
+            width: 100%;
+            top: 0;
+        }
     </style>
 </head>
 <body>
+    <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/position"><h1>developer.mozilla</h1></a>
+
     <div style="border: 2px solid rgb(0, 255, 149); margin-bottom: 30px;">
         <h4>position属性指定一个元素（静态的，相对的，绝对或固定）的定位方法的类型。</h4>
         <ul>
@@ -158,6 +179,23 @@
         <button onclick="toggle()">simple modal</button>
     </div>
 
+    <div id="fixed_parent" style="border: 2px solid purple; margin-top: 30px;width: 30%;margin: 0 auto;height: 300px; overflow: auto;">
+        <h3>父元素为百分比宽度时，子元素开启fixed定位:（还是和父级左对齐的） 传给子元素的是body的百分比  跟父元素还是不一样</h3>
+        <p>如果想要响应式 和父级宽度保持一致 只能window.onresize 动态设置 这样并不好处理</p>
+        <p>width:inherit将继承CSS宽度而不是计算宽度 - 这意味着子容器继承width:100%d</p>
+        <div class="fixed_child">
+           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos nesciunt deleniti obcaecati laborum impedit error natus harum assumenda provident cupiditate! Maxime aliquam quidem reiciendis officiis beatae vitae quisquam alias animi.
+        </div>
+
+        <div class="sticky_child">
+            <h3>你可以简单的理解为 fixed 是相对浏览器的浏览器窗口的固顶定位，而sticky是相对父元素的一种固顶定位方式。</h3>
+        </div>
+        sticky_child Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos nesciunt deleniti obcaecati laborum impedit error natus harum assumenda provident cupiditate! Maxime aliquam quidem reiciendis officiis beatae vitae quisquam alias animi.
+        sticky_child Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos nesciunt deleniti obcaecati laborum impedit error natus harum assumenda provident cupiditate! Maxime aliquam quidem reiciendis officiis beatae vitae quisquam alias animi.
+
+        sticky_child Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos nesciunt deleniti obcaecati laborum impedit error natus harum assumenda provident cupiditate! Maxime aliquam quidem reiciendis officiis beatae vitae quisquam alias animi.
+    </div>
+
     <script>
         function returnTop() {
             window.scrollTo(0, 0)
@@ -175,6 +213,13 @@
             } else {
                 document.querySelector('.simple').classList.add('show2')
             }
+        }
+
+        window.onresize = function() {
+            // const w = document.querySelector('#fixed_parent').style.width  // 这个获取到的是80%
+            const w = document.querySelector('#fixed_parent').offsetWidth
+            console.log(w)
+            document.querySelector('.fixed_child').style.width = w+'px'
         }
     </script>
 </body>
