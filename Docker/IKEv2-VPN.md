@@ -36,3 +36,9 @@ chmod +x shadowsocks-all.sh
 
 ./shadowsocks-all.sh 2>&1 | tee shadowsocks-all.log
 ```
+
+
+## 其他连接
+https://github.com/hwdsl2/setup-ipsec-vpn/blob/master/docs/ikev2-howto-zh.md#%E9%85%8D%E7%BD%AE-ikev2-vpn-%E5%AE%A2%E6%88%B7%E7%AB%AF
+
+https://www.vultr.com/docs/install-a-strongswan-ipsec-vpn-server-on-centos-7/#Prerequisites

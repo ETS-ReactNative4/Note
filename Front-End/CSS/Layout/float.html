@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 50%;
+        }
+        img {
+            width: 60px;
+            float: left;
+            margin: 5px 10px 0 0;
+        }
+        .float_left {
+            float: left;
+        }
+        .float_right {
+            float: right;
+        }
+        button {
+            background: gray; 
+            font-size: 38px;
+            color: white;
+            padding: 3px;
+            border-radius: 5px;
+            border: 3px solid black;
+            margin-right: 15px;
+        }
+        .button_left {
+            float: left;
+        }
+        .button_right {
+            float: right;
+        }
+        .tip {
+            border: 2px dashed saddlebrown;
+            margin: 10px;
+            padding: 5px;
+        }
+
+        .div-1 {
+            float: right;
+            background-color: #0091ae;
+            height: 100px;
+            line-height: 100px;
+            margin: 30px;
+            text-align: center;
+            width: 100px;
+        }
+
+        .div-2 {
+            clear: right;
+            background-color: #ff7a59;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>CSS Float Property</h2>
+    <div class="container">
+        <p>
+            <img class="float_left" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202004%2F02%2F20200402133820_4YaiP.thumb.1000_0.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1649075333&t=1e62c924d7d79e0684da9e69be7243f7" alt="">
+            In this example, the CSS float property is defined by the left value. 
+            <button class="button">Click me!</button>That makes the button float to the left in the paragraph and makes the text in the paragraph wrap around the button. 
+            Margin settings have also been added to add some space between the text and the button. This makes it easier to read and more visually appealing. 
+            Notice that the CSS includes a class selector to target the button defined by the button class.</p>
+
+        <p>
+            <img class="float_right" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202004%2F02%2F20200402133820_4YaiP.thumb.1000_0.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1649075333&t=1e62c924d7d79e0684da9e69be7243f7" alt="">
+            <button class="button_right">Click me!</button>In this example, the CSS float property is defined by the left value. 
+            That makes the button float to the left in the paragraph and makes the text in the paragraph wrap around the button. 
+            Margin settings have also been added to add some space between the text and the button. This makes it easier to read and more visually appealing. 
+            Notice that the CSS includes a class selector to target the button defined by the button class.</p>
+
+            
+        <h2>How to Clear the Float Property in CSS</h2>
+        <p class="tip">While useful, the float property can cause layout issues. 
+            Consider what happens if a containing element, like a 
+            element, is too small to contain the floated element. When this happens, the floated element will extend beyond the bounds of its containing element and disrupt other parts of your page.
+        </p>
+
+        <div class="tip">
+            Issues like this can be fixed using the clear property in CSS. This property lets you "clear" 
+            floated elements from the left side, right side, or both sides of an element.
+            <h3>The clear property can be specified with any of the following values:</h3>
+            <ul>
+                <li>none (default): Floating elements are allowed on both sides of the cleared element.</li>
+                <li>left: No floating elements are allowed on the left side of the cleared element.</li>
+                <li>right: No floating elements are allowed on the right side of the cleared element.</li>
+                <li>both: No floating elements are allowed on either side of the cleared element.</li>
+            </ul>
+        </div>
+         
+        <h2>With clear</h2>
+        <div class="div-1">div 1</div>
+        <div class="div-2">
+            div 2 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </div>  
+        <a href="https://blog.hubspot.com/website/css-float">原文连接</a>
+</body>
+</html>
