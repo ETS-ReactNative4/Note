@@ -3,6 +3,15 @@
 
 [package.json](https://docs.npmjs.com/files/package.json)
 
+## main
+The main field is a module ID that is the primary entry point to your program. That is, if your package is named foo, and a user installs it, and then does require("foo"), then your main module's exports object will be returned.
+
+## private
+If you set "private": true in your package.json, then npm will refuse to publish it.
+
+## files
+Files attribute determines what files and folders will be published by NPM.
+
 ## scripts
 
 The “scripts” property is a dictionary containing script commands that are run at various times in the lifecycle of your package.
