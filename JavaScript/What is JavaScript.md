@@ -36,3 +36,5 @@ You might have also heard that JavaScript is non-blocking
 meaning that when an asynchronous operation is being performed, the program is able to process other things
 
 
+## 资源
+[现代 JavaScript 教程](https://zh.javascript.info/)
