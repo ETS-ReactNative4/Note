@@ -10,6 +10,13 @@
 	<!-- 引入组件库 -->
 	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 	<link rel="stylesheet" href="../CSS/shared.css">
+
+	<script src="https://cdn.quilljs.com/1.3.4/quill.js"></script>
+	<!-- Quill JS Vue -->
+	<script src="https://cdn.jsdelivr.net/npm/vue-quill-editor@3.0.4/dist/vue-quill-editor.js"></script>
+	<!-- Include stylesheet -->
+	<link href="https://cdn.quilljs.com/1.3.4/quill.core.css" rel="stylesheet">
+	<link href="https://cdn.quilljs.com/1.3.4/quill.snow.css" rel="stylesheet">
 </head>
 <body>
 	<div class="wrapper">
@@ -158,6 +165,81 @@
 			</el-table-column>
 		</el-table>
 	</div>
+
+	<div id="editor">
+		<p>Hello World!</p>
+		<p>Some initial <strong>bold</strong> text</p>
+		<p><br></p>
+	</div>
+
+	<div id="vueapp">
+		<quill-editor
+			v-model="content"
+			:options="editorOption"
+			class="rich_editor"
+			@blur="onEditorBlur($event)"
+			@change="onEditorChange($event)"
+			@ready="onEditorReady($event)"
+			@input="onInput($event)"
+			@focus="onEditorFocus($event)"
+		>
+      <div id="toolbar" slot="toolbar">
+        <!-- Add a bold button -->
+        <button class="ql-bold">Bold</button>
+        <button class="ql-italic">Italic</button>
+        <button class="ql-underline">Underline</button>
+        <button class="ql-strike">Strike</button>
+        <button class="ql-blockquote"></button>
+        <button class="ql-code-block"></button>
+        <button class="ql-script" value="sub"></button>
+        <button class="ql-script" value="super"></button>
+        <button class="ql-direction"></button>
+        <button class="ql-clean"></button>
+
+        <button class="ql-list" value="ordered"></button>
+        <button class="ql-list" value="bullet"></button>
+        <button class="ql-indent" value="-1"></button>
+        <button class="ql-indent" value="+1"></button>
+        <select class="ql-align"></select>
+        <!-- Add font size dropdown -->
+        <select class="ql-size">
+          <option value="small"></option>
+          <!-- Note a missing, thus falsy value, is used to reset to default -->
+          <option selected></option>
+          <option value="large"></option>
+          <option value="huge"></option>
+        </select>
+        <select class="ql-header">
+          <option value="1"></option>
+          <option value="2"></option>
+          <option value="3"></option>
+          <option value="4"></option>
+          <option value="5"></option>
+          <option value="6"></option>
+          <option value="7"></option>
+        </select>
+        <select class="ql-font">
+          <option selected="selected"></option>
+          <option value="serif"></option>
+          <option value="monospace"></option>
+        </select>
+        <select class="ql-color"></select>
+        <select class="ql-background"></select>
+        <!-- You can also add your own -->
+        <button class="ql-link"></button>
+        <!-- <button class="ql-image"></button>-->
+        <button class="ql-custom-button el-icon-view" @click="customButtonClick"></button>
+        <el-upload
+            action=""
+            :show-file-list="false"
+            :http-request="()=>{}"
+            :before-upload="handleQuillSuccess">
+          <button class="ql-custom-button ql-image"></button>
+        </el-upload>
+      </div>
+    </quill-editor>
+	</div>
+
 <script>
 	var app = new Vue({
 		el: '#app',
@@ -372,6 +454,86 @@
 			} 
 		}
 	})
+
+	Vue.use(VueQuillEditor)
+	new Vue({ 
+		el: '#vueapp',
+		components: {},
+		data: {
+			content: '<h2>I am Example A</h2>',
+			editorOption: {
+				modules: {
+					toolbar: '#toolbar',
+				},
+			},
+	 	},
+		 methods: {
+			editMode(content) {
+			this.content = content;
+			},
+			async handleQuillSuccess(file) {
+			let form = new FormData();
+			form.append("file", file);
+			const result = await this.$networkHandler.sendRequest(ApiEnums.SingleUpload, form);
+			// this.content += `<img src="${result.url}">`;
+			this.editor.insertEmbed(this.insertLength, 'image', result.url)
+			},
+			customButtonClick() {
+			// alert(`surprise`)
+			this.previewShow = !this.previewShow
+			},
+			onEditorBlur() {
+			// console.log(this.content)
+			},
+			onEditorChange(e) {
+			// console.log(e)
+			this.$emit('change', this.content)
+			},
+			onEditorReady(editor) {
+			// console.log('editor ready!', editor)
+			},
+			imagePaste(node, Delta) {
+			// console.log(node)
+			let ops = []
+			Delta.ops.forEach(op => {
+				if (op.insert && typeof op.alt === 'string') {
+				ops.push({
+					insert: op.insert,
+				})
+				}
+			})
+			Delta.ops = ops
+			return Delta
+			// if (url && url.indexOf('data:') === 0) {
+			//   const file = this.base64ConvertFile(url, 'iii')
+			//   console.log(file)
+			//   this.handleQuillSuccess(file)
+			// }
+			},
+			base64ConvertFile(urlData, filename) { // 64转file
+			const arr = urlData.split(',')
+			const type = arr[0].match(/:(.*?);/)[1]
+			const fileExt = type.split('/')[1]
+			const bstr = atob(arr[1])
+			let n = bstr.length
+			const u8arr = new Uint8Array(n)
+			while (n--) {
+				u8arr[n] = bstr.charCodeAt(n);
+			}
+			return new File([u8arr], `${filename}.` + fileExt, {
+				type: type
+			});
+			},
+			onInput(e) {
+			// console.log(e)
+			},
+			onEditorFocus(e) {
+			this.editor = e
+			this.insertLength = e.getSelection().index
+			}
+		}
+	})
+
 </script>
 </body>
 </html>
