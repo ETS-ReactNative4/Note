@@ -38,3 +38,4 @@ meaning that when an asynchronous operation is being performed, the program is a
 
 ## 资源
 [现代 JavaScript 教程](https://zh.javascript.info/)
+[ES6 feature](https://github.com/lukehoban/es6features#readme)

@@ -47,11 +47,15 @@ for(let item of ar) {console.log(item)}
 // 5
 
 
-/**
-3. for
-*/
-for (let i = 0; i < arr.length; i ++) {
-   console.log(arr[i].a)
+// 按顺序上传
+async function handleUpload() {
+   for (const item of this.fileList) {
+     if (item.status !== 'success') {
+       let form = new FormData();
+       form.append("file", item.raw);
+       const result = await this.$networkHandler.sendRequest(ApiEnums.SingleUpload, form);
+       item.url = result.url
+       item.status = 'success'
+     }
+   }
 }
-// 1
-// 2
