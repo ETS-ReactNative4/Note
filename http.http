@@ -7,7 +7,8 @@ content-type: application/json
 }
 
 ###
-GET http://localhost:3004/api/songs
+GET http://localhost:3004/api/blog_archived?page=1&limit=10&category=&tag=position
+
 
 
 ###
