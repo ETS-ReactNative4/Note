@@ -4,68 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Document</title>
-    <!-- 没有任何效果 -->
-    <!-- <link rel="import" href="http://stackoverflow.com"> -->
-    <style>
-        #child {
-            color: blueviolet;
-        }
-    </style>
+    <title>修改iframe内部元素的样式</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 </head>
 <body>
-    <div id="child">parent</div>
-    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 
-    <iframe id="i1" src="./child.html" frameborder="0" width="100%" height="400"></iframe>
+    <iframe id="i1" src="./child.html" frameborder="0" width="100%" height="400" onload="child_load()"></iframe>
     <!-- <iframe id="i2" src="https://h5meet.polyv.net/login?channelId=2822552" frameborder="0" width="100%" height="800" ></iframe> -->
     
+
+    <!-- iframe 跨域文档消息传递 -->
     <button data-theme="light">Light Theme</button>
     <button data-theme="dark">Dark Theme</button>
     <iframe id="i3" src="./cross.html" onload="load()"></iframe>
     
     <div id="target"></div>
-
     <script>
-        
+        function child_load() {
+            
+        }
         $('#i1').load(function () {
 
             var cssLink = document.createElement("link");
-
             cssLink.href = "style.css";
-
             cssLink.rel = "stylesheet";
-
             cssLink.type = "text/css";
-
-            // console.log(frames.document.head)
-            // frames.document.head.appendChild(cssLink);
-            // $('#i1')
-            //         .contents().find("body")
-            //         .html("test iframe");
             $('#i1')
                 .contents().find("head")
                 .append($('<link rel="stylesheet" type="text/css" href="style.css">')
             );
-            
         });
-
-
-        $('#i2').load(function () {
-            var cssLink = document.createElement("link");
-
-            cssLink.href = "style.css";
-
-            cssLink.rel = "stylesheet";
-
-            cssLink.type = "text/css";
-
-            // $('#i2')
-            //     .contents().find("head")
-            //     .append($('<link rel="stylesheet" type="text/css" href="style.css">')
-            // );
-        })
 
         // https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/contentDocument
         function load() {
@@ -90,10 +58,6 @@
             activateTheme($(this).data("theme"));
         });
 
-        // 同样会跨域
-        // $('#target').load('https://h5meet.polyv.net/login?channelId=2822552', function() {
-        //     console.log('Load was performed.')
-        // })
         $.ajax({
             url: 'https://h5meet.polyv.net/login?channelId=2822552',
             xhrFields: {
