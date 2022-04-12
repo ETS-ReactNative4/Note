@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cursor</title>
+    <style>
+        div {
+            box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+        .custom {
+            /* cursor: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F18%2F06%2F09%2F6585cbf205291628bbdea8c5e0f59a58.jpg&refer=http%3A%2F%2Fbpic.588ku.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1652352504&t=69ab6b57147c9860d576cf9dfde40aba), pointer; */
+            cursor: url(./default.gif), pointer;
+        }
+    </style>
+</head>
+<body>
+<blockquote>
+    The cursor CSS property sets mouse cursor to display when the mouse pointer is over an element.
+</blockquote>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor" target="_blank">
+    https://developer.mozilla.org/en-US/docs/Web/CSS/cursor
+</a>
+<div style="cursor: help;">cursor: help;</div>
+<div style="cursor: wait;">cursor: wait;</div>
+<div style="cursor: crosshair;">cursor: crosshair;</div>
+<div style="cursor: not-allowed;">cursor: not-allowed;</div>
+<div style="cursor: zoom-in;">cursor: zoom-in;</div>
+<div style="cursor: grab;">cursor: grab;</div>
+
+<div class="custom">custom</div>
+
+
+/* URL, with a keyword fallback */
+cursor: url(hand.cur), pointer;
+
+/* URL and coordinates, with a keyword fallback */
+cursor: url(cursor1.png) 4 12, auto;
+cursor: url(cursor2.png) 2 2, pointer;
+</body>
+</html>
