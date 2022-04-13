@@ -36,6 +36,16 @@ document.cookie = "user_name=Ire Aderinokun;expires=Thu, 01 Jan 1970 00:00:01 GM
 * 潜在的 安全问题
 * 自从有 Web Storage API (Local and Session Storage)，cookies 就不再被推荐用于存储数据了
 
+### Javascript document.cookie always returns empty string
+HttpOnly cookies cannot be accessed from Javascript and session cookies are usually set as HttpOnly cookies. See also this StackOverflow question: How to read a secure cookie using JavaScript。
+
+[How to read a HttpOnly cookie using JavaScript？](https://stackoverflow.com/questions/8064318/how-to-read-a-httponly-cookie-using-javascript)
+
+
+[Secure Cookies: The HttpOnly Flag](https://securitymusings.com/article/909/secure-cookies-the-httponly-flag)
+
+
+
 
 > Web storage can be viewed simplistically as an improvement on cookies, providing much greater storage capacity (10 MB per origin in Google Chrome(https://plus.google.com/u/0/+FrancoisBeaufort/posts/S5Q9HqDB8bh), Mozilla Firefox, and Opera; 10 MB per storage area in Internet Explorer) and better programmatic interfaces.
 
