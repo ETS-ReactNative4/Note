@@ -11,3 +11,7 @@ http://share.baidu.com/
 虽然说网站上了HTTPS以后，网站的网安全有了保证，但是一些网站的插件是不支持HTTPS的，比如百度的分享代码。
 
 下载百度分享代码本地包: 可以GITHUB上下载：https://github.com/hrwhisper/baiduShare
+
+## 自己生成网页二维码
+
+## 复制当前页面的url到剪贴板

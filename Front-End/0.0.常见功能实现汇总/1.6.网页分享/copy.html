@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h3>实现方法：通过原生js 的方法document.execCommand('copy')
+</h3>
+<h3>https://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript</h3>
+
+<a href="https://clipboardjs.com/">https://clipboardjs.com/</a>
+<blockquote>
+    <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document/execCommand" target="_blank">https://developer.mozilla.org/zh-CN/docs/Web/API/Document/execCommand</a>
+    <br>
+    已废弃: This feature is obsolete. Although it may still work in some browsers, its use is discouraged since it could be removed at any time. Try to avoid using it.
+</blockquote>
+
+<div>// input 是不能设置隐藏的，否则复制不到。可以使用定位 放到看不到的位置，但是不够优雅</div>
+
+<button onclick="fallbackCopyTextToClipboard()">复制当前网址</button>
+
+<button onclick="copyTextToClipboard(window.location.href)">复制方式二</button>
+<script>
+
+    function fallbackCopyTextToClipboard() {
+        // 1.创建一个可选中元素
+        let textArea = document.createElement("textarea");
+        textArea.value = window.location.href;
+        // 2.Avoid scrolling to bottom
+        textArea.style.top = "0";
+        textArea.style.left = "0";
+        textArea.style.position = "fixed";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+            var successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Fallback: Copying text command was ' + msg);
+        } catch (err) {
+            console.error('Fallback: Oops, unable to copy', err);
+        }
+        // 3.移除元素
+        document.body.removeChild(textArea);
+    }
+
+    function copyTextToClipboard(text) {
+        if (!navigator.clipboard) {
+            fallbackCopyTextToClipboard(text);
+            return;
+        }
+        navigator.clipboard.writeText(text).then(function() {
+            console.log('Async: Copying to clipboard was successful!');
+        }, function(err) {
+            console.error('Async: Could not copy text: ', err);
+        });
+    }
+</script>
+</body>
+</html>
