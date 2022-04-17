@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖节流闭包</title>
+    <style>
+        .de_wrapper {
+        padding: 20px;
+        display: flex;
+        }
+        .col {
+        width: 40%;
+        }
+        .log {
+        height: 300px;
+        overflow-y: scroll;
+        background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="de_wrapper">
+    <div class="col">
+        <h3>未使用防抖</h3>
+        <textarea name="" id="1" cols="30" rows="10" onKeyUp="printLog(event)"></textarea>
+        <div id="log" class="log"></div>
+    </div>
+    <div class="col">
+        <h3>使用防抖</h3>
+        <!-- <textarea name="" id="2" cols="30" rows="10"></textarea> -->
+        <textarea name="" id="2" cols="30" rows="10" onKeyUp="debounceLog(event)"></textarea>
+        <div id="log1" class="log"></div>
+    </div>
+</div>
+<script>
+    let log = null
+    let log1 = null
+
+    window.onload = function() {
+        log = document.getElementById('log')
+        log1 = document.getElementById('log1')
+
+        // 写法1
+        // document.getElementById('2').addEventListener('keyup', function(e) {
+        //     debounceLog(e)
+        // })
+
+        // 写法2
+        // document.getElementById('2').addEventListener('keyup', debounceLog)
+
+        // 写法3
+        document.getElementById('2').addEventListener('keyup', debounce(printDebounceLog, 2000))
+
+    } 
+
+    function printLog(e) {
+        log.innerText += `keyup 事件触发【请求服务器保存数据...】： ${e.target.value}\n`
+    }
+
+    function printDebounceLog(e) {
+        log1.innerText += `keyup 事件触发【请求服务器保存数据...】： ${e.target.value}\n`
+    }
+
+    let debounceLog = debounce(printDebounceLog, 2000)
+
+    function debounce(fn, delay) {
+      let timer = null
+        return function (args) {
+          if (timer) {
+            clearTimeout(timer)
+          }
+          timer = setTimeout(function() {
+            fn(args)
+          }, delay)
+        }
+    }
+</script>
+</body>
+</html>
