@@ -29,14 +29,34 @@
     </div>
     <div class="col">
         <h3>使用防抖</h3>
-        <!-- <textarea name="" id="2" cols="30" rows="10"></textarea> -->
+        <!-- 可以给下面的textarea 添加 addEventListener 时间 如下面的 写法1、写法2、写法3
+        <textarea name="" id="2" cols="30" rows="10"></textarea> 
+        -->
+        <!-- 也可以直接把经过防抖处理后的函数绑定在onKeyUp上 -->
         <textarea name="" id="2" cols="30" rows="10" onKeyUp="debounceLog(event)"></textarea>
         <div id="log1" class="log"></div>
+    </div>
+</div>
+<div class="de_wrapper">
+    <div class="col">
+        <h3>未使用节流(点击按钮可以疯狂发射子弹)</h3>
+        <div class="sky"></div>
+        <button class="fire_btn">发射</button>
+      </div>
+      <div class="col">
+        <h3>使用节流(发射子弹速度会被限制)</h3>
+        <div class="sky"></div>
+        <button class="fire_btn">发射</button>
     </div>
 </div>
 <script>
     let log = null
     let log1 = null
+
+    let sky = null
+    let sky1 = null
+    let btn = null
+    let btn1 = null
 
     window.onload = function() {
         log = document.getElementById('log')
@@ -51,8 +71,15 @@
         // document.getElementById('2').addEventListener('keyup', debounceLog)
 
         // 写法3
-        document.getElementById('2').addEventListener('keyup', debounce(printDebounceLog, 2000))
+        // document.getElementById('2').addEventListener('keyup', debounce(printDebounceLog, 2000))
+        
+        sky = document.querySelectorAll('.sky')[0]
+        sky1 = document.querySelectorAll('.sky')[1]
+        btn = document.querySelectorAll('.fire_btn')[0]
+        btn1 = document.querySelectorAll('.fire_btn')[1]
 
+        btn.addEventListener('click', fire)
+        btn1.addEventListener('click', throttle(t_fire, 1000))
     } 
 
     function printLog(e) {
@@ -75,6 +102,38 @@
             fn(args)
           }, delay)
         }
+    }
+
+    // 节流
+    function fire() {
+      const b = document.createElement('span')
+      b.classList.add('bullet')
+      sky.appendChild(b)
+      setTimeout(() => {
+        sky.removeChild(b)
+      }, 1000)
+    }
+    function t_fire() {
+      const b = document.createElement('span')
+      b.classList.add('bullet')
+      sky1.appendChild(b)
+      setTimeout(() => {
+        sky1.removeChild(b)
+      }, 1000)
+    }
+    function throttle(fn, limit) {
+      let lastTime
+      return function(args) {
+        if (!lastTime) {
+          fn.apply(this. args)
+          lastTime = Date.now()
+        } else {
+          if ((Date.now() - lastTime) >= limit) {
+            fn.apply(this. args)
+            lastTime = Date.now()
+          }
+        }
+      }
     }
 </script>
 </body>
