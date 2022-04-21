@@ -10,6 +10,3 @@
 指定元素内的空白怎样处理。这个属性声明建立布局过程中如何处理元素中的空白符。
 
 [white-space](https://developer.mozilla.org/zh-CN/docs/Web/CSS/white-space)
-
-## word-break
-https://developer.mozilla.org/zh-CN/docs/Web/CSS/word-break

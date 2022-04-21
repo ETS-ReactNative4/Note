@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>文字自适应样式设计</title>
+	<style>
+		.nice {
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+
+			width: 40%;
+			display: inline-block;
+
+			border: 1px solid salmon;
+		}
+
+		.wrapper {
+			width: 40%;
+			border: 1px solid sandybrown;
+			overflow: hidden;
+		}
+		.roll {
+			display: inline-block;
+			white-space: nowrap;
+			animation: roll 5s ease-in-out infinite alternate;
+			/* animation: roll 5s ease-in-out infinite alternate-reverse; */
+		}
+		@keyframes roll {
+			0% {
+
+			}
+			100% {
+				transform: translateX(-200px)
+			}
+		}
+	</style>
+</head>
+<body>
+<h3>能够出现...样式的条件：</h3>
+<div>
+	<ul>
+		<li>text-overflow: ellipsis;</li>
+		<li>white-space: nowrap;</li>
+		<li>overflow: hidden;</li>
+		<li>容器元素还需要有宽度</li>
+	</ul>
+</div>
+
+
+<span class="nice">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam harum voluptates labore sit unde, ex ab? Error quam est voluptate asperiores a unde, illum rem sequi cumque, distinctio aut similique?</span>
+
+<h3>滚动展示过长文字</h3>
+<div class="wrapper">
+	<span class="roll">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam harum voluptates labore sit unde, ex ab? Error quam est voluptate asperiores a unde, illum rem sequi cumque, distinctio aut similique?</span>
+</div>
+</body>
+</html>

@@ -46,6 +46,26 @@
         .small_img:hover {
             filter: none;
         }
+
+        /* 纵横比设置 */
+        .row {
+            border: 2px solid darkcyan;
+        }
+        .col {
+            border: 2px solid red;
+            background-color: aquamarine;
+            width: 25%;
+            display: inline-block;
+            /*padding-top: 25%; */ /* 1:1 Aspect Ratio */
+            padding-top: 15%; /* 5:3 Aspect Ratio */
+
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .image {
+            border: 2px solid red;
+            width: 25%;
+        }
     </style>
 </head>
 <body>
@@ -87,5 +107,31 @@
         <h2>滤镜和透明度</h2>
         <img class="small_img" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F1113%2F060120105F7%2F200601105F7-1-1200.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645078080&t=74cf23eb7d8652c05a1fff14435e9cc6" alt="">
     </div>
+    <div class="wrapper">
+        <h2>响应式设计：使用image，如果图片大小不一样会出现下面的情况。</h2>
+        <div class="row">
+            <img src="https://static.cyjiaomu.com/delivery/glgfty.png" alt="" class="image">
+            <img src="https://static.cyjiaomu.com/delivery/zzqj.png" alt="" class="image">
+        </div>
+        <h2>使用div固定纵横比设置（Aspect Ratio）动态插入div 设置backgroundImg</h2>
+        <a href="https://www.w3schools.com/howto/howto_css_aspect_ratio.asp" target="_blank">https://www.w3schools.com/howto/howto_css_aspect_ratio.asp</a>
+        <div class="row" id="ar">
+            <!-- <div class="col"></div>
+            <div class="col"></div> -->
+        </div>
+    </div>
+    <script>
+        let arr = ['https://static.cyjiaomu.com/delivery/glgfty.png', 'https://static.cyjiaomu.com/delivery/zzqj.png']
+        
+        window.onload = function() {
+            const parent = document.querySelector('#ar')
+            arr.forEach(item => {
+                const tag = document.createElement('div')
+                tag.classList.add('col')
+                tag.style.backgroundImage = `url(${item})`
+                parent.appendChild(tag)
+            })
+        }
+    </script>
 </body>
 </html>

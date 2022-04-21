@@ -1,4 +1,4 @@
-## 断开展示
+## word-break 断开展示
 ```css
 p, a {
     word-break: break-all;
@@ -20,3 +20,10 @@ p, a {
   white-space: nowrap;
 }
 ```
+
+## word-wrap
+```css
+word-wrap: normal|break-word
+```
+
+[CSS文本换行设置](https://blog.csdn.net/The_Light_/article/details/97618386)
