@@ -1,0 +1,1 @@
+https://docsearch.algolia.com/docs/DocSearch-v3
