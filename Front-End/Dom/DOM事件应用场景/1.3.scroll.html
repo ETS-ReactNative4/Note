@@ -34,6 +34,20 @@
 
             offsetHeight includes padding, scrollBar and borders.
         </div>
+
+        <a href="https://stackoverflow.com/questions/52328359/scrolling-to-the-bottom-inside-a-div-triggers-an-alert-pure-javascript">Scrolling to the bottom inside a div triggers an alert (Pure JavaScript)</a>
+        <div>
+            document.querySelector('#a').addEventListener('scroll',scrollTrigger);
+
+            function scrollTrigger(e) {
+                const a = e.currentTarget;
+            
+                // use greater than or equal to be sure.
+                if (Math.ceil(a.scrollTop) + a.clientHeight >= a.scrollHeight) {
+                    alert('End of scroll');
+                }
+            }
+        </div>
         <div class="child"></div>
     </div>
     <script>
