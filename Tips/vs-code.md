@@ -1,4 +1,7 @@
 ## VS Code
+### 快速复制一行
+shift+option+↓
+
 ### 生成Lorem文本
 在编程中，我们也可以使用Lorem ipsum来填充页面，测试显示效果。
 

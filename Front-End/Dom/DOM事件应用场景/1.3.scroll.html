@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>监测页面div容器滚动底部</title>
+    <style>
+        * {
+            margin: 0;
+        }
+        .wrapper {
+            height: 100vh;
+            background-color: antiquewhite;
+            overflow: scroll;
+        }
+        .child {
+            width: 30%;
+            background-color: aquamarine;
+            height: 1500px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <a href="https://stackoverflow.com/questions/15615552/get-div-height-with-plain-javascript">Get div height with plain JavaScript</a>
+        <div>
+            var clientHeight = document.getElementById('myDiv').clientHeight;
+            or
+
+            var offsetHeight = document.getElementById('myDiv').offsetHeight;
+
+            clientHeight includes padding.
+
+            offsetHeight includes padding, scrollBar and borders.
+        </div>
+        <div class="child"></div>
+    </div>
+    <script>
+        let windowHeight = window.screen.availHeight;
+        let clientH = document.body.clientHeight
+
+        let dom = document.querySelector('.wrapper')
+        let dom_h = dom.offsetHeight
+        console.log('windowHeight', windowHeight)
+        console.log('clientH', clientH)
+        console.log('dom_h', dom_h)
+        dom.addEventListener('scroll', function() {
+            console.log('-----', dom.scrollTop, 1500-clientH)
+        })
+    </script>
+</body>
+</html>
