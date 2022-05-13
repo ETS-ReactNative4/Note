@@ -1,1 +1,0 @@
-https://cli.vuejs.org/zh/config/#publicpath

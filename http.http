@@ -9,7 +9,8 @@ content-type: application/json
 ###
 GET http://localhost:3004/api/blog_archived?page=1&limit=10&category=&tag=position
 
-
+###
+GET http://localhost:3004/api/connector/
 
 ###
 POST http://localhost:3004/api/user/register
@@ -53,3 +54,4 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDMzNzk5NTIsImV4cCI6MTY0
 ###
 DELETE http://localhost:3004/api/images/38
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDQwMzMwODQsImV4cCI6MTY0NDg5NzA4NH0.X3tV-iTuwjGVyKZra_QQC97RLAX_dGkdCpvpKeo1wW4
+

@@ -6,24 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Body 常用事件及光标图标更换</title>
     <link rel="stylesheet" href="../CSS/shared.css">
-    <style>
-        /* 修改鼠标指针样式 */
-        body {
-            cursor: url(default.cur), pointer;
-            /* cursor: url(pointer.cur), pointer; */
-            /* height: 500px; */
-        }
-    </style>
     <script src="../jQuery-JS/jquery.min.js"></script>
 </head>
-<body oncontextmenu="return false">
-    <div class="wrapper">
-        <h3>可以阻止普通用户的右键行为</h3>
-        oncontextmenu="contextmenuHandler()"
-
-        <h3>onbeforeprint="myFunction()" 打印页面</h3>
-    </div>
-
+<body>
     <div class="wrapper">
         <h3>在body上添加 onblur="bodyblurHandler()" 可以获取到窗口失去焦点事件</h3>
         <h3>在window添加blur事件感觉更好一些</h3>
@@ -32,6 +17,16 @@
     <p onselectstart="return false">🈲复制Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero eveniet fuga amet voluptas cumque tempora repellat recusandae voluptatum? Aut repellat dicta voluptates saepe atque tenetur eligendi. Suscipit dignissimos omnis impedit.</p>
 
     <button>按钮</button>
+
+    <div class="wrapper">
+        https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event
+
+        https://www.cnblogs.com/landeanfen/p/5179960.html
+
+        https://www.ag-grid.com/javascript-data-grid/context-menu/
+
+        https://codinhood.com/nano/dom/disable-context-menu-right-click-javascript
+    </div>
 <script>
 // 控制页面滚动相关
 // 箭头函数的形式不会执行
@@ -61,12 +56,6 @@ function scrollWindow() {
 // 控制某个div的滚动
 $('.navBar').scrollLeft(250)
 
-
-window.addEventListener('contextmenu', function() {
-    console.log('contextmenu action...')
-    return false
-})
-
 window.addEventListener('blur', function() {
     console.log('window blur action....')
 })
@@ -77,39 +66,6 @@ window.addEventListener('focus', function() {
 window.onload = function() {
     console.log('window onload action...')
 };
-
-/**
- * 
-
-window.location.href(设置或获取整个 URL 为字符串)
-https://www.iicoom.top/archived
-
-window.location.pathname(设置或获取与 URL 的路径部分（就是文件地址）)
-/posts/3
-
-window.location.protocol(设置或获取 URL 的协议部分)
-https:
-
-window.location.host(设置或获取 URL 的主机部分)
-www.iicoom.top
-
-window.location.port(设置或获取与 URL 关联的端口号码)
-
-window.location.search(设置或获取 href 属性中跟在问号后面的部分)
-?ie=UTF-8&wd=%E6%B5%8F%E8%A7%88%E5%99%A8%20window%20%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E9%A1%B5%E9%9D%A2%E8%B7%AF%E5%BE%84
-
-window.location.hash(设置或获取 href 属性中在井号“#”后面的分段)
-https://analytics.google.com/analytics/web/#/report-home/a138499935w199163389p193647340
-
-#/report-home/a138499935w199163389p193647340
-
-
-刷新当前页面
-function reloadPage() {
-  window.location.reload()
-}
- * 
- * */
 </script>
 </body>
 </html>

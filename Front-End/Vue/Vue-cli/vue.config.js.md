@@ -1,3 +1,19 @@
+https://cli.vuejs.org/zh/config/#publicpath
+
+## cli
+```json
+{
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  }
+}
+```
+
+## 模式和环境变量
+https://cli.vuejs.org/zh/guide/mode-and-env.html
+
+
 https://v3.cn.vuejs.org/api/application-config.html#errorhandler
 
 ## 全局配置
