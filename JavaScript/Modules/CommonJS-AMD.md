@@ -8,11 +8,8 @@ https://www.cnblogs.com/fayin/p/6831071.html
 首先我们要明白一个前提，CommonJS模块规范和ES6模块规范完全是两种不同的概念。
 
 ## CommonJS模块规范
-The module.exports or exports is a special object which is included in every JS file in the Node.js application by default. 
-
-module is a variable that represents current module and 
-exports is an object that will be exposed as a module. 
-So, whatever you assign to module.exports or exports, will be exposed as a module.
+module.exports 或者 exports 是一个特殊的对象，是 Node.js 中每个js文件默认就存在的。
+无论是给 module.exports 赋值，还是给 exports 赋值，都会被作为一个模块暴露除去。 
 
 > The following example exposes simple string message as a module in Message.js.
 1. 模块直接导出的是一个字符串
@@ -30,8 +27,9 @@ var msg = require('./Messages.js');
 console.log(msg);
 ```
 
-> exports is an object. So, you can attach properties or methods to it. The following example exposes an object with a string property in Message.js file.
-2. 模块导出一个属性变量 为字符串
+> exports 是一个对象。你可以给它添加属性或者方法。
+
+## 模块导出一个属性变量 为字符串
 ···
 // message.js
 exports.SimpleMessage = 'Hello world';
@@ -47,8 +45,8 @@ console.log(msg.SimpleMessage);
 ···
 In the above example, require() function will return an object { SimpleMessage : 'Hello World'}
 
-> The same way as above, you can expose an object with function. The following example exposes an object with log function as a module.
-3. 导出一个function
+
+## 导出一个function
 ```
 // log.js
 module.exports.log = function (msg) { 
@@ -62,7 +60,8 @@ msg.log('Hello World');
 The above module will expose an object- { log : function(msg){ console.log(msg); } } . Use the above module as shown below.
 
 > You can also attach an object to module.exports as shown below.
-4. 导出一个对象
+
+## 导出一个对象
 ```
 // data.js
 module.exports = {
@@ -75,7 +74,7 @@ var person = require('./data.js');
 console.log(person.firstName + ' ' + person.lastName);
 ```
 
-## ES6
+## ES modules 
 ```
 // lib.js
 export const sqrt = Math.sqrt;
@@ -116,3 +115,8 @@ SyntaxError: Cannot use import statement outside a module
 错误警告其实已经给出了解决方案，在package.json文件中设置"type": "module"。
 
 
+## AMD
+[Asynchronous Module Definition ](https://github.com/amdjs/amdjs-api/blob/master/AMD.md)
+
+## RequireJS 
+RequireJS is a JavaScript file and module loader. It is optimized for in-browser use, but it can be used in other JavaScript environments, like Rhino and Node. Using a modular script loader like RequireJS will improve the speed and quality of your code.

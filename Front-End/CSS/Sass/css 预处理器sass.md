@@ -1,6 +1,23 @@
 ## sass
 世界上最成熟、最稳定、最强大的专业级CSS扩展语言！
-https://www.sass.hk/guide/
+https://sass-lang.com/
+
+## vue-cli 安装sass
+https://cli.vuejs.org/guide/css.html#pre-processors
+
+### 安装错误
+[TypeError: this.getOptions is not a function](https://stackoverflow.com/questions/66082397/typeerror-this-getoptions-is-not-a-function)
+
+Similar to what @KostDM said, in my case it seems like sass-loader@11.0.0 doesn't work with vue@2.6.12.
+
+I installed sass-loader@10.1.1 and it worked like a charm again.
+
+vue3 也不能使用更高版本的sass-loader.
+
+
+### [普通用法](https://sass-lang.com/documentation/style-rules)
+
+
 
 ### 混合器
 网站中有几处小小的样式类似，使用变量来统一处理这种情况是非常不错的选择
