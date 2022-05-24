@@ -22,3 +22,18 @@ http://yoursite.com/yourpage/value1/value2/value3
 ```
 
 ## URL encoding
+传递数组类型的params有时url会变成下面的样子：
+```js
+// https://www.baidu.com/api/mu_answer/list?start_time=&end_time=&nickname=&types[]=1&types[]=3
+```
+用到的是axios的param传递，使用了qs.stringify(params)
+```js
+'https://www.baidu.com/api/mu_answer/export?start_time=&end_time=&nickname=&types%5B0%5D=4'
+```
+
+## URL decoding
+使用decodeURI 可以把上面的形式变成这样：
+```js
+const parsed = decodeURI(exportUrl)
+// https://www.baidu.com/api/mu_answer/export?start_time=&end_time=&nickname=&types[0]=4&types[1]=3
+```
